@@ -3,122 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message to Your Future Self (Local)</title>
+    <title>A Message Through Time</title>
     
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-blue: #6a89cc;
+            --light-blue: #e8f0fe;
+            --dark-blue: #303960;
+            --text-color: #4a4a68;
+            --background-gradient: linear-gradient(135deg, #f0f4f8 0%, #d9e2ee 100%);
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.2);
+            --success-bg: #d4edda;
+            --success-text: #155724;
+            --error-bg: #f8d7da;
+            --error-text: #721c24;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e0f2f7; /* Light blue background */
+            font-family: 'Open Sans', sans-serif;
+            background: var(--background-gradient);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            color: #333;
+            color: var(--text-color);
             line-height: 1.6;
-            padding: 20px; /* Add some padding for smaller screens */
+            padding: 20px;
             box-sizing: border-box;
+            overflow-x: hidden; /* Prevent horizontal scroll from particles */
+            position: relative; /* For particle positioning */
         }
 
         .container {
             background-color: #ffffff;
             padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+            border-radius: 20px; /* More rounded */
+            box-shadow: var(--shadow-light);
             width: 100%;
-            max-width: 550px; /* Slightly wider */
+            max-width: 600px; /* Slightly wider for better layout */
             text-align: center;
-            box-sizing: border-box; /* Include padding in width */
+            box-sizing: border-box;
+            opacity: 0; /* For fade-in animation */
+            transform: translateY(20px); /* For slight lift-in */
+            animation: fadeInLift 1s forwards ease-out;
+            position: relative;
+            z-index: 10; /* Ensure container is above particles */
+        }
+
+        @keyframes fadeInLift {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
-            color: #0056b3; /* Darker blue for heading */
-            margin-bottom: 15px;
-            font-size: 2.2em;
-            font-weight: 700;
+            font-family: 'Pacifico', cursive; /* More elegant font */
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            font-size: 2.8em; /* Larger heading */
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .greeting {
+            font-size: 1.1em;
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            font-weight: 600;
         }
 
         p {
-            margin-bottom: 30px;
-            color: #555;
-            font-size: 1.1em;
+            margin-bottom: 25px;
+            color: var(--text-color);
+            font-size: 1em;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 18px; /* Slightly more space between form elements */
+            gap: 18px;
+            margin-top: 20px;
         }
 
         label {
             text-align: left;
-            font-weight: bold;
-            color: #333;
+            font-weight: 600;
+            color: var(--dark-blue);
             font-size: 1em;
         }
 
         textarea,
         input[type="date"] {
-            width: calc(100% - 24px); /* Account for padding */
-            padding: 12px;
-            border: 1px solid #cce7ff; /* Lighter blue border */
-            border-radius: 8px;
+            width: calc(100% - 28px); /* Account for padding and border */
+            padding: 14px;
+            border: 1px solid var(--primary-blue); /* Blue border */
+            border-radius: 10px; /* More rounded inputs */
             font-size: 1.05em;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--light-blue); /* Light background for inputs */
+            color: var(--text-color);
         }
 
         textarea:focus,
         input[type="date"]:focus {
-            border-color: #007bff; /* Blue on focus */
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle glow */
+            border-color: var(--dark-blue);
+            box-shadow: 0 0 0 4px rgba(106, 137, 204, 0.3); /* Subtle glow */
             outline: none;
         }
 
         textarea {
-            resize: vertical; /* Allows vertical resizing */
-            min-height: 120px; /* Minimum height for textarea */
+            resize: vertical;
+            min-height: 150px; /* Taller textarea */
         }
 
         button {
-            background-color: #007bff; /* Primary blue button */
+            background-color: var(--primary-blue);
             color: white;
-            padding: 14px 25px;
+            padding: 15px 25px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 1.2em;
             font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             letter-spacing: 0.5px;
+            box-shadow: var(--shadow-light);
         }
 
         button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-            transform: translateY(-2px); /* Slight lift effect */
+            background-color: var(--dark-blue);
+            transform: translateY(-3px) scale(1.02); /* Slight lift and scale */
+            box-shadow: var(--shadow-hover);
         }
 
         button:active {
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+            box-shadow: var(--shadow-light);
         }
 
         #statusMessage {
             margin-top: 25px;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 600;
             font-size: 0.95em;
-            text-align: left; /* Align text left for status */
+            text-align: left;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.4s ease-out, max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        #statusMessage.visible {
+            opacity: 1;
+            max-height: 100px; /* Sufficient height to show content */
+            padding: 15px;
         }
 
         #statusMessage.success {
-            background-color: #d4edda; /* Light green */
-            color: #155724; /* Dark green text */
+            background-color: var(--success-bg);
+            color: var(--success-text);
             border: 1px solid #c3e6cb;
         }
 
         #statusMessage.error {
-            background-color: #f8d7da; /* Light red */
-            color: #721c24; /* Dark red text */
+            background-color: var(--error-bg);
+            color: var(--error-text);
             border: 1px solid #f5c6cb;
         }
 
@@ -129,21 +184,23 @@
         .toggle-link {
             margin-top: 20px;
             font-size: 0.95em;
-            color: #666;
+            color: var(--text-color);
         }
 
         .toggle-link a {
-            color: #007bff;
+            color: var(--primary-blue);
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
 
         .toggle-link a:hover {
+            color: var(--dark-blue);
             text-decoration: underline;
         }
 
         #messageDisplayArea {
-            min-height: 150px; /* Ensure some height for content */
+            min-height: 150px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -151,30 +208,39 @@
         }
 
         #revealedMessage {
-            background-color: #f9f9f9;
+            background-color: #fefefe;
             border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 15px;
+            padding: 25px;
             text-align: left;
             width: 100%;
             box-sizing: border-box;
             margin-top: 15px;
+            box-shadow: var(--shadow-light);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #revealedMessage:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
 
         #revealedMessage p {
             margin-bottom: 10px;
-            color: #333;
+            color: var(--text-color);
         }
 
         .message-content {
-            white-space: pre-wrap; /* Preserves whitespace and line breaks */
-            font-family: 'Georgia', serif;
+            white-space: pre-wrap;
+            font-family: 'Open Sans', serif; /* Use a readable font for content */
             font-size: 1.1em;
-            color: #2c3e50;
-            background-color: #eaf5ff; /* Light blue background for message content */
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 15px;
+            color: var(--dark-blue);
+            background-color: #eaf5ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            border-left: 5px solid var(--primary-blue); /* Accent border */
         }
 
         .revealed-date {
@@ -182,53 +248,136 @@
             color: #888;
             text-align: right;
             margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* --- Easter Egg: Particle/Sparkle Effect --- */
+        .sparkle {
+            position: absolute;
+            font-size: 1.5em;
+            pointer-events: none;
+            opacity: 0;
+            animation: sparkle-fade-out 2s forwards;
+            z-index: 5;
+        }
+
+        @keyframes sparkle-fade-out {
+            0% { opacity: 1; transform: scale(0.5); }
+            100% { opacity: 0; transform: scale(1.5) translateY(-50px); }
+        }
+
+        /* --- Confetti/Hearts for Special Dates --- */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        .confetti-heart {
+            position: absolute;
+            font-size: 1.5em;
+            animation: fall 3s forwards ease-out;
+            opacity: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotateZ(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotateZ(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px 30px;
+                margin: 10px;
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            p {
+                font-size: 0.95em;
+            }
+            button {
+                font-size: 1.1em;
+                padding: 12px 20px;
+            }
+            textarea, input[type="date"] {
+                font-size: 1em;
+                padding: 12px;
+            }
+            .message-content {
+                font-size: 1em;
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <p id="timeGreeting" class="greeting"></p>
+
         <div id="writeMessageSection">
-            <h1>Write to Your Future Self</h1>
-            <p>Your message will be stored securely in this browser and revealed on your chosen date. <br> **You must use this same browser and device to open it later!**</p>
+            <h1>A Thought for Tomorrow</h1>
+            <p>Pen down your feelings, goals, or a special memory. It will patiently wait here, just for you, to be unveiled on the date you choose. **Remember, your message is stored only in this browser on this device.**</p>
 
             <form id="messageForm">
-                <label for="messageContent">Your Message:</label>
-                <textarea id="messageContent" rows="10" placeholder="Dear Future Sarthak, remember this goal or how you feel today..."></textarea>
+                <label for="messageContent">Your Reflection:</label>
+                <textarea id="messageContent" rows="10" placeholder="Dear Future You, on this day I felt... or My hope for you is..."></textarea>
 
-                <label for="deliveryDate">Reveal On:</label>
+                <label for="deliveryDate">Unveil On:</label>
                 <input type="date" id="deliveryDate" required>
 
-                <button type="submit">Store Message Locally</button>
+                <button type="submit">Seal Your Message</button>
             </form>
 
             <div id="statusMessage" class="hidden"></div>
-            <p class="toggle-link">Want to see if you have a message? <a href="#" id="showViewMessage">View your message!</a></p>
+            <p class="toggle-link">Curious about a past message? <a href="#" id="showViewMessage">Open the Time Capsule!</a></p>
         </div>
 
         <div id="viewMessageSection" class="hidden">
-            <h1>Your Future Message</h1>
+            <h1>Your Moment of Revelation</h1>
             <div id="messageDisplayArea">
-                <p id="noMessage" class="hidden">No message found for you in this browser, or the reveal date hasn't arrived yet.</p>
+                <p id="noMessage" class="hidden">There isn't a message waiting here just yet, or the moment of revelation hasn't quite arrived.</p>
                 <div id="revealedMessage" class="hidden">
-                    <p><strong>Your message from the past:</strong></p>
+                    <p><strong>A whisper from your past:</strong></p>
                     <div class="message-content" id="displayedContent"></div>
-                    <p class="revealed-date">Originally scheduled for: <span id="scheduledDate"></span></p>
+                    <p class="revealed-date">Originally sealed on: <span id="scheduledDate"></span></p>
+                </div>
+                <div id="easterEggMessage" class="hidden message-content" style="border-left: 5px solid #ff69b4; background-color: #ffe0f0; margin-top: 25px;">
+                    <p>✨ From the depths of time, a special wish just for you! ✨</p>
+                    <p id="easterEggContent"></p>
                 </div>
             </div>
-            <p class="toggle-link"><a href="#" id="showWriteMessage">Go back to write a new message.</a></p>
+            <p class="toggle-link"><a href="#" id="showWriteMessage">Compose a new message.</a></p>
         </div>
     </div>
 
+    <div id="confettiContainer" class="confetti-container"></div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // DOM Elements for Write Section
+            // --- DOM Elements ---
+            const timeGreeting = document.getElementById('timeGreeting');
             const writeMessageSection = document.getElementById('writeMessageSection');
             const messageForm = document.getElementById('messageForm');
             const statusMessageDiv = document.getElementById('statusMessage');
             const deliveryDateInput = document.getElementById('deliveryDate');
             const showViewMessageLink = document.getElementById('showViewMessage');
 
-            // DOM Elements for View Section
             const viewMessageSection = document.getElementById('viewMessageSection');
             const noMessageDiv = document.getElementById('noMessage');
             const revealedMessageDiv = document.getElementById('revealedMessage');
@@ -236,26 +385,45 @@
             const scheduledDateSpan = document.getElementById('scheduledDate');
             const showWriteMessageLink = document.getElementById('showWriteMessage');
 
+            const easterEggMessageDiv = document.getElementById('easterEggMessage');
+            const easterEggContent = document.getElementById('easterEggContent');
+            const confettiContainer = document.getElementById('confettiContainer');
+
+            // --- Greeting based on Time ---
+            function setTimeGreeting() {
+                const hour = new Date().getHours();
+                let greeting;
+                if (hour < 12) {
+                    greeting = "Good morning!";
+                } else if (hour < 17) {
+                    greeting = "Good afternoon!";
+                } else {
+                    greeting = "Good evening!";
+                }
+                timeGreeting.textContent = greeting;
+            }
+            setTimeGreeting();
+
             // --- Initial Setup for Date Input ---
             const today = new Date();
             today.setDate(today.getDate() + 1); // Set minimum date to tomorrow
             const minDate = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
             deliveryDateInput.setAttribute('min', minDate);
 
-            // --- Function to Show/Hide Sections ---
+            // --- Section Toggling Functions ---
             function showSection(sectionId) {
                 writeMessageSection.classList.add('hidden');
                 viewMessageSection.classList.add('hidden');
+                statusMessageDiv.classList.remove('visible'); // Hide status when switching sections
 
                 if (sectionId === 'write') {
                     writeMessageSection.classList.remove('hidden');
                 } else if (sectionId === 'view') {
                     viewMessageSection.classList.remove('hidden');
-                    loadAndDisplayMessage(); // Call function to load message when view section is shown
+                    loadAndDisplayMessage(); // Refresh message display when view section is shown
                 }
             }
 
-            // --- Event Listeners for Section Toggles ---
             showViewMessageLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 showSection('view');
@@ -268,92 +436,137 @@
 
             // --- Logic for Writing/Storing Message ---
             messageForm.addEventListener('submit', (event) => {
-                event.preventDefault(); // Prevent default form submission (page reload)
+                event.preventDefault();
 
-                statusMessageDiv.classList.add('hidden'); // Hide any previous status messages
-                statusMessageDiv.classList.remove('success', 'error');
+                statusMessageDiv.classList.remove('visible', 'success', 'error');
 
                 const messageContent = document.getElementById('messageContent').value.trim();
-                const deliveryDate = document.getElementById('deliveryDate').value; // YYYY-MM-DD string
+                const deliveryDate = document.getElementById('deliveryDate').value;
 
-                // Client-side validation
                 if (!messageContent || !deliveryDate) {
-                    showStatus('Please write your message and select a reveal date.', 'error');
+                    showStatus('Please write your message and select an unveil date.', 'error');
                     return;
                 }
 
-                const chosenDate = new Date(deliveryDate + 'T00:00:00'); // Add T00:00:00 to treat as UTC midnight for consistent comparison
+                const chosenDate = new Date(deliveryDate + 'T00:00:00'); // Consistent comparison
                 const now = new Date();
 
                 if (chosenDate < now) {
-                    showStatus('The reveal date must be in the future.', 'error');
+                    showStatus('The unveil date must be in the future.', 'error');
                     return;
                 }
 
                 try {
-                    // Prepare the message object to store
                     const messageToStore = {
                         messageContent: messageContent,
-                        deliveryDate: deliveryDate // Store as YYYY-MM-DD string
+                        deliveryDate: deliveryDate
                     };
-
-                    // Store in Local Storage
-                    // This is the part that stores it persistently on the user's device
                     localStorage.setItem('futureMessage', JSON.stringify(messageToStore));
 
-                    showStatus('Your message has been stored! Remember to come back to this same browser on the reveal date.', 'success');
-                    messageForm.reset(); // Clear the form fields
-                    deliveryDateInput.setAttribute('min', minDate); // Reset min date for next entry
+                    showStatus('Your message is sealed! Check back on your chosen date.', 'success');
+                    messageForm.reset();
+                    deliveryDateInput.setAttribute('min', minDate);
                 } catch (error) {
-                    console.error('Error storing message in local storage:', error);
-                    showStatus('Could not store your message. Your browser\'s storage might be full or disabled.', 'error');
+                    console.error('Error storing message:', error);
+                    showStatus('Could not seal your message. Your browser\'s storage might be full or disabled.', 'error');
                 }
             });
 
-            // Helper function to display status messages
             function showStatus(message, type) {
                 statusMessageDiv.textContent = message;
-                statusMessageDiv.classList.remove('hidden');
-                statusMessageDiv.classList.add(type);
+                statusMessageDiv.className = `status visible ${type}`; // Add visible class
             }
 
             // --- Logic for Loading and Displaying Message ---
             function loadAndDisplayMessage() {
                 noMessageDiv.classList.add('hidden');
                 revealedMessageDiv.classList.add('hidden');
+                easterEggMessageDiv.classList.add('hidden'); // Always hide easter egg first
 
                 const storedMessageJSON = localStorage.getItem('futureMessage');
+                const now = new Date();
+                
+                let isEasterEggDay = false;
+                // Check for Valentine's Day (Feb 14) or October 26th (Mammam's Birthday)
+                if ((now.getMonth() === 1 && now.getDate() === 14) || (now.getMonth() === 9 && now.getDate() === 26)) {
+                    isEasterEggDay = true;
+                }
 
                 if (storedMessageJSON) {
                     const storedMessage = JSON.parse(storedMessageJSON);
-                    // Add 'T00:00:00' to treat the date as local day start, avoiding timezone issues
-                    const deliveryDate = new Date(storedMessage.deliveryDate + 'T00:00:00'); 
-                    const now = new Date();
+                    const deliveryDate = new Date(storedMessage.deliveryDate + 'T00:00:00');
 
                     if (now >= deliveryDate) {
                         // Message is ready to be revealed!
                         displayedContent.innerHTML = storedMessage.messageContent.replace(/\n/g, '<br>');
                         scheduledDateSpan.textContent = new Date(storedMessage.deliveryDate).toLocaleDateString();
                         revealedMessageDiv.classList.remove('hidden');
+
+                        if (isEasterEggDay) {
+                            triggerEasterEgg("You are incredible and deserve all the happiness in the world. Believe in yourself and keep shining brightly!");
+                        }
                     } else {
                         // Not yet time
-                        noMessageDiv.textContent = `Your message is scheduled to be revealed on ${new Date(storedMessage.deliveryDate).toLocaleDateString()}. Check back then!`;
+                        noMessageDiv.textContent = `Your message is patiently waiting to be unveiled on ${new Date(storedMessage.deliveryDate).toLocaleDateString()}. The moment isn't quite here yet.`;
                         noMessageDiv.classList.remove('hidden');
                     }
                 } else {
                     // No message stored at all
                     noMessageDiv.classList.remove('hidden');
-                    noMessageDiv.textContent = "No message found for you in this browser. Write one now!";
+                    noMessageDiv.textContent = "It looks like there's no message sealed here. Why not compose one now?";
                 }
             }
 
-            // --- Initial Load ---
-            // Decide which section to show initially
-            if (localStorage.getItem('futureMessage')) {
-                showSection('view'); // If a message exists, show the view section
-            } else {
-                showSection('write'); // Otherwise, show the write section
+            // --- Easter Egg Function ---
+            function triggerEasterEgg(message) {
+                easterEggContent.textContent = message;
+                easterEggMessageDiv.classList.remove('hidden');
+                burstConfetti(25, ['❤️', '✨', '💖']); // Hearts and sparkles
             }
+
+            // --- Animation: Confetti Burst ---
+            function burstConfetti(count, emojis) {
+                for (let i = 0; i < count; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti-heart');
+                    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    confetti.style.left = `${Math.random() * 100}vw`;
+                    confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+                    confettiContainer.appendChild(confetti);
+
+                    // Remove after animation to prevent DOM bloat
+                    confetti.addEventListener('animationend', () => {
+                        confetti.remove();
+                    });
+                }
+            }
+
+            // --- Animation: Random Sparkles ---
+            function createSparkle() {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.textContent = '✨'; // or '🌟', '💫'
+                sparkle.style.left = `${Math.random() * 100}vw`;
+                sparkle.style.top = `${Math.random() * 100}vh`;
+                sparkle.style.animationDuration = `${1.5 + Math.random() * 1}s`;
+                sparkle.style.animationDelay = `${Math.random() * 0.5}s`;
+                document.body.appendChild(sparkle);
+                sparkle.addEventListener('animationend', () => sparkle.remove());
+            }
+            setInterval(createSparkle, 1500); // Create a sparkle every 1.5 seconds
+
+            // --- Initial Load Logic ---
+            // If there's a stored message, initially show the view section
+            if (localStorage.getItem('futureMessage')) {
+                showSection('view');
+            } else {
+                showSection('write');
+            }
+
+            // --- Secret Console Message Easter Egg ---
+            console.log("%cHello there, curious mind! 👋", "font-size: 1.2em; font-weight: bold; color: #6a89cc;");
+            console.log("%cThis little app is designed to hold a special thought for the future, right here in your browser. Pretty neat, huh?", "font-size: 0.9em; color: #4a4a68;");
+            console.log("%cKeep an eye out for special dates... you might find a little extra magic! 😉", "font-size: 0.9em; color: #ff69b4; font-weight: bold;");
         });
     </script>
 </body>
