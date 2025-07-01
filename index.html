@@ -3,178 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Message Through Time</title>
+    <title>A Special Message Through Time</title>
     
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@300;400;600&display=swap');
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Pacifico&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
+    <style>
+        /* Define a beautiful color palette and shadow effects */
         :root {
-            --primary-blue: #6a89cc;
-            --light-blue: #e8f0fe;
-            --dark-blue: #303960;
-            --text-color: #4a4a68;
-            --background-gradient: linear-gradient(135deg, #f0f4f8 0%, #d9e2ee 100%);
-            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.2);
-            --success-bg: #d4edda;
-            --success-text: #155724;
-            --error-bg: #f8d7da;
-            --error-text: #721c24;
+            --primary-accent: #ff6b6b; /* Soft Red/Coral */
+            --secondary-accent: #4ecdc4; /* Teal */
+            --dark-text: #2c3e50; /* Dark Blue */
+            --light-text: #7f8c8d; /* Muted Grey */
+            --bg-start: #a1c4fd; /* Light Blue for gradient */
+            --bg-end: #c2e9fb;   /* Lighter Blue for gradient */
+            --card-bg: #ffffff;
+            --shadow-subtle: 0 5px 15px rgba(0, 0, 0, 0.15);
+            --shadow-elevated: 0 10px 30px rgba(0, 0, 0, 0.25);
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
         }
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background: var(--background-gradient);
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            color: var(--text-color);
+            color: var(--dark-text);
             line-height: 1.6;
             padding: 20px;
             box-sizing: border-box;
-            overflow-x: hidden; /* Prevent horizontal scroll from particles */
-            position: relative; /* For particle positioning */
+            overflow: hidden; /* Hide overflow from animations */
+            position: relative;
+            animation: backgroundShift 20s ease infinite alternate; /* Background animation */
+        }
+
+        @keyframes backgroundShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Particle/Starfield Background */
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: twinkle 3s infinite ease-in-out alternate;
+            z-index: 1; /* Below content */
+        }
+
+        @keyframes twinkle {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(0.5); opacity: 0; }
         }
 
         .container {
-            background-color: #ffffff;
-            padding: 30px 40px;
-            border-radius: 20px; /* More rounded */
-            box-shadow: var(--shadow-light);
+            background-color: var(--card-bg);
+            padding: 40px; /* More padding */
+            border-radius: 25px; /* Even more rounded */
+            box-shadow: var(--shadow-elevated); /* Stronger shadow */
             width: 100%;
-            max-width: 600px; /* Slightly wider for better layout */
+            max-width: 700px; /* Wider for more space */
             text-align: center;
             box-sizing: border-box;
-            opacity: 0; /* For fade-in animation */
-            transform: translateY(20px); /* For slight lift-in */
-            animation: fadeInLift 1s forwards ease-out;
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            animation: fadeInScale 1.2s forwards ease-out;
             position: relative;
-            z-index: 10; /* Ensure container is above particles */
+            z-index: 10;
+            overflow: hidden; /* Prevent content overflow during animations */
         }
 
-        @keyframes fadeInLift {
+        @keyframes fadeInScale {
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
         h1 {
-            font-family: 'Pacifico', cursive; /* More elegant font */
-            color: var(--dark-blue);
-            margin-bottom: 10px;
-            font-size: 2.8em; /* Larger heading */
-            font-weight: 400;
+            font-family: 'Merriweather', serif; /* Elegant heading font */
+            color: var(--dark-text);
+            margin-bottom: 15px;
+            font-size: 3em; /* Larger heading */
+            font-weight: 700;
             line-height: 1.2;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
         }
 
         .greeting {
-            font-size: 1.1em;
-            color: var(--primary-blue);
-            margin-bottom: 25px;
-            font-weight: 600;
+            font-family: 'Pacifico', cursive; /* A delightful, flowing script font */
+            font-size: 2.5em; /* Very prominent */
+            color: var(--primary-accent); /* Special color for greeting */
+            margin-bottom: 30px;
+            font-weight: normal; /* Pacifico is naturally bold */
+            text-shadow: 2px 2px 8px rgba(255,107,107,0.4); /* Soft glow */
+            animation: textGlow 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 2px 2px 8px rgba(255,107,107,0.4); }
+            100% { text-shadow: 2px 2px 15px rgba(255,107,107,0.8); }
         }
 
         p {
             margin-bottom: 25px;
-            color: var(--text-color);
-            font-size: 1em;
+            color: var(--light-text);
+            font-size: 1.05em;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .instruction-text {
+            font-weight: 600;
+            color: var(--primary-accent);
+            text-shadow: 0 0 5px rgba(255,107,107,0.2);
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            margin-top: 20px;
+            gap: 20px; /* More space between form elements */
+            margin-top: 30px;
         }
 
         label {
             text-align: left;
-            font-weight: 600;
-            color: var(--dark-blue);
-            font-size: 1em;
+            font-weight: 700;
+            color: var(--dark-text);
+            font-size: 1.1em;
+            margin-bottom: 5px;
         }
 
         textarea,
         input[type="date"] {
-            width: calc(100% - 28px); /* Account for padding and border */
-            padding: 14px;
-            border: 1px solid var(--primary-blue); /* Blue border */
-            border-radius: 10px; /* More rounded inputs */
-            font-size: 1.05em;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: calc(100% - 32px); /* Adjust for padding */
+            padding: 16px; /* Larger padding */
+            border: 2px solid var(--secondary-accent); /* Thicker border with teal accent */
+            border-radius: 12px; /* Smoother rounded corners */
+            font-size: 1.1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
             background-color: var(--light-blue); /* Light background for inputs */
-            color: var(--text-color);
+            color: var(--dark-text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            appearance: none; /* Remove default browser styling for date input */
+            -webkit-appearance: none;
         }
 
         textarea:focus,
         input[type="date"]:focus {
-            border-color: var(--dark-blue);
-            box-shadow: 0 0 0 4px rgba(106, 137, 204, 0.3); /* Subtle glow */
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 0 5px rgba(255, 107, 107, 0.4); /* Vibrant glow on focus */
+            background-color: #fff;
             outline: none;
         }
 
         textarea {
             resize: vertical;
-            min-height: 150px; /* Taller textarea */
+            min-height: 180px; /* Taller textarea */
+        }
+        
+        /* Custom styling for date input icon (optional, depends on browser support) */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            background: transparent;
+            bottom: 0;
+            color: transparent;
+            cursor: pointer;
+            height: auto;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto;
         }
 
         button {
-            background-color: var(--primary-blue);
+            background: var(--primary-accent);
             color: white;
-            padding: 15px 25px;
+            padding: 18px 30px; /* Larger padding */
             border: none;
-            border-radius: 10px;
+            border-radius: 15px; /* Even more rounded buttons */
             cursor: pointer;
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            letter-spacing: 0.5px;
-            box-shadow: var(--shadow-light);
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-subtle);
+            position: relative;
+            overflow: hidden; /* For ripple effect */
         }
 
         button:hover {
-            background-color: var(--dark-blue);
-            transform: translateY(-3px) scale(1.02); /* Slight lift and scale */
-            box-shadow: var(--shadow-hover);
+            background: var(--dark-text); /* Changes to dark blue on hover */
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: var(--shadow-elevated);
         }
 
         button:active {
             transform: translateY(0) scale(1);
-            box-shadow: var(--shadow-light);
+            box-shadow: var(--shadow-subtle);
+            background: darken(var(--dark-text), 10%); /* Slightly darker on click */
+        }
+        
+        /* Ripple effect for buttons */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            animation: ripple-animation 0.6s linear forwards;
+            transform: scale(0);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
         }
 
         #statusMessage {
-            margin-top: 25px;
-            padding: 15px;
-            border-radius: 10px;
+            margin-top: 30px;
+            padding: 18px; /* Larger padding */
+            border-radius: 12px;
             font-weight: 600;
-            font-size: 0.95em;
-            text-align: left;
+            font-size: 1em;
+            text-align: center; /* Center status message */
             opacity: 0;
             max-height: 0;
             overflow: hidden;
-            transition: opacity 0.4s ease-out, max-height 0.4s ease-out, padding 0.4s ease-out;
+            transition: opacity 0.5s ease-out, max-height 0.5s ease-out, padding 0.5s ease-out;
         }
 
         #statusMessage.visible {
             opacity: 1;
-            max-height: 100px; /* Sufficient height to show content */
-            padding: 15px;
+            max-height: 150px; /* Sufficient height to show content */
+            padding: 18px;
         }
 
         #statusMessage.success {
-            background-color: var(--success-bg);
-            color: var(--success-text);
-            border: 1px solid #c3e6cb;
+            background-color: rgba(46, 204, 113, 0.15); /* Light green with transparency */
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
         }
 
         #statusMessage.error {
-            background-color: var(--error-bg);
-            color: var(--error-text);
-            border: 1px solid #f5c6cb;
+            background-color: rgba(231, 76, 60, 0.15); /* Light red with transparency */
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
         }
 
         .hidden {
@@ -182,25 +265,26 @@
         }
 
         .toggle-link {
-            margin-top: 20px;
-            font-size: 0.95em;
-            color: var(--text-color);
+            margin-top: 30px;
+            font-size: 1.05em;
+            color: var(--light-text);
         }
 
         .toggle-link a {
-            color: var(--primary-blue);
+            color: var(--primary-accent);
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
         .toggle-link a:hover {
-            color: var(--dark-blue);
+            color: var(--dark-text);
             text-decoration: underline;
+            text-shadow: 0 0 5px rgba(0,0,0,0.1);
         }
 
         #messageDisplayArea {
-            min-height: 150px;
+            min-height: 200px; /* Ensure height for content */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -208,62 +292,73 @@
         }
 
         #revealedMessage {
-            background-color: #fefefe;
-            border: 1px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 25px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--secondary-accent);
+            border-radius: 18px; /* More rounded */
+            padding: 30px; /* More padding */
             text-align: left;
             width: 100%;
             box-sizing: border-box;
-            margin-top: 15px;
-            box-shadow: var(--shadow-light);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 20px;
+            box-shadow: var(--shadow-subtle);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d; /* For flip animation */
+            perspective: 1000px;
         }
 
-        #revealedMessage:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+        /* Pop-out/Flip animation for revealed message */
+        .message-revealed {
+            animation: cardPopOut 1s forwards cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes cardPopOut {
+            0% { transform: scale(0.8) rotateY(90deg); opacity: 0; }
+            50% { transform: scale(1.05) rotateY(-10deg); opacity: 1; }
+            100% { transform: scale(1) rotateY(0deg); opacity: 1; }
         }
 
         #revealedMessage p {
-            margin-bottom: 10px;
-            color: var(--text-color);
+            margin-bottom: 12px;
+            color: var(--dark-text);
+            font-weight: 600;
         }
 
         .message-content {
             white-space: pre-wrap;
-            font-family: 'Open Sans', serif; /* Use a readable font for content */
-            font-size: 1.1em;
-            color: var(--dark-blue);
-            background-color: #eaf5ff;
+            font-family: 'Merriweather', serif;
+            font-size: 1.15em;
+            color: var(--dark-text);
+            background-color: rgba(78, 205, 196, 0.1); /* Light teal background for message content */
             padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
             line-height: 1.8;
-            border-left: 5px solid var(--primary-blue); /* Accent border */
+            border-left: 6px solid var(--secondary-accent); /* Thicker accent border */
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .revealed-date {
-            font-size: 0.85em;
-            color: #888;
+            font-size: 0.9em;
+            color: var(--light-text);
             text-align: right;
-            margin-top: 15px;
+            margin-top: 20px;
             font-style: italic;
         }
 
-        /* --- Easter Egg: Particle/Sparkle Effect --- */
+        /* --- Easter Egg: Particle/Sparkle Effect (more subtle) --- */
         .sparkle {
             position: absolute;
-            font-size: 1.5em;
+            font-size: 1.2em; /* Slightly smaller sparkles */
             pointer-events: none;
             opacity: 0;
-            animation: sparkle-fade-out 2s forwards;
+            animation: sparkle-fade-out 2.5s forwards;
             z-index: 5;
+            color: #ffd700; /* Gold color for sparkles */
         }
 
         @keyframes sparkle-fade-out {
-            0% { opacity: 1; transform: scale(0.5); }
-            100% { opacity: 0; transform: scale(1.5) translateY(-50px); }
+            0% { opacity: 0.8; transform: scale(0.5); }
+            100% { opacity: 0; transform: scale(1.8) translateY(-70px) rotate(360deg); }
         }
 
         /* --- Confetti/Hearts for Special Dates --- */
@@ -278,88 +373,144 @@
             z-index: 100;
         }
 
-        .confetti-heart {
+        .confetti-item {
             position: absolute;
-            font-size: 1.5em;
-            animation: fall 3s forwards ease-out;
+            font-size: 1.8em; /* Larger confetti items */
+            animation: fall 4s forwards ease-out;
             opacity: 0;
+            transform-origin: center;
         }
 
         @keyframes fall {
             0% {
-                transform: translateY(-100px) rotateZ(0deg);
+                transform: translateY(-50px) rotateZ(0deg);
                 opacity: 0;
             }
             10% {
-                opacity: 1;
+                opacity: 0.8;
             }
             100% {
-                transform: translateY(110vh) rotateZ(720deg);
+                transform: translateY(110vh) rotateZ(1080deg); /* More rotations */
                 opacity: 0;
             }
+        }
+
+        #easterEggMessage {
+            border-left: 6px solid var(--primary-accent);
+            background-color: rgba(255, 107, 107, 0.1); /* Soft red background */
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-subtle);
+            animation: fadeIn 1s ease-out;
+        }
+
+        #easterEggMessage p {
+            color: var(--dark-text);
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            font-size: 1.15em;
+            text-shadow: 0 0 5px rgba(0,0,0,0.05);
         }
 
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             .container {
-                padding: 25px 30px;
+                padding: 25px;
                 margin: 10px;
+                border-radius: 18px;
             }
             h1 {
-                font-size: 2.2em;
+                font-size: 2.5em;
+            }
+            .greeting {
+                font-size: 2em;
             }
             p {
                 font-size: 0.95em;
+                margin-bottom: 20px;
             }
             button {
                 font-size: 1.1em;
-                padding: 12px 20px;
+                padding: 15px 25px;
             }
             textarea, input[type="date"] {
                 font-size: 1em;
-                padding: 12px;
+                padding: 14px;
             }
             .message-content {
                 font-size: 1em;
+                padding: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                border-radius: 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .greeting {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 0.9em;
+                margin-bottom: 15px;
+            }
+            button {
+                font-size: 1em;
+                padding: 12px 20px;
+            }
+            textarea, input[type="date"] {
+                font-size: 0.95em;
+                padding: 12px;
+            }
+            .message-content {
+                font-size: 0.95em;
                 padding: 15px;
             }
         }
     </style>
 </head>
 <body>
+    <div id="particle-container"></div>
+
     <div class="container">
-        <p id="timeGreeting" class="greeting"></p>
+        <h2 id="timeGreeting" class="greeting"></h2>
 
         <div id="writeMessageSection">
-            <h1>A Thought for Tomorrow</h1>
-            <p>Pen down your feelings, goals, or a special memory. It will patiently wait here, just for you, to be unveiled on the date you choose. **Remember, your message is stored only in this browser on this device.**</p>
+            <h1>Capture a Thought, Seal a Memory</h1>
+            <p>Ready to send a message to your future self, or perhaps a special note for someone to discover later? Just type your thoughts below.</p>
+            <p class="instruction-text">It will patiently wait here, stored only in *this browser* on *this device*, to be unveiled on the exact date you choose. No emails, no servers, just pure future connection!</p>
 
             <form id="messageForm">
-                <label for="messageContent">Your Reflection:</label>
-                <textarea id="messageContent" rows="10" placeholder="Dear Future You, on this day I felt... or My hope for you is..."></textarea>
+                <label for="messageContent">Your Precious Words:</label>
+                <textarea id="messageContent" rows="10" placeholder="Dear Future You, on this day I felt... What are my dreams? What promises do I make?"></textarea>
 
-                <label for="deliveryDate">Unveil On:</label>
+                <label for="deliveryDate">Choose the Unveiling Date:</label>
                 <input type="date" id="deliveryDate" required>
 
-                <button type="submit">Seal Your Message</button>
+                <button type="submit">Seal Your Message in Time</button>
             </form>
 
             <div id="statusMessage" class="hidden"></div>
-            <p class="toggle-link">Curious about a past message? <a href="#" id="showViewMessage">Open the Time Capsule!</a></p>
+            <p class="toggle-link">Already sent a message to the future? <a href="#" id="showViewMessage">Open the Time Capsule!</a></p>
         </div>
 
         <div id="viewMessageSection" class="hidden">
             <h1>Your Moment of Revelation</h1>
             <div id="messageDisplayArea">
-                <p id="noMessage" class="hidden">There isn't a message waiting here just yet, or the moment of revelation hasn't quite arrived.</p>
+                <p id="noMessage" class="hidden">There isn't a message waiting here just yet, or the moment of revelation hasn't quite arrived. Perhaps it's time to create a new one?</p>
                 <div id="revealedMessage" class="hidden">
-                    <p><strong>A whisper from your past:</strong></p>
+                    <p><strong>A cherished whisper from your past:</strong></p>
                     <div class="message-content" id="displayedContent"></div>
-                    <p class="revealed-date">Originally sealed on: <span id="scheduledDate"></span></p>
+                    <p class="revealed-date">Originally sealed on: <span id="sealedDate"></span></p>
                 </div>
-                <div id="easterEggMessage" class="hidden message-content" style="border-left: 5px solid #ff69b4; background-color: #ffe0f0; margin-top: 25px;">
-                    <p>✨ From the depths of time, a special wish just for you! ✨</p>
-                    <p id="easterEggContent"></p>
+                <div id="easterEggMessage" class="hidden message-content">
+                    <p style="text-align: center; margin-bottom: 10px;">✨ A special note from the universe just for you! ✨</p>
+                    <p id="easterEggContent" style="font-style: italic;"></p>
                 </div>
             </div>
             <p class="toggle-link"><a href="#" id="showWriteMessage">Compose a new message.</a></p>
@@ -377,44 +528,73 @@
             const statusMessageDiv = document.getElementById('statusMessage');
             const deliveryDateInput = document.getElementById('deliveryDate');
             const showViewMessageLink = document.getElementById('showViewMessage');
+            const particleContainer = document.getElementById('particle-container');
 
             const viewMessageSection = document.getElementById('viewMessageSection');
             const noMessageDiv = document.getElementById('noMessage');
             const revealedMessageDiv = document.getElementById('revealedMessage');
             const displayedContent = document.getElementById('displayedContent');
-            const scheduledDateSpan = document.getElementById('scheduledDate');
+            const sealedDateSpan = document.getElementById('sealedDate'); // Renamed for clarity
             const showWriteMessageLink = document.getElementById('showWriteMessage');
 
             const easterEggMessageDiv = document.getElementById('easterEggMessage');
             const easterEggContent = document.getElementById('easterEggContent');
             const confettiContainer = document.getElementById('confettiContainer');
 
-            // --- Greeting based on Time ---
+            // --- Time-Based Greeting ---
             function setTimeGreeting() {
                 const hour = new Date().getHours();
                 let greeting;
-                if (hour < 12) {
-                    greeting = "Good morning!";
-                } else if (hour < 17) {
-                    greeting = "Good afternoon!";
+                if (hour >= 5 && hour < 12) {
+                    greeting = "Good Morning!";
+                } else if (hour >= 12 && hour < 18) {
+                    greeting = "Good Afternoon!";
                 } else {
-                    greeting = "Good evening!";
+                    greeting = "Good Evening!";
                 }
                 timeGreeting.textContent = greeting;
             }
             setTimeGreeting();
 
-            // --- Initial Setup for Date Input ---
-            const today = new Date();
-            today.setDate(today.getDate() + 1); // Set minimum date to tomorrow
-            const minDate = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+            // --- Particle Background Animation ---
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particleContainer.appendChild(particle);
+
+                const size = Math.random() * 8 + 2; // Size between 2px and 10px
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                particle.style.animationDuration = `${Math.random() * 5 + 5}s`; // 5-10s animation
+                particle.style.animationDelay = `${Math.random() * 3}s`; // Random delay
+
+                particle.addEventListener('animationend', () => {
+                    particle.remove();
+                });
+            }
+
+            // Create particles every X ms
+            setInterval(createParticle, 500); // Adjust frequency
+
+            // Initial burst of particles
+            for (let i = 0; i < 50; i++) {
+                createParticle();
+            }
+
+
+            // --- Initial Setup for Date Input (tomorrow onwards) ---
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const minDate = tomorrow.toISOString().split('T')[0];
             deliveryDateInput.setAttribute('min', minDate);
 
             // --- Section Toggling Functions ---
             function showSection(sectionId) {
                 writeMessageSection.classList.add('hidden');
                 viewMessageSection.classList.add('hidden');
-                statusMessageDiv.classList.remove('visible'); // Hide status when switching sections
+                statusMessageDiv.classList.remove('visible'); // Hide status when switching
 
                 if (sectionId === 'write') {
                     writeMessageSection.classList.remove('hidden');
@@ -424,6 +604,7 @@
                 }
             }
 
+            // --- Event Listeners for Section Toggles ---
             showViewMessageLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 showSection('view');
@@ -433,6 +614,29 @@
                 e.preventDefault();
                 showSection('write');
             });
+
+            // --- Button Ripple Effect (added to all buttons) ---
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - (size / 2);
+                    const y = e.clientY - rect.top - (size / 2);
+
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+
+                    this.appendChild(ripple);
+                    ripple.addEventListener('animationend', () => {
+                        ripple.remove();
+                    });
+                });
+            });
+
 
             // --- Logic for Writing/Storing Message ---
             messageForm.addEventListener('submit', (event) => {
@@ -444,7 +648,7 @@
                 const deliveryDate = document.getElementById('deliveryDate').value;
 
                 if (!messageContent || !deliveryDate) {
-                    showStatus('Please write your message and select an unveil date.', 'error');
+                    showStatus('Please write your message and choose the date you want it revealed.', 'error');
                     return;
                 }
 
@@ -452,42 +656,44 @@
                 const now = new Date();
 
                 if (chosenDate < now) {
-                    showStatus('The unveil date must be in the future.', 'error');
+                    showStatus('The unveiling date must be in the future. Let\'s keep it a delightful surprise!', 'error');
                     return;
                 }
 
                 try {
                     const messageToStore = {
                         messageContent: messageContent,
-                        deliveryDate: deliveryDate
+                        deliveryDate: deliveryDate,
+                        // Store the date it was created for "sealed on" display
+                        createdAt: new Date().toISOString().split('T')[0] 
                     };
                     localStorage.setItem('futureMessage', JSON.stringify(messageToStore));
 
-                    showStatus('Your message is sealed! Check back on your chosen date.', 'success');
+                    showStatus('Your message is now sealed in time! It will unveil itself on your chosen date. Come back to this same browser to discover it.', 'success');
                     messageForm.reset();
                     deliveryDateInput.setAttribute('min', minDate);
                 } catch (error) {
                     console.error('Error storing message:', error);
-                    showStatus('Could not seal your message. Your browser\'s storage might be full or disabled.', 'error');
+                    showStatus('Oh no! Could not seal your message. Your browser\'s storage might be full or disabled. Try again?', 'error');
                 }
             });
 
             function showStatus(message, type) {
                 statusMessageDiv.textContent = message;
-                statusMessageDiv.className = `status visible ${type}`; // Add visible class
+                statusMessageDiv.className = `status visible ${type}`;
             }
 
             // --- Logic for Loading and Displaying Message ---
             function loadAndDisplayMessage() {
                 noMessageDiv.classList.add('hidden');
-                revealedMessageDiv.classList.add('hidden');
-                easterEggMessageDiv.classList.add('hidden'); // Always hide easter egg first
+                revealedMessageDiv.classList.add('hidden', 'message-revealed'); // Hide and remove animation class initially
+                easterEggMessageDiv.classList.add('hidden');
 
                 const storedMessageJSON = localStorage.getItem('futureMessage');
                 const now = new Date();
                 
                 let isEasterEggDay = false;
-                // Check for Valentine's Day (Feb 14) or October 26th (Mammam's Birthday)
+                // Check for Valentine's Day (Feb 14) or October 26th
                 if ((now.getMonth() === 1 && now.getDate() === 14) || (now.getMonth() === 9 && now.getDate() === 26)) {
                     isEasterEggDay = true;
                 }
@@ -495,25 +701,28 @@
                 if (storedMessageJSON) {
                     const storedMessage = JSON.parse(storedMessageJSON);
                     const deliveryDate = new Date(storedMessage.deliveryDate + 'T00:00:00');
+                    const createdAtDate = storedMessage.createdAt ? new Date(storedMessage.createdAt).toLocaleDateString() : 'An earlier time';
+
 
                     if (now >= deliveryDate) {
                         // Message is ready to be revealed!
                         displayedContent.innerHTML = storedMessage.messageContent.replace(/\n/g, '<br>');
-                        scheduledDateSpan.textContent = new Date(storedMessage.deliveryDate).toLocaleDateString();
+                        sealedDateSpan.textContent = createdAtDate; // Display creation date
                         revealedMessageDiv.classList.remove('hidden');
+                        revealedMessageDiv.classList.add('message-revealed'); // Trigger animation
 
                         if (isEasterEggDay) {
-                            triggerEasterEgg("You are incredible and deserve all the happiness in the world. Believe in yourself and keep shining brightly!");
+                            triggerEasterEgg("You are an absolutely wonderful person, radiating kindness and light. May your journey be filled with joy, discovery, and every happiness you deserve!");
                         }
                     } else {
                         // Not yet time
-                        noMessageDiv.textContent = `Your message is patiently waiting to be unveiled on ${new Date(storedMessage.deliveryDate).toLocaleDateString()}. The moment isn't quite here yet.`;
+                        noMessageDiv.textContent = `Your message is patiently waiting to be unveiled on ${new Date(storedMessage.deliveryDate).toLocaleDateString()}. The grand moment isn't quite here yet. Stay excited!`;
                         noMessageDiv.classList.remove('hidden');
                     }
                 } else {
                     // No message stored at all
                     noMessageDiv.classList.remove('hidden');
-                    noMessageDiv.textContent = "It looks like there's no message sealed here. Why not compose one now?";
+                    noMessageDiv.textContent = "It looks like there's no message sealed here for you. Why not create a beautiful new one now?";
                 }
             }
 
@@ -521,52 +730,41 @@
             function triggerEasterEgg(message) {
                 easterEggContent.textContent = message;
                 easterEggMessageDiv.classList.remove('hidden');
-                burstConfetti(25, ['❤️', '✨', '💖']); // Hearts and sparkles
+                burstConfetti(40, ['💖', '✨', '🌟', '😊', '💕']); // More variety of emojis
             }
 
             // --- Animation: Confetti Burst ---
             function burstConfetti(count, emojis) {
                 for (let i = 0; i < count; i++) {
                     const confetti = document.createElement('div');
-                    confetti.classList.add('confetti-heart');
+                    confetti.classList.add('confetti-item');
                     confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
                     confetti.style.left = `${Math.random() * 100}vw`;
-                    confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+                    confetti.style.top = `${Math.random() * 50 - 50}px`; // Start above screen
+                    confetti.style.animationDelay = `${Math.random() * 1.5}s`; // Staggered start
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`; // Initial random rotation
                     confettiContainer.appendChild(confetti);
 
-                    // Remove after animation to prevent DOM bloat
                     confetti.addEventListener('animationend', () => {
                         confetti.remove();
                     });
                 }
             }
 
-            // --- Animation: Random Sparkles ---
-            function createSparkle() {
-                const sparkle = document.createElement('div');
-                sparkle.classList.add('sparkle');
-                sparkle.textContent = '✨'; // or '🌟', '💫'
-                sparkle.style.left = `${Math.random() * 100}vw`;
-                sparkle.style.top = `${Math.random() * 100}vh`;
-                sparkle.style.animationDuration = `${1.5 + Math.random() * 1}s`;
-                sparkle.style.animationDelay = `${Math.random() * 0.5}s`;
-                document.body.appendChild(sparkle);
-                sparkle.addEventListener('animationend', () => sparkle.remove());
-            }
-            setInterval(createSparkle, 1500); // Create a sparkle every 1.5 seconds
+            // --- Secret Console Message Easter Egg ---
+            console.log("%c🌟 Hey there, curious soul! 🌟", "font-size: 1.5em; font-weight: bold; color: #ff6b6b; font-family: 'Pacifico', cursive;");
+            console.log("%cThis little digital time capsule is holding a special secret, just for you, right here in your browser. Pretty magical, isn't it?", "font-size: 1.1em; color: #2c3e50;");
+            console.log("%cKeep an eye on the calendar... some days hold an extra sprinkle of enchantment! ✨", "font-size: 1.1em; color: #4ecdc4; font-weight: bold; font-style: italic;");
+            console.log("%cAnd remember, you're truly wonderful! 😊", "font-size: 1.2em; color: #ff69b4; font-weight: bold;");
+
 
             // --- Initial Load Logic ---
-            // If there's a stored message, initially show the view section
+            // Decide which section to show initially
             if (localStorage.getItem('futureMessage')) {
-                showSection('view');
+                showSection('view'); // If a message exists, show the view section
             } else {
-                showSection('write');
+                showSection('write'); // Otherwise, show the write section
             }
-
-            // --- Secret Console Message Easter Egg ---
-            console.log("%cHello there, curious mind! 👋", "font-size: 1.2em; font-weight: bold; color: #6a89cc;");
-            console.log("%cThis little app is designed to hold a special thought for the future, right here in your browser. Pretty neat, huh?", "font-size: 0.9em; color: #4a4a68;");
-            console.log("%cKeep an eye out for special dates... you might find a little extra magic! 😉", "font-size: 0.9em; color: #ff69b4; font-weight: bold;");
         });
     </script>
 </body>
