@@ -10,13 +10,13 @@
     <style>
         /* Define a harmonious color palette and shadow effects */
         :root {
-            --soft-pink-bg: #fce4ec; /* Very light, soft pink for background */
+            --soft-pink-bg: #edf2f7; /* NEW: Very light blue-gray for background */
             --warm-pink: #f48fb1; /* A slightly deeper, inviting pink */
             --brown-note: #fdf6e3; /* Creamy, parchment-like background for notes */
             --dark-brown-text: #4e342e; /* Rich, deep brown for primary text (used for elements on light bg) */
             --light-brown-text: #795548; /* Softer brown for secondary text (used for elements on light bg) */
-            --dark-container-bg: #2C1E1B; /* NEW: Deep, dark brown for the main container */
-            --light-text-on-dark: #fefefe; /* NEW: Almost white for text on dark backgrounds */
+            --dark-container-bg: #1A202C; /* NEW: Deep, dark blue-gray for the main container */
+            --light-text-on-dark: #fefefe; /* Almost white for text on dark backgrounds */
             --accent-gold: #ffd700; /* Subtle gold for special highlights */
             --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
@@ -108,24 +108,24 @@
 
         /* --- Main Container & Overall Layout --- */
         .container {
-            background-color: var(--dark-container-bg); /* NEW: Dark background */
-            background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); /* NEW: Subtle dark texture */
+            background-color: var(--dark-container-bg); /* Uses new dark blue-gray */
+            background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); /* Retained */
             background-size: 100px 100px;
-            background-blend-mode: soft-light; /* NEW: Blend mode for the texture */
-            padding: 50px; /* More padding for a grander feel */
-            border-radius: 20px; /* NEW: Consistent and simpler border-radius */
-            box-shadow: var(--shadow-medium); /* Prominent shadow for depth */
+            background-blend-mode: soft-light;
+            padding: 70px 50px; /* NEW: Increased vertical padding */
+            border-radius: 20px; /* Retained */
+            box-shadow: var(--shadow-medium); /* Retained */
             width: 100%;
-            max-width: 750px; /* Wider container for spaciousness */
+            max-width: 750px;
             text-align: center;
             box-sizing: border-box;
             position: relative;
             z-index: 1; /* Ensures it's above background animations */
             margin-top: 30px;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2); /* NEW: Lighter border for dark background */
-            animation: containerEntry 1s ease-out forwards; /* Changed animation */
-            color: var(--light-text-on-dark); /* NEW: Default text color inside container */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Retained */
+            animation: containerEntry 1s ease-out forwards; /* Retained */
+            color: var(--light-text-on-dark); /* Retained */
         }
 
         /* Modified containerEntry for rolling animation */
@@ -145,7 +145,7 @@
         /* --- Typography --- */
         h1 {
             font-family: 'Playfair Display', serif; /* Elegant heading font */
-            color: var(--warm-pink); /* NEW: Warm pink for headings on dark bg */
+            color: var(--warm-pink); /* Retained */
             margin-bottom: 25px;
             font-size: 2.8em; /* Impactful size */
             font-weight: 700;
@@ -172,7 +172,7 @@
 
         p {
             margin-bottom: 25px;
-            color: var(--light-text-on-dark); /* NEW: Light text for paragraphs on dark bg */
+            color: var(--light-text-on-dark); /* Retained */
             font-size: 1.05em;
             max-width: 650px;
             margin-left: auto;
@@ -198,7 +198,7 @@
         label {
             text-align: left;
             font-weight: 700;
-            color: var(--light-text-on-dark); /* NEW: Light text for labels on dark bg */
+            color: var(--light-text-on-dark); /* Retained */
             font-size: 1.05em;
             margin-bottom: 5px;
             width: 100%; /* Ensure label takes full width for alignment */
@@ -365,7 +365,7 @@
         .toggle-link {
             margin-top: 30px;
             font-size: 0.95em;
-            color: var(--light-text-on-dark); /* NEW: Light text for general toggle link text */
+            color: var(--light-text-on-dark); /* Retained */
             display: flex; /* Use flex to center button */
             justify-content: center;
             align-items: center;
@@ -413,7 +413,7 @@
         }
 
         .toggle-link a:hover {
-            color: var(--light-text-on-dark); /* NEW: Light text for hover */
+            color: var(--light-text-on-dark); /* Retained */
             text-decoration: underline;
         }
 
@@ -505,9 +505,9 @@
                 padding: 20px;
             }
             .container {
-                padding: 35px;
+                padding: 50px 30px; /* NEW: Adjusted padding for medium screens */
                 margin: 15px auto;
-                 border-radius: 20px; /* Consistent radius on smaller screens */
+                 border-radius: 20px;
             }
             h1 {
                 font-size: 2.2em;
@@ -552,9 +552,9 @@
                 padding: 15px;
             }
             .container {
-                padding: 25px;
+                padding: 40px 20px; /* NEW: Adjusted padding for small screens */
                 margin: 10px auto;
-                 border-radius: 15px; /* Consistent radius on smallest screens */
+                 border-radius: 15px;
             }
             h1 {
                 font-size: 1.8em;
