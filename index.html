@@ -121,9 +121,11 @@
             margin-bottom: 30px;
             border: 1px solid rgba(244, 172, 183, 0.4); /* Subtle pink border */
             animation: containerEntry 1s ease-out forwards;
-            /* Added main card texture */
-            background-image: url('https://www.transparenttextures.com/patterns/notebook.png'); /* A subtle notebook paper texture */
+            /* Added main card texture - more pronounced */
+            background-image: url('https://www.transparenttextures.com/patterns/graphy.png'); /* A subtle graph paper texture - changed */
             background-blend-mode: overlay; /* Blends nicely with white background */
+            background-size: 100px 100px; /* Adjust size of the pattern */
+            background-attachment: fixed; /* Keeps texture fixed during scroll */
         }
 
         @keyframes containerEntry {
@@ -175,40 +177,13 @@
             font-size: 1.1em;
         }
 
-        /* --- Device Info Section (More Creative) --- */
-        #deviceInfo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.0em; /* Slightly larger */
-            color: var(--light-brown-text);
-            margin-top: 40px;
-            padding-top: 25px; /* More padding */
-            border-top: 1px dashed rgba(121, 85, 72, 0.3); /* Dotted separator */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-        #deviceInfo p {
-            margin: 0; /* Reset default paragraph margin */
-            font-style: italic;
-            font-size: 0.95em;
-            max-width: 90%; /* Keep text within bounds */
-        }
-        #deviceInfo strong {
-            color: var(--dark-brown-text);
-            font-weight: 700;
-        }
-        .device-info-emoji {
-            font-size: 1.3em;
-            margin-right: 8px;
-        }
-
         /* --- Form Elements --- */
         form {
             display: flex;
             flex-direction: column;
             gap: 22px; /* Consistent spacing */
             margin-top: 30px;
+            align-items: center; /* Center form elements */
         }
 
         label {
@@ -217,6 +192,8 @@
             color: var(--dark-brown-text);
             font-size: 1.05em;
             margin-bottom: 5px;
+            width: 100%; /* Ensure label takes full width for alignment */
+            max-width: 400px; /* Match max-width of inputs */
         }
 
         textarea,
@@ -234,6 +211,7 @@
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
             appearance: none; /* Reset default browser styles */
             -webkit-appearance: none;
+            max-width: 400px; /* Constrain width of inputs */
         }
 
         textarea::placeholder,
@@ -284,13 +262,14 @@
             font-size: 1.2em;
         }
 
-        /* --- Unique Secret Code Input Style --- */
+        /* --- Unique Secret Code Input Style (shorter width) --- */
         #secretCodeInput, #retrieveSecretCodeInput {
             border: 2px solid var(--warm-pink);
             background-color: #fff8f5; /* Lighter, more distinct background */
             box-shadow: inset 0 0 5px rgba(244, 172, 183, 0.3); /* Inner glow */
             padding-left: 45px; /* Space for icon */
             position: relative; /* For the pseudo-element icon */
+            max-width: 300px; /* Shorter width for secret code inputs */
         }
         #secretCodeInput::before, #retrieveSecretCodeInput::before {
             content: '🔑'; /* Key emoji as icon */
@@ -300,10 +279,6 @@
             transform: translateY(-50%);
             font-size: 1.3em;
             color: var(--dark-brown-text);
-        }
-        /* Adjust for existing padding and new icon for the Secret Code input itself */
-        #secretCodeInput {
-            background-image: none; /* Ensure no previous background image interferes */
         }
         #secretCodeInput:focus, #retrieveSecretCodeInput:focus {
             border-color: var(--dark-brown-text);
@@ -324,6 +299,8 @@
             transition: background-color var(--transition-duration) ease, transform 0.15s ease, box-shadow var(--transition-duration) ease;
             letter-spacing: 0.5px;
             box-shadow: var(--shadow-light);
+            max-width: 300px; /* Constrain button width */
+            width: 100%;
         }
 
         button:hover {
@@ -353,6 +330,8 @@
             background-color: #e8f5e9; /* Light green for success */
             color: #2e7d32; /* Dark green text */
             border: 1px solid #a5d6a7; /* Green border */
+            max-width: 600px; /* Constrain width */
+            width: 100%;
         }
 
         #statusMessage.visible {
@@ -455,6 +434,7 @@
             opacity: 0; /* Start hidden for animation */
             transform: translateY(20px);
             animation: noteCardEntry 0.6s ease-out forwards;
+            max-width: 600px; /* Constrain notes width */
         }
         
         @keyframes noteCardEntry {
@@ -527,26 +507,37 @@
             p {
                 font-size: 1em;
             }
-            textarea, input {
+            textarea, input[type="date"], input[type="text"] {
                 padding: 10px;
+                max-width: 100%; /* Allow full width on small screens */
+            }
+            label {
+                max-width: 100%;
             }
             button {
                 font-size: 1.1em;
                 padding: 12px 25px;
+                max-width: 100%;
             }
             .note-card {
                 padding: 20px;
                  border-radius: 10px 40px 15px 30px / 30px 15px 40px 10px; /* Adjust for smaller screens */
+                max-width: 100%;
             }
             .message-content {
                 font-size: 1.1em;
             }
-            #deviceInfo {
-                font-size: 0.9em;
-            }
             #showViewMessage {
                 font-size: 1em;
                 padding: 10px 20px;
+            }
+            #secretCodeInput, #retrieveSecretCodeInput {
+                padding-left: 35px; /* Adjust for smaller screen icon spacing */
+                max-width: 100%;
+            }
+            #secretCodeInput::before, #retrieveSecretCodeInput::before {
+                left: 10px;
+                font-size: 1.1em;
             }
         }
 
@@ -585,19 +576,9 @@
             .note-card::before { /* Smaller fold */
                 border-width: 0 20px 20px 0;
             }
-            #deviceInfo {
-                font-size: 0.8em;
-            }
             #showViewMessage {
                 font-size: 0.9em;
                 padding: 8px 18px;
-            }
-            #secretCodeInput, #retrieveSecretCodeInput {
-                padding-left: 35px; /* Adjust for smaller screen icon spacing */
-            }
-            #secretCodeInput::before, #retrieveSecretCodeInput::before {
-                left: 10px;
-                font-size: 1.1em;
             }
         }
     </style>
@@ -663,12 +644,6 @@
             </div>
             <p class="toggle-link"><a href="#" id="showWriteMessage">Wish to create another memory?</a></p>
         </div>
-
-        <div id="deviceInfo">
-            <p><span class="device-info-emoji">✨</span> It seems you're using this digital diary on a **<span id="osFlavor"></span>** device!</p>
-            <p><span class="device-info-emoji">🌐</span> And what a wise choice, Browse with **<span id="browserFlavor"></span>**.</p>
-            <p><span class="device-info-emoji">📏</span> Your view is perfectly framed at **<span id="screenResFlavor"></span>**.</p>
-        </div>
     </div>
 
     <script type="module">
@@ -709,56 +684,20 @@
             const notesContainer = document.getElementById('notesContainer'); // Container for multiple notes
             const showWriteMessageLink = document.getElementById('showWriteMessage');
 
-            // Device Info Elements
-            const osFlavor = document.getElementById('osFlavor');
-            const browserFlavor = document.getElementById('browserFlavor');
-            const screenResFlavor = document.getElementById('screenResFlavor');
-
-            // --- Time-Based Greeting Function ---
+            // --- Time-Based Greeting Function (No "Dearest") ---
             function setTimeGreeting() {
                 const hour = new Date().getHours();
                 let greeting;
                 if (hour >= 5 && hour < 12) {
-                    greeting = "Good Morning, My Dearest!";
+                    greeting = "Good Morning, My Friend!";
                 } else if (hour >= 12 && hour < 18) {
-                    greeting = "Good Afternoon, My Dearest!";
+                    greeting = "Good Afternoon, My Friend!";
                 } else {
-                    greeting = "Good Evening, My Dearest!";
+                    greeting = "Good Evening, My Friend!";
                 }
                 timeGreeting.textContent = greeting;
             }
             setTimeGreeting(); // Call immediately on page load
-
-            // --- Creative Device Information Detection ---
-            function displayDeviceInfo() {
-                let osDescription = "a mystical realm";
-                let browserDescription = "an ancient scroll";
-                const userAgent = navigator.userAgent;
-
-                if (userAgent.includes("Win")) osDescription = "a **Windows** marvel";
-                else if (userAgent.includes("Mac")) osDescription = "a sleek **macOS** dream";
-                else if (userAgent.includes("Linux")) osDescription = "a versatile **Linux** machine";
-                else if (userAgent.includes("Android")) osDescription = "a pocket-sized **Android** universe";
-                else if (userAgent.includes("iPhone") || userAgent.includes("iPad")) osDescription = "a beautiful **iOS** tapestry";
-
-                if (userAgent.includes("Firefox")) browserDescription = "the wise **Mozilla Firefox**";
-                else if (userAgent.includes("SamsungBrowser")) browserDescription = "the adventurous **Samsung Internet**";
-                else if (userAgent.includes("Opera") || userAgent.includes("Opr")) browserDescription = "the melodious **Opera** browser";
-                else if (userAgent.includes("Edge")) browserDescription = "the sharp **Microsoft Edge**";
-                else if (userAgent.includes("Chrome")) browserDescription = "the brilliant **Google Chrome**";
-                else if (userAgent.includes("Safari")) browserDescription = "the swift **Apple Safari**";
-                
-
-                const screenWidth = window.screen.width;
-                const screenHeight = window.screen.height;
-                const screenRes = `${screenWidth}x${screenHeight} pixels`;
-
-                osFlavor.innerHTML = osDescription;
-                browserFlavor.innerHTML = browserDescription;
-                screenResFlavor.textContent = screenRes;
-            }
-            displayDeviceInfo(); // Call immediately on page load
-
 
             // --- Note Saved Status Message Display Function ---
             function showSaveStatus(message) {
