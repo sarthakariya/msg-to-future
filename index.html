@@ -3,151 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Enchanted Time Capsule</title>
+    <title>Your Treasured Time Capsule</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Pacifico&family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@400;700&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;700&family=Gentium+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Define a beautiful color palette and shadow effects */
+        /* Define a harmonious color palette and shadow effects */
         :root {
-            --primary-pink: #ff6b81; /* Vibrant Pink */
-            --secondary-blue: #6dd5ed; /* Sky Blue */
-            --dark-blue-text: #2c3e50; /* Deep Blue for main text */
-            --light-grey-text: #a0a0a0; /* Softer Grey for secondary text */
-            --bg-gradient-start: #a1c4fd; /* Lighter Blue */
-            --bg-gradient-end: #c2e9fb;   /* Even Lighter Blue */
-            --card-bg: #ffffff;
-            --shadow-soft: 0 8px 25px rgba(0, 0, 0, 0.18); /* Enhanced soft shadow */
-            --shadow-deep: 0 15px 40px rgba(0, 0, 0, 0.3); /* Deeper shadow for elevation */
-            --success-color: #2ecc71;
-            --error-color: #e74c3c;
-            --pending-color: #f39c12; /* Orange for pending status */
-            --border-radius-large: 25px;
-            --border-radius-medium: 15px;
-            --transition-speed: 0.4s;
+            --soft-pink-bg: #fce4ec; /* Very light, soft pink for background */
+            --warm-pink: #f48fb1;   /* A slightly deeper, inviting pink */
+            --brown-note: #fdf6e3;  /* Creamy, parchment-like background for notes */
+            --dark-brown-text: #4e342e; /* Rich, deep brown for primary text */
+            --light-brown-text: #795548; /* Softer brown for secondary text */
+            --accent-gold: #ffd700; /* Subtle gold for special highlights */
+            --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
+            --transition-duration: 0.3s;
+            --border-radius-card: 12px;
+            --border-radius-input: 8px;
         }
 
         /* --- Global & Background Styles --- */
         body {
-            font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            font-family: 'Gentium Plus', serif; /* Elegant, classic serif font */
+            background-color: var(--soft-pink-bg);
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Align to top for scrollability */
+            align-items: flex-start; /* Align to top for proper scrolling */
             min-height: 100vh;
             margin: 0;
-            color: var(--dark-blue-text);
-            line-height: 1.7; /* Increased line-height for readability */
-            padding: 30px; /* More overall padding */
+            color: var(--dark-brown-text);
+            line-height: 1.7; /* Enhanced line height for readability */
+            padding: 30px; /* Generous overall padding */
             box-sizing: border-box;
-            overflow-y: auto; /* Enable scrolling for the body */
-            position: relative;
-            animation: backgroundShift 25s ease infinite alternate; /* Slower, more ethereal shift */
+            overflow-y: auto; /* Enable scrolling for content overflow */
+            position: relative; /* Needed for absolute positioned children */
         }
 
-        @keyframes backgroundShift {
-            0% { background-size: 100% 100%; background-position: 0% 50%; }
-            50% { background-size: 110% 110%; background-position: 100% 50%; }
-            100% { background-size: 100% 100%; background-position: 0% 50%; }
-        }
-
-        /* Particle/Starfield Background (enhanced) */
-        .particle {
+        /* Heart Animation Background */
+        .heart-animation-bg {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.85); /* Slightly brighter */
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
+            overflow: hidden;
+            z-index: 0; /* Ensures it stays behind content */
+        }
+
+        .heart {
+            color: rgba(244, 172, 183, 0.5); /* Muted, transparent heart color */
+            font-size: 1.5em; /* Larger hearts */
+            position: absolute;
+            animation: floatAndTwinkle 8s infinite ease-in-out;
+            opacity: 0; /* Start hidden */
+            text-shadow: 0 0 8px rgba(244, 172, 183, 0.8); /* Subtle glow */
+        }
+
+        @keyframes floatAndTwinkle {
+            0% { transform: translateY(0px) scale(0.5); opacity: 0; }
+            20% { opacity: 0.6; transform: translateY(-20px) scale(1); }
+            80% { opacity: 0.3; transform: translateY(-80px) scale(0.8); }
+            100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+        }
+
+        /* Coffee Steam Animation */
+        .coffee-animation-bg {
+            position: absolute;
+            bottom: 0px; /* Aligned to bottom of viewport */
+            left: 5%; /* From the left edge */
+            font-size: 3em; /* Larger coffee cup */
+            color: rgba(160, 82, 45, 0.6); /* Semi-transparent coffee color */
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 0;
+            animation: coffeeFadeIn 2s ease-out forwards; /* Fade in with the page */
+        }
+
+        .steam-puff {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: steamPuff 3s infinite ease-out;
             opacity: 0;
-            animation: twinkle 3s infinite ease-in-out alternate, floatParticle 10s infinite ease-in-out alternate;
-            z-index: 1; /* Below content */
-            box-shadow: 0 0 8px rgba(255,255,255,0.7); /* Subtle glow for particles */
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
-        @keyframes twinkle {
-            0% { transform: scale(0.5); opacity: 0; }
-            50% { transform: scale(1); opacity: 0.85; }
-            100% { transform: scale(0.5); opacity: 0; }
+        @keyframes coffeeFadeIn {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 0.7; transform: translateY(0); }
         }
 
-        @keyframes floatParticle {
-            0% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-20px) translateX(10px); }
-            100% { transform: translateY(0) translateX(0); }
+        @keyframes steamPuff {
+            0% { transform: scale(0.2) translateY(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: scale(1.5) translateY(-80px); opacity: 0; }
         }
 
         /* --- Main Container & Overall Layout --- */
         .container {
-            background-color: var(--card-bg);
-            padding: 50px; /* Generous padding */
-            border-radius: var(--border-radius-large); /* Very rounded */
-            box-shadow: var(--shadow-deep); /* Prominent shadow */
+            background-color: white;
+            padding: 50px; /* More padding for a grander feel */
+            border-radius: var(--border-radius-card); /* Softly rounded corners */
+            box-shadow: var(--shadow-medium); /* Prominent shadow for depth */
             width: 100%;
-            max-width: 750px; /* Wider for more impact */
+            max-width: 750px; /* Wider container for spaciousness */
             text-align: center;
             box-sizing: border-box;
-            opacity: 0;
-            transform: translateY(40px) scale(0.92); /* Slightly more pronounced initial state */
-            animation: fadeInScale 1.5s forwards cubic-bezier(0.2, 0.8, 0.2, 1); /* Smoother animation curve */
             position: relative;
-            z-index: 10;
+            z-index: 1; /* Ensures it's above background animations */
             margin-top: 30px;
             margin-bottom: 30px;
-            overflow: hidden; /* Contains internal elements */
-            border: 2px solid rgba(255, 107, 129, 0.2); /* Subtle pink border */
+            border: 1px solid rgba(244, 172, 183, 0.4); /* Subtle pink border */
+            animation: containerEntry 1s ease-out forwards;
         }
 
-        @keyframes fadeInScale {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        @keyframes containerEntry {
+            0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         /* --- Typography --- */
         h1 {
             font-family: 'Playfair Display', serif; /* Elegant heading font */
-            color: var(--dark-blue-text);
-            margin-bottom: 20px;
-            font-size: 3.5em; /* Larger, more impactful */
+            color: var(--dark-brown-text);
+            margin-bottom: 25px;
+            font-size: 2.8em; /* Impactful size */
             font-weight: 700;
-            line-height: 1.1;
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.15); /* Stronger text shadow */
-            letter-spacing: -1px;
-            animation: headingPulse 4s infinite ease-in-out alternate;
-        }
-
-        @keyframes headingPulse {
-            0% { transform: scale(1); color: var(--dark-blue-text); }
-            50% { transform: scale(1.01); color: rgba(44, 62, 80, 0.9); }
-            100% { transform: scale(1); color: var(--dark-blue-text); }
+            line-height: 1.2;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.05); /* Subtle text shadow */
         }
 
         .greeting {
-            font-family: 'Pacifico', cursive;
-            font-size: 3em; /* Even more prominent */
-            color: var(--primary-pink);
+            font-family: 'Cormorant Garamond', serif; /* A graceful, italicized greeting font */
+            font-style: italic;
+            font-weight: 700;
+            font-size: 2.4em; /* Prominent greeting */
+            color: var(--warm-pink);
             margin-bottom: 35px;
-            font-weight: normal;
-            text-shadow: 3px 3px 10px rgba(255,107,129,0.5); /* Enhanced glow */
-            animation: textGlow 3s infinite alternate ease-in-out, subtleWobble 5s infinite ease-in-out;
+            text-shadow: 1px 1px 5px rgba(244, 172, 183, 0.7); /* Soft glow for greeting */
+            animation: greetingPulse 3s infinite ease-in-out alternate;
         }
 
-        @keyframes textGlow {
-            0% { text-shadow: 3px 3px 10px rgba(255,107,129,0.5); }
-            100% { text-shadow: 3px 3px 20px rgba(255,107,129,0.9); }
-        }
-        @keyframes subtleWobble {
-            0% { transform: rotate(0deg); }
-            25% { transform: rotate(-0.5deg); }
-            50% { transform: rotate(0deg); }
-            75% { transform: rotate(0.5deg); }
-            100% { transform: rotate(0deg); }
+        @keyframes greetingPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
 
         p {
             margin-bottom: 25px;
-            color: var(--light-grey-text);
-            font-size: 1.1em;
-            max-width: 600px;
+            color: var(--light-brown-text);
+            font-size: 1.05em;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.8;
@@ -155,71 +164,69 @@
         
         .instruction-text {
             font-weight: 600;
-            color: var(--primary-pink);
-            text-shadow: 0 0 7px rgba(255,107,129,0.3);
-            font-size: 1.15em;
+            color: var(--warm-pink);
+            font-size: 1.1em;
         }
 
         /* --- Form Elements --- */
         form {
             display: flex;
             flex-direction: column;
-            gap: 25px; /* More space */
-            margin-top: 35px;
+            gap: 22px; /* Consistent spacing */
+            margin-top: 30px;
         }
 
         label {
             text-align: left;
             font-weight: 700;
-            color: var(--dark-blue-text);
-            font-size: 1.15em;
+            color: var(--dark-brown-text);
+            font-size: 1.05em;
             margin-bottom: 5px;
-            letter-spacing: 0.5px;
         }
 
         textarea,
         input[type="date"],
         input[type="text"] {
-            width: calc(100% - 40px); /* Adjusted for padding */
-            padding: 18px; /* Generous padding */
-            border: 3px solid var(--secondary-blue); /* Thicker, sky-blue border */
-            border-radius: var(--border-radius-medium); /* Smooth rounded corners */
-            font-size: 1.1em;
-            font-family: 'Ubuntu', sans-serif; /* Modern, clean font for inputs */
-            transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
-            background-color: #f0f8ff; /* Light, almost white-blue background */
-            color: var(--dark-blue-text);
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.08); /* More defined inner shadow */
-            appearance: none;
+            width: calc(100% - 24px); /* Account for padding */
+            padding: 12px;
+            border: 1px solid var(--warm-pink); /* Pink border */
+            border-radius: var(--border-radius-input); /* Softly rounded input fields */
+            font-size: 1em;
+            font-family: 'Gentium Plus', serif; /* Consistent elegant font */
+            transition: border-color var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
+            background-color: #fffaf0; /* Slightly off-white for a warm feel */
+            color: var(--dark-brown-text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
+            appearance: none; /* Reset default browser styles */
             -webkit-appearance: none;
         }
 
         textarea::placeholder,
         input[type="date"]::placeholder,
         input[type="text"]::placeholder {
-            font-family: 'Ubuntu', sans-serif; /* Placeholder font */
-            color: #8bbcdc; /* Softer, sky-blue placeholder color */
-            opacity: 0.9; /* Ensures placeholder is visible */
+            font-family: 'Gentium Plus', serif;
+            color: rgba(121, 85, 72, 0.6); /* Muted brown placeholder */
         }
 
         textarea:focus,
         input[type="date"]:focus,
         input[type="text"]:focus {
-            border-color: var(--primary-pink);
-            box-shadow: 0 0 0 6px rgba(255, 107, 129, 0.5); /* Stronger, pink glow on focus */
-            background-color: #fff;
+            border-color: var(--dark-brown-text);
+            box-shadow: 0 0 0 3px rgba(244, 172, 183, 0.5); /* Pink glow on focus */
+            background-color: white;
             outline: none;
         }
 
         textarea {
             resize: vertical;
-            min-height: 200px; /* Taller textarea */
+            min-height: 180px; /* Adequate height for notes */
         }
         
+        /* Custom styling for date input icon */
         input[type="date"]::-webkit-calendar-picker-indicator {
             background: transparent;
             bottom: 0;
-            color: var(--dark-blue-text); /* Make icon visible */
+            color: var(--light-brown-text); /* Ensure icon is visible */
             cursor: pointer;
             height: auto;
             left: 0;
@@ -231,89 +238,58 @@
 
         /* --- Buttons --- */
         button {
-            background: linear-gradient(45deg, var(--primary-pink), #ff9a8d); /* Gradient button */
+            background-color: var(--warm-pink);
             color: white;
-            padding: 20px 35px; /* Larger padding */
+            padding: 15px 30px;
             border: none;
-            border-radius: var(--border-radius-medium); /* Smooth rounded buttons */
+            border-radius: var(--border-radius-input);
             cursor: pointer;
-            font-size: 1.4em; /* Larger button text */
+            font-size: 1.2em;
             font-weight: bold;
-            transition: all var(--transition-speed) ease-in-out; /* Smoother transitions */
-            letter-spacing: 1.5px;
-            box-shadow: var(--shadow-soft);
-            position: relative;
-            overflow: hidden; /* For ripple effect */
-            text-transform: uppercase; /* Make button text pop */
+            transition: background-color var(--transition-duration) ease, transform 0.15s ease, box-shadow var(--transition-duration) ease;
+            letter-spacing: 0.5px;
+            box-shadow: var(--shadow-light);
         }
 
         button:hover {
-            background: linear-gradient(45deg, #e05e71, var(--primary-pink)); /* Darker pink on hover */
-            transform: translateY(-7px) scale(1.05); /* More pronounced lift and scale */
-            box-shadow: var(--shadow-deep);
-            letter-spacing: 2px;
+            background-color: #e6518f; /* Slightly darker pink on hover */
+            transform: translateY(-2px); /* Subtle lift */
+            box-shadow: var(--shadow-medium);
         }
 
         button:active {
-            transform: translateY(-2px) scale(0.98);
-            box-shadow: var(--shadow-soft);
-            background: var(--primary-pink);
-        }
-        
-        /* Ripple effect for buttons */
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.7); /* Brighter ripple */
-            animation: ripple-animation 0.7s linear forwards; /* Slightly longer ripple */
-            transform: scale(0);
-            pointer-events: none;
-        }
-
-        @keyframes ripple-animation {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
+            transform: translateY(0);
+            box-shadow: var(--shadow-light);
+            background-color: #d1427c;
         }
 
         /* --- Status Messages --- */
         #statusMessage {
-            margin-top: 35px;
-            padding: 20px;
-            border-radius: var(--border-radius-medium);
+            margin-top: 30px;
+            padding: 18px;
+            border-radius: var(--border-radius-input);
             font-weight: 600;
-            font-size: 1.05em;
+            font-size: 1em;
             text-align: center;
             opacity: 0;
             max-height: 0;
             overflow: hidden;
-            transition: opacity 0.6s ease-out, max-height 0.6s ease-out, padding 0.6s ease-out; /* Smoother animation */
-            border: 2px solid; /* Add border for status */
+            transition: opacity 0.5s ease-out, max-height 0.5s ease-out, padding 0.5s ease-out; /* Smooth transition */
+            background-color: #e8f5e9; /* Light green for success */
+            color: #2e7d32; /* Dark green text */
+            border: 1px solid #a5d6a7; /* Green border */
         }
 
         #statusMessage.visible {
             opacity: 1;
-            max-height: 180px; /* Sufficient height to show content */
-            padding: 20px;
-            animation: slideInFromTop 0.8s ease-out;
+            max-height: 100px; /* Sufficient height */
+            padding: 18px;
+            animation: statusFadeIn 0.8s ease-out forwards;
         }
 
-        @keyframes slideInFromTop {
-            0% { transform: translateY(-20px); opacity: 0; }
+        @keyframes statusFadeIn {
+            0% { transform: translateY(-10px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
-        }
-
-        #statusMessage.success {
-            background-color: rgba(46, 204, 113, 0.18); /* Richer transparency */
-            color: var(--success-color);
-            border-color: var(--success-color);
-        }
-
-        #statusMessage.error {
-            background-color: rgba(231, 76, 60, 0.18);
-            color: var(--error-color);
-            border-color: var(--error-color);
         }
 
         .hidden {
@@ -322,364 +298,238 @@
 
         /* --- Toggle Links --- */
         .toggle-link {
-            margin-top: 35px;
-            font-size: 1.1em;
-            color: var(--light-grey-text);
-            animation: fadeIn 1.5s var(--transition-speed) forwards; /* Fade in after form */
+            margin-top: 30px;
+            font-size: 0.95em;
+            color: var(--light-brown-text);
         }
 
         .toggle-link a {
-            color: var(--secondary-blue); /* Sky blue link */
+            color: var(--warm-pink);
             text-decoration: none;
             font-weight: bold;
-            transition: color var(--transition-speed) ease, text-shadow var(--transition-speed) ease, transform 0.2s ease;
-            text-shadow: 0 0 5px rgba(109, 213, 237, 0.2);
+            transition: color var(--transition-duration) ease;
         }
 
         .toggle-link a:hover {
-            color: var(--primary-pink); /* Pink on hover */
+            color: var(--dark-brown-text);
             text-decoration: underline;
-            text-shadow: 0 0 8px rgba(255,107,129,0.4);
-            transform: scale(1.02);
         }
 
         /* --- Message Display Area --- */
         #messageDisplayArea {
-            min-height: 250px; /* Ensure height for content */
+            min-height: 200px; /* Ensure space even when empty */
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            gap: 25px; /* More space between notes */
-            padding-bottom: 20px; /* Ensure space for scroll */
-            overflow-y: auto; /* Enable scrolling if content exceeds height */
-            max-height: 600px; /* Increased max height for multiple notes */
+            gap: 18px; /* Spacing between notes */
+            padding-top: 10px;
+            padding-bottom: 20px;
         }
 
         .note-card {
-            background-color: var(--card-bg);
-            border: 2px solid var(--secondary-blue);
-            border-radius: var(--border-radius-medium);
-            padding: 30px;
+            background-color: var(--brown-note); /* Brown page view */
+            border: 1px solid #dcd3c5; /* Subtle border for the "page" */
+            border-radius: var(--border-radius-input); /* Soft corners */
+            padding: 25px; /* Ample padding */
             text-align: left;
             width: 100%;
             box-sizing: border-box;
-            box-shadow: var(--shadow-soft);
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            max-height: 400px; /* Max height for scrolling individual notes */
-            overflow-y: auto; /* Enable vertical scrolling for individual notes */
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInLiftCard 0.8s forwards cubic-bezier(0.2, 0.8, 0.2, 1); /* Smoother animation */
-            position: relative; /* For the "sealed" graphic */
-            overflow: hidden; /* For graphic */
+            box-shadow: var(--shadow-light);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative; /* For the "fold" effect */
+            overflow: hidden;
+            opacity: 0; /* Start hidden for animation */
+            transform: translateY(20px);
+            animation: noteCardEntry 0.6s ease-out forwards;
         }
         
-        .note-card::before { /* Decorative seal/stamp */
-            content: '📜'; /* Scroll emoji as a graphic */
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 2.5em;
-            opacity: 0.1;
-            z-index: 1;
-            transform: rotate(20deg);
-            pointer-events: none;
-        }
-
-        @keyframes fadeInLiftCard {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes noteCardEntry {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .note-card:hover {
-            transform: translateY(-10px) scale(1.02); /* More pronounced hover */
-            box-shadow: var(--shadow-deep);
-            border-color: var(--primary-pink); /* Border changes on hover */
+            transform: translateY(-5px); /* Lift slightly on hover */
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Top-right folded corner for note card */
+        .note-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-width: 0 25px 25px 0; /* Adjust size of the fold */
+            border-style: solid;
+            border-color: #f0f0f0 #f0f0f0 var(--brown-note) var(--brown-note);
+            background-color: #f0f0f0; /* Color of the fold */
+            box-shadow: -1px 1px 2px rgba(0,0,0,0.1);
+            transform: rotate(90deg);
+            transform-origin: 100% 0;
+            transition: border-color 0.2s ease;
+        }
+
+        .note-card:hover::before {
+             border-color: #e0e0e0 #e0e0e0 var(--brown-note) var(--brown-note); /* Darken fold on hover */
         }
 
         .message-content {
-            white-space: pre-wrap;
-            font-family: 'Merriweather', serif;
-            font-size: 1.1em;
-            color: var(--dark-blue-text);
-            background-color: rgba(109, 213, 237, 0.15); /* Light sky-blue background */
-            padding: 22px;
-            border-radius: 12px;
-            margin-bottom: 25px;
+            white-space: pre-wrap; /* Preserves line breaks from textarea */
+            font-family: 'Cormorant Garamond', serif; /* Elegant font for message content */
+            font-style: italic; /* A gentle touch */
+            font-size: 1.25em; /* Clear and readable */
+            color: var(--dark-brown-text);
             line-height: 1.8;
-            border-left: 8px solid var(--secondary-blue); /* Thicker accent border */
-            box-shadow: inset 0 3px 10px rgba(0,0,0,0.08); /* Stronger inner shadow */
+            margin-bottom: 15px;
+            border-left: 3px solid var(--warm-pink); /* Subtle accent line */
+            padding-left: 15px;
+            margin-left: -15px; /* Adjust for padding */
         }
 
         .note-date-info {
-            font-size: 0.95em;
-            color: var(--light-grey-text);
+            font-size: 0.85em;
+            color: var(--light-brown-text);
             text-align: right;
-            margin-top: 20px;
+            margin-top: 10px;
             font-style: italic;
-        }
-
-        .note-status {
-            font-weight: bold;
-            text-align: center;
-            padding: 8px 15px; /* More padding */
-            border-radius: 10px;
-            margin-bottom: 15px;
-            font-size: 0.95em;
-            letter-spacing: 0.5px;
-            transition: all var(--transition-speed) ease;
-        }
-
-        .note-status.unveiled {
-            background-color: rgba(46, 204, 113, 0.15);
-            color: var(--success-color);
-            border: 1px solid var(--success-color);
-        }
-
-        .note-status.pending {
-            background-color: rgba(243, 156, 18, 0.15);
-            color: var(--pending-color);
-            border: 1px solid var(--pending-color);
-        }
-
-        /* --- Easter Egg: Sparkle & Confetti --- */
-        .sparkle {
-            position: absolute;
-            font-size: 1.5em; /* Larger sparkles */
-            pointer-events: none;
-            opacity: 0;
-            animation: sparkle-fade-out 3s forwards ease-out; /* Longer sparkle animation */
-            z-index: 5;
-            color: #ffd700; /* Gold color for sparkles */
-            text-shadow: 0 0 10px rgba(255,215,0,0.8);
-        }
-
-        @keyframes sparkle-fade-out {
-            0% { opacity: 0.9; transform: scale(0.8) rotate(0deg); }
-            100% { opacity: 0; transform: scale(2.5) translateY(-100px) rotate(720deg); } /* More dramatic */
-        }
-
-        .confetti-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 100;
-        }
-
-        .confetti-item {
-            position: absolute;
-            font-size: 2em; /* Even larger confetti items */
-            animation: fall 5s forwards ease-out; /* Longer fall */
-            opacity: 0;
-            transform-origin: center;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-80px) rotateZ(0deg);
-                opacity: 0;
-            }
-            15% {
-                opacity: 0.9;
-            }
-            100% {
-                transform: translateY(120vh) rotateZ(1440deg); /* Even more rotations */
-                opacity: 0;
-            }
-        }
-
-        #easterEggMessage {
-            border-left: 8px solid var(--primary-pink);
-            background-color: rgba(255, 107, 129, 0.15); /* Soft pink background */
-            margin-top: 30px;
-            padding: 30px;
-            border-radius: var(--border-radius-medium);
-            box-shadow: var(--shadow-soft);
-            animation: fadeIn 1.2s ease-out;
-            transform: translateY(20px);
-            animation-fill-mode: forwards;
-        }
-
-        #easterEggMessage p {
-            color: var(--dark-blue-text);
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.2em;
-            text-shadow: 0 0 5px rgba(0,0,0,0.05);
         }
 
         /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
             body {
-                padding: 15px; /* Less padding on smaller screens */
+                padding: 20px;
             }
             .container {
-                padding: 30px;
+                padding: 35px;
                 margin: 15px auto;
-                border-radius: 20px;
             }
             h1 {
-                font-size: 2.5em;
-                margin-bottom: 15px;
+                font-size: 2.2em;
             }
             .greeting {
-                font-size: 2.2em;
-                margin-bottom: 25px;
+                font-size: 2em;
             }
             p {
-                font-size: 0.95em;
-                margin-bottom: 20px;
-            }
-            label {
                 font-size: 1em;
             }
-            textarea, input[type="date"], input[type="text"] {
-                font-size: 0.95em;
-                padding: 15px;
-            }
-            textarea {
-                min-height: 150px;
+            textarea, input {
+                padding: 10px;
             }
             button {
-                font-size: 1.15em;
-                padding: 16px 25px;
-            }
-            #statusMessage {
-                padding: 16px;
-                font-size: 0.9em;
+                font-size: 1.1em;
+                padding: 12px 25px;
             }
             .note-card {
-                padding: 25px;
+                padding: 20px;
             }
             .message-content {
-                font-size: 1em;
-                padding: 18px;
-            }
-            #messageDisplayArea {
-                max-height: 500px; /* Adjust max height for phone view */
+                font-size: 1.1em;
             }
         }
 
         @media (max-width: 480px) {
             body {
-                padding: 10px;
+                padding: 15px;
             }
             .container {
-                padding: 20px;
+                padding: 25px;
                 margin: 10px auto;
-                border-radius: 15px;
             }
             h1 {
-                font-size: 2em;
-            }
-            .greeting {
                 font-size: 1.8em;
             }
-            p {
-                font-size: 0.85em;
-                margin-bottom: 15px;
+            .greeting {
+                font-size: 1.6em;
             }
-            label {
+            p {
                 font-size: 0.9em;
             }
-            textarea, input[type="date"], input[type="text"] {
-                font-size: 0.85em;
-                padding: 12px;
-            }
             textarea {
-                min-height: 120px;
+                min-height: 150px;
             }
             button {
                 font-size: 1em;
-                padding: 14px 20px;
-            }
-            #statusMessage {
-                padding: 14px;
-                font-size: 0.85em;
+                padding: 10px 20px;
             }
             .note-card {
-                padding: 20px;
-            }
-            .message-content {
-                font-size: 0.9em;
                 padding: 15px;
             }
-            .note-status {
-                font-size: 0.8em;
-                padding: 6px 12px;
+            .message-content {
+                font-size: 1em;
             }
-            .toggle-link {
-                font-size: 0.9em;
+            .note-card::before { /* Smaller fold */
+                border-width: 0 20px 20px 0;
             }
         }
     </style>
 </head>
 <body>
-    <div id="particle-container"></div>
+    <div class="heart-animation-bg">
+        <div class="heart" style="left:10%; top:15%; animation-delay: 0s;">💖</div>
+        <div class="heart" style="left:30%; top:40%; animation-delay: 1.5s; font-size: 1.7em;">💖</div>
+        <div class="heart" style="left:50%; top:25%; animation-delay: 3s;">💖</div>
+        <div class="heart" style="left:70%; top:60%; animation-delay: 4.5s; font-size: 1.2em;">💖</div>
+        <div class="heart" style="left:90%; top:10%; animation-delay: 6s;">💖</div>
+        <div class="heart" style="left:5%; top:70%; animation-delay: 2.5s; font-size: 1.3em;">💖</div>
+        <div class="heart" style="left:65%; top:5%; animation-delay: 5s; font-size: 1.8em;">💖</div>
+    </div>
+    <div class="coffee-animation-bg">
+        ☕
+        <div class="steam-puff" style="left: 20%; top: -30%; animation-delay: 0s; width: 15px; height: 15px;"></div>
+        <div class="steam-puff" style="left: 60%; top: -45%; animation-delay: 0.5s; width: 20px; height: 20px;"></div>
+        <div class="steam-puff" style="left: 40%; top: -60%; animation-delay: 1s; width: 18px; height: 18px;"></div>
+    </div>
 
     <div class="container">
         <h2 id="timeGreeting" class="greeting"></h2>
 
         <div id="writeMessageSection">
-            <h1>New Note</h1>
-            <p>Write a special message. Connect it to your Secret Code. Choose a date for it to appear or access it instantly!</p>
+            <h1>Craft a Cherished Note</h1>
+            <p>Here, you can pen your special messages and secure them with a unique Secret Code. You may also choose a specific date for these memories to be revealed, or access them instantly.</p>
 
             <form id="messageForm">
                 <label for="secretCodeInput">Your Secret Code:</label>
-                <input type="text" id="secretCodeInput" placeholder="Ex: MySecretBox (letters/numbers only)" required pattern="[a-zA-Z0-9]+" title="Only letters and numbers allowed. No spaces or special characters.">
+                <input type="text" id="secretCodeInput" placeholder="e.g., MyPreciousMemory (letters & numbers only)" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers. No spaces or special characters.">
 
-                <label for="messageContent">Your Note:</label>
+                <label for="messageContent">Your Treasured Note:</label>
                 <textarea id="messageContent" rows="10" placeholder="Type your beautiful words here..."></textarea>
 
                 <label for="deliveryDate">Optional Unveiling Date:</label>
                 <input type="date" id="deliveryDate">
-                <p style="font-size: 0.9em; color: var(--light-grey-text); margin-top: -15px; margin-bottom: 20px;">Leave empty for immediate access.</p>
+                <p style="font-size: 0.9em; color: var(--light-brown-text); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
 
-                <button type="submit">Seal Your Note in Time</button>
+                <button type="submit">Seal Your Memory in Time</button>
             </form>
 
-            <div id="statusMessage" class="hidden"></div>
-            <p class="toggle-link">Want to read your past notes? <a href="#" id="showViewMessage">Open Time Capsule!</a></p>
+            <div id="statusMessage" class="hidden">Your note has been successfully saved!</div>
+            
+            <p class="toggle-link">Ready to reflect on your saved memories? <a href="#" id="showViewMessage">Open Your Memory Box</a></p>
         </div>
 
         <div id="viewMessageSection" class="hidden">
-            <h1>Your Notes</h1>
-            <p>Enter your Secret Code to unlock all your stored notes.</p>
+            <h1>Your Past Notes</h1>
+            <p>Kindly enter your Secret Code below to unlock and view your collection of treasured memories.</p>
             <form id="retrieveMessageForm">
                 <label for="retrieveSecretCodeInput">Enter Secret Code:</label>
-                <input type="text" id="retrieveSecretCodeInput" placeholder="Your Secret Code" required pattern="[a-zA-Z0-9]+" title="Only letters and numbers allowed. No spaces or special characters.">
-                <button type="submit">Reveal Notes</button>
+                <input type="text" id="retrieveSecretCodeInput" placeholder="Your Secret Code" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers. No spaces or special characters.">
+                <button type="submit">Reveal Memories</button>
             </form>
 
             <div id="messageDisplayArea">
-                <p id="noMessage" class="hidden">No notes found for this code, or none are ready yet.</p>
+                <p id="noMessage" class="hidden">No notes were found for this code, or none are currently ready to be viewed.</p>
                 <div id="notesContainer"></div> 
-                <div id="easterEggMessage" class="hidden message-content">
-                    <p style="text-align: center; margin-bottom: 10px;">✨ A special note from the universe just for you! ✨</p>
-                    <p id="easterEggContent" style="font-style: italic;"></p>
                 </div>
-            </div>
-            <p class="toggle-link"><a href="#" id="showWriteMessage">Write a new note.</a></p>
+            <p class="toggle-link"><a href="#" id="showWriteMessage">Wish to create another memory?</a></p>
         </div>
     </div>
 
-    <div id="confettiContainer" class="confetti-container"></div>
-
     <script type="module">
-        // Import the functions you need from the SDKs you need
+        // Import the necessary functions from the Firebase SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
         import { getFirestore, doc, setDoc, collection, addDoc, query, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-        // Your web app's Firebase configuration
+        // Your web app's Firebase configuration - DO NOT CHANGE THIS UNLESS YOUR PROJECT ID CHANGES
         const firebaseConfig = {
             apiKey: "AIzaSyDSDP55e5_yeoNJNX9Ix6RprkHnO3xsbNA",
             authDomain: "timelessnotesapp.firebaseapp.com",
@@ -690,13 +540,12 @@
             measurementId: "G-Z0ML78V61B"
         };
 
-        // Initialize Firebase
+        // Initialize Firebase application and Firestore database
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-
         document.addEventListener('DOMContentLoaded', () => {
-            // --- DOM Elements ---
+            // --- DOM Element References ---
             const timeGreeting = document.getElementById('timeGreeting');
             const writeMessageSection = document.getElementById('writeMessageSection');
             const messageForm = document.getElementById('messageForm');
@@ -705,19 +554,15 @@
             const messageContentInput = document.getElementById('messageContent');
             const deliveryDateInput = document.getElementById('deliveryDate');
             const showViewMessageLink = document.getElementById('showViewMessage');
-            const particleContainer = document.getElementById('particle-container');
-
+            
             const viewMessageSection = document.getElementById('viewMessageSection');
             const retrieveMessageForm = document.getElementById('retrieveMessageForm');
             const retrieveSecretCodeInput = document.getElementById('retrieveSecretCodeInput');
             const noMessageDiv = document.getElementById('noMessage');
             const notesContainer = document.getElementById('notesContainer'); // Container for multiple notes
-            const easterEggMessageDiv = document.getElementById('easterEggMessage');
-            const easterEggContent = document.getElementById('easterEggContent');
-            const confettiContainer = document.getElementById('confettiContainer');
             const showWriteMessageLink = document.getElementById('showWriteMessage');
 
-            // --- Time-Based Greeting ---
+            // --- Time-Based Greeting Function ---
             function setTimeGreeting() {
                 const hour = new Date().getHours();
                 let greeting;
@@ -730,178 +575,146 @@
                 }
                 timeGreeting.textContent = greeting;
             }
-            setTimeGreeting();
+            setTimeGreeting(); // Call immediately on page load
 
-            // --- Particle Background Animation ---
-            function createParticle() {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particleContainer.appendChild(particle);
-
-                const size = Math.random() * 8 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.top = `${Math.random() * 100}vh`;
-                particle.style.animationDuration = `${Math.random() * 5 + 5}s`;
-                particle.style.animationDelay = `${Math.random() * 3}s`;
-
-                particle.addEventListener('animationend', () => {
-                    particle.remove();
-                });
-            }
-            setInterval(createParticle, 500);
-            for (let i = 0; i < 50; i++) {
-                createParticle();
+            // --- Note Saved Status Message Display Function ---
+            function showSaveStatus(message) {
+                statusMessageDiv.textContent = message;
+                statusMessageDiv.classList.add('visible');
+                // The warning will automatically disappear after 5 seconds
+                setTimeout(() => {
+                    statusMessageDiv.classList.remove('visible');
+                }, 5000); 
             }
 
-            // --- Initial Setup for Date Input (today onwards) ---
-            const today = new Date(); 
-            const minDate = today.toISOString().split('T')[0];
-            deliveryDateInput.setAttribute('min', minDate);
-
-            // --- Section Toggling Functions ---
+            // --- Section Visibility Toggling Functions ---
             function showSection(sectionId) {
+                // Hide all sections first
                 writeMessageSection.classList.add('hidden');
                 viewMessageSection.classList.add('hidden');
-                statusMessageDiv.classList.remove('visible');
+                statusMessageDiv.classList.remove('visible'); // Hide status message when switching sections
 
                 if (sectionId === 'write') {
                     writeMessageSection.classList.remove('hidden');
-                    messageForm.reset(); 
-                    statusMessageDiv.classList.remove('visible');
+                    messageForm.reset(); // Clear form when navigating to write section
+                    // Set min date for deliveryDateInput to today
+                    const today = new Date();
+                    const minDate = today.toISOString().split('T')[0];
                     deliveryDateInput.setAttribute('min', minDate);
                 } else if (sectionId === 'view') {
                     viewMessageSection.classList.remove('hidden');
-                    notesContainer.innerHTML = ''; // Clear previous notes
-                    noMessageDiv.classList.add('hidden');
-                    easterEggMessageDiv.classList.add('hidden');
+                    notesContainer.innerHTML = ''; // Clear previously displayed notes
+                    noMessageDiv.classList.add('hidden'); // Hide "no message" text initially
                     retrieveSecretCodeInput.value = ''; // Clear secret code input
                 }
             }
 
-            // --- Event Listeners for Section Toggles ---
+            // --- Event Listeners for Section Navigation Links ---
             showViewMessageLink.addEventListener('click', (e) => {
-                e.preventDefault();
+                e.preventDefault(); // Prevent default link behavior
                 showSection('view');
             });
 
             showWriteMessageLink.addEventListener('click', (e) => {
-                e.preventDefault();
+                e.preventDefault(); // Prevent default link behavior
                 showSection('write');
-            });
-
-            // --- Button Ripple Effect ---
-            const buttons = document.querySelectorAll('button');
-            buttons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - (size / 2);
-                    const y = e.clientY - rect.top - (size / 2);
-
-                    const ripple = document.createElement('span');
-                    ripple.classList.add('ripple');
-                    ripple.style.width = ripple.style.height = `${size}px`;
-                    ripple.style.left = `${x}px`;
-                    ripple.style.top = `${y}px`;
-
-                    this.appendChild(ripple);
-                    ripple.addEventListener('animationend', () => {
-                        ripple.remove();
-                    });
-                });
             });
 
             // --- Logic for Writing/Storing New Note with Firebase ---
             messageForm.addEventListener('submit', async (event) => {
-                event.preventDefault();
+                event.preventDefault(); // Prevent default form submission
 
-                statusMessageDiv.classList.remove('visible', 'success', 'error');
+                statusMessageDiv.classList.remove('visible'); // Hide any previous status
 
                 const secretCode = secretCodeInput.value.trim().toLowerCase();
                 const messageContent = messageContentInput.value.trim();
                 const deliveryDate = deliveryDateInput.value; 
+                const now = new Date(); // Current date for validation
 
+                // Input validation
                 if (!secretCode || !messageContent) {
-                    showStatus('Code and note are required!', 'error');
+                    alert('Please ensure both the Secret Code and Your Note fields are filled.');
                     return;
                 }
-
                 if (!/^[a-zA-Z0-9]+$/.test(secretCode)) {
-                    showStatus('Secret Code: letters/numbers only.', 'error');
+                    alert('Your Secret Code should only contain letters and numbers.');
                     return;
                 }
-
                 if (deliveryDate) { 
-                    const chosenDate = new Date(deliveryDate + 'T00:00:00');
-                    const now = new Date();
+                    const chosenDate = new Date(deliveryDate + 'T00:00:00'); // Ensure date comparison is consistent
                     if (chosenDate < new Date(now.getFullYear(), now.getMonth(), now.getDate())) { 
-                        showStatus('Date must be today or future!', 'error');
+                        alert('The Unveiling Date cannot be in the past.');
                         return;
                     }
                 }
 
                 try {
+                    // Create or update the parent document for the secret code
                     const secretCodeDocRef = doc(db, "messages", secretCode);
                     await setDoc(secretCodeDocRef, { lastUpdated: new Date().toISOString() }, { merge: true });
 
+                    // Prepare note data
                     const noteData = {
                         messageContent: messageContent,
+                        // Store deliveryDate as null if not provided
                         deliveryDate: deliveryDate || null, 
+                        // Record creation date for sorting/tracking
                         createdAt: new Date().toISOString().split('T')[0] 
                     };
 
+                    // Add the new note to the 'notes' subcollection under the secret code
                     const notesCollectionRef = collection(db, "messages", secretCode, "notes");
                     await addDoc(notesCollectionRef, noteData);
 
-                    showStatus('Note saved! Use your Secret Code to read it.', 'success');
+                    // Display success message and clear form
+                    showSaveStatus('Your note has been successfully saved!');
                     messageForm.reset();
+                    // Reset min date after successful submission
+                    const today = new Date();
+                    const minDate = today.toISOString().split('T')[0];
                     deliveryDateInput.setAttribute('min', minDate);
+
                 } catch (error) {
                     console.error('Error saving note:', error);
-                    showStatus('Error saving note. Try again later.', 'error');
+                    alert('An unexpected error occurred while saving your note. Please try again later.');
                 }
             });
 
-            function showStatus(message, type) {
-                statusMessageDiv.textContent = message;
-                statusMessageDiv.className = `status visible ${type}`;
-            }
-
             // --- Logic for Retrieving and Displaying Multiple Notes from Firebase ---
             retrieveMessageForm.addEventListener('submit', async (event) => {
-                event.preventDefault();
+                event.preventDefault(); // Prevent default form submission
 
+                // Clear previous notes and messages
                 notesContainer.innerHTML = ''; 
                 noMessageDiv.classList.add('hidden');
-                easterEggMessageDiv.classList.add('hidden');
-                statusMessageDiv.classList.remove('visible');
+                statusMessageDiv.classList.remove('visible'); // Hide any previous status
 
                 const retrieveCode = retrieveSecretCodeInput.value.trim().toLowerCase();
 
+                // Input validation for retrieval
                 if (!retrieveCode) {
-                    noMessageDiv.textContent = "Enter your Secret Code.";
+                    noMessageDiv.textContent = "Please enter your Secret Code to retrieve notes.";
                     noMessageDiv.classList.remove('hidden');
                     return;
                 }
-
                 if (!/^[a-zA-Z0-9]+$/.test(retrieveCode)) {
-                    noMessageDiv.textContent = 'Secret Code: letters/numbers only.';
+                    noMessageDiv.textContent = 'The Secret Code should only contain letters and numbers.';
                     noMessageDiv.classList.remove('hidden');
                     return;
                 }
 
                 try {
+                    // Check if the parent secret code document exists first
                     const secretCodeDocRef = doc(db, "messages", retrieveCode);
                     const secretCodeDocSnap = await getDoc(secretCodeDocRef);
 
                     if (!secretCodeDocSnap.exists()) {
-                        noMessageDiv.textContent = "No notes found for this code. Create one!";
+                        noMessageDiv.textContent = "No notes are associated with this Secret Code. Perhaps you'd like to create one?";
                         noMessageDiv.classList.remove('hidden');
                         return;
                     }
 
+                    // Query the 'notes' subcollection for the given secret code
                     const notesCollectionRef = collection(db, "messages", retrieveCode, "notes");
                     const q = query(notesCollectionRef); 
                     const querySnapshot = await getDocs(q);
@@ -914,7 +727,59 @@
                     if (notes.length > 0) {
                         let hasVisibleNotes = false;
                         const now = new Date();
+                        // Sort notes by creation date, most recent first
                         notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); 
 
                         notes.forEach(note => {
-                            const deliveryDate = note.deliveryDate ? new Date(note.deliveryDate + 'T00:00:00') : null;
+                            const deliveryDate = note.deliveryDate ? new Date(note.deliveryDate + 'T00:00:00') : null; // Ensure consistency
+                            const createdAtDate = new Date(note.createdAt).toLocaleDateString();
+
+                            // Only display notes that are ready to be unveiled
+                            if (!deliveryDate || now >= deliveryDate) {
+                                hasVisibleNotes = true;
+                                const noteCard = document.createElement('div');
+                                noteCard.classList.add('note-card');
+
+                                const messageP = document.createElement('p');
+                                messageP.classList.add('message-content');
+                                // Use innerHTML and replace newlines with <br> for proper formatting
+                                messageP.innerHTML = note.messageContent.replace(/\n/g, '<br>');
+                                
+                                const dateInfoP = document.createElement('p');
+                                dateInfoP.classList.add('note-date-info');
+                                dateInfoP.textContent = `Created on: ${createdAtDate}`;
+                                
+                                noteCard.appendChild(messageP);
+                                noteCard.appendChild(dateInfoP);
+                                notesContainer.appendChild(noteCard);
+                            }
+                        });
+
+                        // If notes were found but none are yet ready for viewing
+                        if (!hasVisibleNotes && notes.length > 0) { 
+                             noMessageDiv.textContent = "All your notes are patiently awaiting their scheduled unveiling dates. None are ready for viewing just yet!";
+                             noMessageDiv.classList.remove('hidden');
+                        } else if (notes.length === 0) { 
+                            // This case should ideally be caught by secretCodeDocSnap.exists(), but as a fallback
+                            noMessageDiv.textContent = "No notes were found for this Secret Code. Perhaps you'd like to create one?";
+                            noMessageDiv.classList.remove('hidden');
+                        }
+
+                    } else {
+                        // If the secret code exists, but no notes are under it
+                        noMessageDiv.textContent = "No notes were found for this Secret Code. Perhaps you'd like to create one?";
+                        noMessageDiv.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error retrieving notes:', error);
+                    noMessageDiv.textContent = "An unexpected error occurred while retrieving your notes. Please check your connection or try again later.";
+                    noMessageDiv.classList.remove('hidden');
+                }
+            });
+
+            // --- Initialize (Show write section by default) ---
+            showSection('write'); 
+        });
+    </script>
+</body>
+</html>
