@@ -15,6 +15,7 @@
             --brown-note: #fdf6e3; /* Creamy, parchment-like background for notes */
             --dark-brown-text: #4e342e; /* Rich, deep brown for primary text */
             --light-brown-text: #795548; /* Softer brown for secondary text */
+            --light-text-on-dark: #dbe4f0; /* Brighter text color for dark backgrounds (new) */
             --accent-gold: #ffd700; /* Subtle gold for special highlights */
             --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
@@ -136,7 +137,7 @@
 
         p {
             margin-bottom: 25px;
-            color: var(--brown-note); /* Adjusted for dark container background */
+            color: var(--light-text-on-dark); /* Changed for readability on dark container */
             font-size: 1.05em;
             max-width: 650px;
             margin-left: auto;
@@ -180,7 +181,7 @@
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
             appearance: none; /* Reset default browser styles */
             -webkit-appearance: none;
-            max-width: 450px; /* Keep this max-width for these specific inputs */
+            /* max-width for textarea moved below */
         }
 
         textarea::placeholder,
@@ -202,7 +203,13 @@
         textarea {
             resize: vertical;
             min-height: 180px; /* Adequate height for notes */
+            max-width: 600px; /* Wider for better writing experience (adjusted) */
         }
+
+        input[type="date"] {
+            max-width: 450px; /* Keep date input narrower */
+        }
+
 
         /* Custom styling for date input icon */
         input[type="date"]::-webkit-calendar-picker-indicator {
@@ -432,10 +439,13 @@
             p {
                 font-size: 1em;
             }
-            textarea, input[type="date"],
+            textarea,
             #secretCodeInput, #retrieveSecretCodeInput { /* Apply to secret code inputs specifically */
                 max-width: 100%; /* Allow full width on small screens */
                 padding: 10px; /* Adjust padding for smaller screens */
+            }
+            input[type="date"] {
+                max-width: 100%; /* Make date input also full width on small screens */
             }
             button {
                 font-size: 1.1em;
@@ -496,14 +506,20 @@
         <div class="heart" style="left:70%; top:10%; animation-delay: 6s;">💖</div>
         <div class="heart" style="left:80%; top:3%; animation-delay: 7s; font-size: 1.8em;">💖</div>
         <div class="heart" style="left:90%; top:18%; animation-delay: 8s;">💖</div>
-        <div class="heart" style="left:15%; top:25%; animation-delay: 9s; font-size: 1.3em;">💖</div>
-        <div class="heart" style="left:25%; top:30%; animation-delay: 10s;">💖</div>
-        <div class="heart" style="left:35%; top:22%; animation-delay: 11s; font-size: 1.6em;">💖</div>
-        <div class="heart" style="left:45%; top:35%; animation-delay: 12s;">💖</div>
-        <div class="heart" style="left:55%; top:28%; animation-delay: 13s; font-size: 1.1em;">💖</div>
-        <div class="heart" style="left:65%; top:40%; animation-delay: 14s;">💖</div>
-        <div class="heart" style="left:75%; top:33%; animation-delay: 15s; font-size: 1.9em;">💖</div>
-        <div class="heart" style="left:85%; top:45%; animation-delay: 16s;">💖</div>
+        <div class="heart" style="left:5%; top:30%; animation-delay: 9s; font-size: 1.1em;">💖</div>
+        <div class="heart" style="left:15%; top:25%; animation-delay: 10s; font-size: 1.3em;">💖</div>
+        <div class="heart" style="left:25%; top:30%; animation-delay: 11s;">💖</div>
+        <div class="heart" style="left:35%; top:22%; animation-delay: 12s; font-size: 1.6em;">💖</div>
+        <div class="heart" style="left:45%; top:35%; animation-delay: 13s;">💖</div>
+        <div class="heart" style="left:55%; top:28%; animation-delay: 14s; font-size: 1.1em;">💖</div>
+        <div class="heart" style="left:65%; top:40%; animation-delay: 15s;">💖</div>
+        <div class="heart" style="left:75%; top:33%; animation-delay: 16s; font-size: 1.9em;">💖</div>
+        <div class="heart" style="left:85%; top:45%; animation-delay: 17s;">💖</div>
+        <div class="heart" style="left:95%; top:25%; animation-delay: 18s; font-size: 1.4em;">💖</div>
+        <div class="heart" style="left:2%; top:50%; animation-delay: 19s;">💖</div>
+        <div class="heart" style="left:12%; top:55%; animation-delay: 20s; font-size: 2em;">💖</div>
+        <div class="heart" style="left:22%; top:48%; animation-delay: 21s;">💖</div>
+        <div class="heart" style="left:32%; top:52%; animation-delay: 22s; font-size: 1.6em;">💖</div>
     </div>
 
     <div class="container">
@@ -524,7 +540,7 @@ No spaces or special characters.">
                 <label for="deliveryDate">Optional Unveiling Date:</label>
                 <input type="date" id="deliveryDate">
                 <p
-style="font-size: 0.9em; color: var(--brown-note); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
+style="font-size: 0.9em; color: var(--light-text-on-dark); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
 
                 <button type="submit">Seal Your Memory in Time ✉️</button>
             </form>
