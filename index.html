@@ -3,45 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Treasured Time Capsule</title>
+    <title>My Dearest's Timeless Affection</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;700&family=Gentium+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;700i&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
-        /* Define a harmonious color palette and shadow effects */
+        /* --- Color Palette & Global Styles --- */
         :root {
-            --soft-pink-bg: #fce4ec; /* Very light, soft pink for background */
-            --warm-pink: #f48fb1;   /* A slightly deeper, inviting pink */
-            --brown-note: #fdf6e3;  /* Creamy, parchment-like background for notes */
-            --dark-brown-text: #4e342e; /* Rich, deep brown for primary text */
-            --light-brown-text: #795548; /* Softer brown for secondary text */
-            --accent-gold: #ffd700; /* Subtle gold for special highlights */
-            --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
-            --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
-            --transition-duration: 0.3s;
-            --border-radius-card: 12px;
-            --border-radius-input: 8px;
+            --primary-love-pink: #ff69b4; /* Deep, vibrant hot pink */
+            --secondary-rose-pink: #ffb6c1; /* Soft, light pink */
+            --tertiary-cream: #fffaf0;    /* Warm, off-white for paper/backgrounds */
+            --accent-gold: #ffd700;       /* Golden shimmer */
+            --dark-charcoal-text: #36454F; /* Deep, soft charcoal for primary text */
+            --medium-grey-text: #6c757d;   /* Muted grey for secondary text */
+            --warm-brown-accent: #a0522d; /* For coffee/earthy tones */
+            
+            --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --shadow-deep: 0 10px 30px rgba(0, 0, 0, 0.25);
+            --transition-fast: 0.2s;
+            --transition-medium: 0.4s;
+            --border-radius-gentle: 18px;
+            --border-radius-subtle: 10px;
         }
 
-        /* --- Global & Background Styles --- */
         body {
-            font-family: 'Gentium Plus', serif; /* Elegant, classic serif font */
-            background-color: var(--soft-pink-bg);
+            font-family: 'Lora', serif; /* Elegant, readable serif for body text */
+            background: linear-gradient(135deg, var(--secondary-rose-pink) 0%, var(--soft-pink-bg) 100%);
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Align to top for proper scrolling */
+            align-items: flex-start; /* Align to top for scrollability */
             min-height: 100vh;
             margin: 0;
-            color: var(--dark-brown-text);
-            line-height: 1.7; /* Enhanced line height for readability */
-            padding: 30px; /* Generous overall padding */
+            color: var(--dark-charcoal-text);
+            line-height: 1.8; /* Increased for better flow */
+            padding: 30px; /* Ample overall padding */
             box-sizing: border-box;
-            overflow-y: auto; /* Enable scrolling for content overflow */
-            position: relative; /* Needed for absolute positioned children */
+            overflow-y: auto; /* Enable scrolling for content */
+            position: relative;
+            animation: softBackgroundFlow 20s infinite alternate ease-in-out;
         }
 
-        /* Heart Animation Background */
-        .heart-animation-bg {
+        @keyframes softBackgroundFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* --- Background Animations --- */
+        .background-elements {
             position: absolute;
             top: 0;
             left: 0;
@@ -49,184 +57,208 @@
             height: 100%;
             pointer-events: none;
             overflow: hidden;
-            z-index: 0; /* Ensures it stays behind content */
+            z-index: 0; /* Ensures elements stay behind content */
         }
 
-        .heart {
-            color: rgba(244, 172, 183, 0.5); /* Muted, transparent heart color */
-            font-size: 1.5em; /* Larger hearts */
+        .animated-emoji {
             position: absolute;
-            animation: floatAndTwinkle 8s infinite ease-in-out;
-            opacity: 0; /* Start hidden */
-            text-shadow: 0 0 8px rgba(244, 172, 183, 0.8); /* Subtle glow */
-        }
-
-        @keyframes floatAndTwinkle {
-            0% { transform: translateY(0px) scale(0.5); opacity: 0; }
-            20% { opacity: 0.6; transform: translateY(-20px) scale(1); }
-            80% { opacity: 0.3; transform: translateY(-80px) scale(0.8); }
-            100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
-        }
-
-        /* Coffee Steam Animation */
-        .coffee-animation-bg {
-            position: absolute;
-            bottom: 0px; /* Aligned to bottom of viewport */
-            left: 5%; /* From the left edge */
-            font-size: 3em; /* Larger coffee cup */
-            color: rgba(160, 82, 45, 0.6); /* Semi-transparent coffee color */
-            opacity: 0.7;
-            pointer-events: none;
-            z-index: 0;
-            animation: coffeeFadeIn 2s ease-out forwards; /* Fade in with the page */
-        }
-
-        .steam-puff {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            animation: steamPuff 3s infinite ease-out;
             opacity: 0;
-            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            animation: floatAndFade 10s infinite ease-in-out; /* Longer animation for graceful flow */
+            font-size: clamp(1em, 2.5vw, 2.5em); /* Responsive font size */
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+            transform: translateZ(0); /* Hardware acceleration */
         }
 
-        @keyframes coffeeFadeIn {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 0.7; transform: translateY(0); }
+        @keyframes floatAndFade {
+            0% { transform: translateY(0) translateX(0) scale(0.5) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-120vh) translateX(50px) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Specific coffee cup animation */
+        .animated-coffee {
+            position: absolute;
+            bottom: -50px; /* Start below viewport */
+            left: 5%;
+            font-size: clamp(2em, 5vw, 5em);
+            color: var(--warm-brown-accent);
+            opacity: 0.7;
+            animation: coffeeFloat 15s infinite linear; /* Slower, continuous float */
+            z-index: 1; /* Above general emojis, but still background */
         }
 
-        @keyframes steamPuff {
+        @keyframes coffeeFloat {
+            0% { transform: translateY(0); opacity: 0.7; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        .steam {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: steamRise 3s infinite ease-out;
+            opacity: 0;
+            box-shadow: 0 0 10px rgba(255,255,255,0.4);
+        }
+
+        @keyframes steamRise {
             0% { transform: scale(0.2) translateY(0); opacity: 0; }
-            20% { opacity: 0.8; }
-            100% { transform: scale(1.5) translateY(-80px); opacity: 0; }
+            20% { opacity: 0.9; }
+            100% { transform: scale(1.8) translateY(-60px); opacity: 0; }
         }
+
 
         /* --- Main Container & Overall Layout --- */
         .container {
-            background-color: white;
-            padding: 50px; /* More padding for a grander feel */
-            border-radius: var(--border-radius-card); /* Softly rounded corners */
-            box-shadow: var(--shadow-medium); /* Prominent shadow for depth */
+            background-color: var(--tertiary-cream); /* Warm, creamy background */
+            padding: 50px; /* Generous padding */
+            border-radius: var(--border-radius-gentle); /* Very rounded corners */
+            box-shadow: var(--shadow-deep); /* Prominent, soft shadow */
             width: 100%;
-            max-width: 750px; /* Wider container for spaciousness */
+            max-width: 800px; /* Slightly wider for a more grand feel */
             text-align: center;
             box-sizing: border-box;
             position: relative;
-            z-index: 1; /* Ensures it's above background animations */
+            z-index: 10; /* Ensures it's above background elements */
             margin-top: 30px;
             margin-bottom: 30px;
-            border: 1px solid rgba(244, 172, 183, 0.4); /* Subtle pink border */
-            animation: containerEntry 1s ease-out forwards;
+            border: 2px solid var(--primary-love-pink); /* Stronger pink border */
+            overflow: hidden; /* Contains internal elements like borders/shadows */
+            animation: fadeInSlightlyUp 1.2s ease-out forwards;
         }
 
-        @keyframes containerEntry {
-            0% { opacity: 0; transform: translateY(30px) scale(0.95); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes fadeInSlightlyUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
+        
+        /* Decorative top border with slight curvature */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(to right, var(--primary-love-pink), var(--secondary-rose-pink));
+            border-radius: var(--border-radius-gentle) var(--border-radius-gentle) 0 0;
+            transform: skewY(-1deg); /* Subtle curve */
+            transform-origin: top left;
+            z-index: 11;
+        }
+
 
         /* --- Typography --- */
         h1 {
-            font-family: 'Playfair Display', serif; /* Elegant heading font */
-            color: var(--dark-brown-text);
+            font-family: 'Playfair Display', serif; /* Elegant and bold heading */
+            color: var(--dark-charcoal-text);
             margin-bottom: 25px;
-            font-size: 2.8em; /* Impactful size */
+            font-size: clamp(2.2em, 4vw, 3.5em); /* Responsive font size */
             font-weight: 700;
-            line-height: 1.2;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.05); /* Subtle text shadow */
+            line-height: 1.1;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.08);
         }
 
         .greeting {
-            font-family: 'Cormorant Garamond', serif; /* A graceful, italicized greeting font */
-            font-style: italic;
-            font-weight: 700;
-            font-size: 2.4em; /* Prominent greeting */
-            color: var(--warm-pink);
-            margin-bottom: 35px;
-            text-shadow: 1px 1px 5px rgba(244, 172, 183, 0.7); /* Soft glow for greeting */
-            animation: greetingPulse 3s infinite ease-in-out alternate;
+            font-family: 'Great Vibes', cursive; /* Flowing script font for a personal touch */
+            font-size: clamp(2.5em, 5vw, 4.5em); /* Very prominent and responsive */
+            color: var(--primary-love-pink);
+            margin-bottom: 40px;
+            font-weight: normal;
+            text-shadow: 3px 3px 10px rgba(255,105,180,0.6); /* Stronger glow */
+            animation: pulseGlow 3s infinite alternate ease-in-out, gentleSway 5s infinite ease-in-out;
+            line-height: 1; /* Prevent excessive line height for script font */
         }
 
-        @keyframes greetingPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
+        @keyframes pulseGlow {
+            0% { text-shadow: 3px 3px 10px rgba(255,105,180,0.6); }
+            100% { text-shadow: 3px 3px 20px rgba(255,105,180,0.9); }
+        }
+        @keyframes gentleSway {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-0.8deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(0.8deg); }
+            100% { transform: rotate(0deg); }
         }
 
         p {
             margin-bottom: 25px;
-            color: var(--light-brown-text);
-            font-size: 1.05em;
-            max-width: 650px;
+            color: var(--medium-grey-text);
+            font-size: clamp(0.9em, 1.5vw, 1.1em); /* Responsive body text */
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.8;
         }
         
         .instruction-text {
-            font-weight: 600;
-            color: var(--warm-pink);
-            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--primary-love-pink);
+            text-shadow: 0 0 5px rgba(255,105,180,0.3);
         }
 
         /* --- Form Elements --- */
         form {
             display: flex;
             flex-direction: column;
-            gap: 22px; /* Consistent spacing */
-            margin-top: 30px;
+            gap: 20px; /* Slightly more compact spacing */
+            margin-top: 35px;
         }
 
         label {
             text-align: left;
             font-weight: 700;
-            color: var(--dark-brown-text);
+            color: var(--dark-charcoal-text);
             font-size: 1.05em;
             margin-bottom: 5px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         textarea,
         input[type="date"],
         input[type="text"] {
-            width: calc(100% - 24px); /* Account for padding */
-            padding: 12px;
-            border: 1px solid var(--warm-pink); /* Pink border */
-            border-radius: var(--border-radius-input); /* Softly rounded input fields */
+            width: calc(100% - 30px); /* Adjusted for padding */
+            padding: 15px; /* Comfortable padding */
+            border: 2px solid var(--secondary-rose-pink); /* Soft pink border */
+            border-radius: var(--border-radius-subtle); /* Smooth rounded corners */
             font-size: 1em;
-            font-family: 'Gentium Plus', serif; /* Consistent elegant font */
-            transition: border-color var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
-            background-color: #fffaf0; /* Slightly off-white for a warm feel */
-            color: var(--dark-brown-text);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
-            appearance: none; /* Reset default browser styles */
-            -webkit-appearance: none;
+            font-family: 'Lora', serif; /* Consistent elegant font */
+            transition: border-color var(--transition-fast) ease, box-shadow var(--transition-fast) ease, background-color var(--transition-fast) ease;
+            background-color: var(--tertiary-cream); /* Warm, creamy input background */
+            color: var(--dark-charcoal-text);
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.05); /* Subtle inner shadow */
+            -webkit-appearance: none; /* For date picker styling */
+            appearance: none;
         }
 
         textarea::placeholder,
         input[type="date"]::placeholder,
         input[type="text"]::placeholder {
-            font-family: 'Gentium Plus', serif;
-            color: rgba(121, 85, 72, 0.6); /* Muted brown placeholder */
+            font-family: 'Lora', serif;
+            color: rgba(108, 117, 125, 0.7); /* Muted placeholder color */
         }
 
         textarea:focus,
         input[type="date"]:focus,
         input[type="text"]:focus {
-            border-color: var(--dark-brown-text);
-            box-shadow: 0 0 0 3px rgba(244, 172, 183, 0.5); /* Pink glow on focus */
+            border-color: var(--primary-love-pink);
+            box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.4); /* Stronger pink glow on focus */
             background-color: white;
             outline: none;
         }
 
         textarea {
             resize: vertical;
-            min-height: 180px; /* Adequate height for notes */
+            min-height: 160px; /* Slightly more compact but still spacious */
         }
         
-        /* Custom styling for date input icon */
         input[type="date"]::-webkit-calendar-picker-indicator {
             background: transparent;
             bottom: 0;
-            color: var(--light-brown-text); /* Ensure icon is visible */
+            color: var(--dark-charcoal-text); /* Ensure icon is visible */
             cursor: pointer;
             height: auto;
             left: 0;
@@ -238,57 +270,79 @@
 
         /* --- Buttons --- */
         button {
-            background-color: var(--warm-pink);
+            background: linear-gradient(90deg, var(--primary-love-pink), #ff3d81); /* Gradient for depth */
             color: white;
-            padding: 15px 30px;
+            padding: 18px 35px; /* Generous padding */
             border: none;
-            border-radius: var(--border-radius-input);
+            border-radius: var(--border-radius-subtle);
             cursor: pointer;
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
-            transition: background-color var(--transition-duration) ease, transform 0.15s ease, box-shadow var(--transition-duration) ease;
-            letter-spacing: 0.5px;
-            box-shadow: var(--shadow-light);
+            transition: all var(--transition-medium) ease-in-out;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
         }
 
         button:hover {
-            background-color: #e6518f; /* Slightly darker pink on hover */
-            transform: translateY(-2px); /* Subtle lift */
-            box-shadow: var(--shadow-medium);
+            background: linear-gradient(90deg, #e04e9c, var(--primary-love-pink));
+            transform: translateY(-5px) scale(1.02); /* More noticeable lift and slight scale */
+            box-shadow: var(--shadow-deep);
+            letter-spacing: 1.5px;
         }
 
         button:active {
-            transform: translateY(0);
-            box-shadow: var(--shadow-light);
-            background-color: #d1427c;
+            transform: translateY(-1px) scale(0.98);
+            box-shadow: var(--shadow-soft);
+        }
+        
+        /* Ripple effect for buttons */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            animation: ripple-animation 0.6s linear forwards;
+            transform: scale(0);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(3.5);
+                opacity: 0;
+            }
         }
 
         /* --- Status Messages --- */
         #statusMessage {
             margin-top: 30px;
-            padding: 18px;
-            border-radius: var(--border-radius-input);
+            padding: 20px;
+            border-radius: var(--border-radius-subtle);
             font-weight: 600;
-            font-size: 1em;
+            font-size: 1.1em;
             text-align: center;
             opacity: 0;
             max-height: 0;
             overflow: hidden;
-            transition: opacity 0.5s ease-out, max-height 0.5s ease-out, padding 0.5s ease-out; /* Smooth transition */
-            background-color: #e8f5e9; /* Light green for success */
-            color: #2e7d32; /* Dark green text */
-            border: 1px solid #a5d6a7; /* Green border */
+            transition: opacity 0.6s ease-out, max-height 0.6s ease-out, padding 0.6s ease-out;
+            border: 2px solid;
+            background-color: rgba(240, 255, 240, 0.9); /* Very light green, almost white */
+            color: #28a745; /* Bootstrap success green */
+            border-color: #28a745;
+            box-shadow: var(--shadow-soft);
         }
 
         #statusMessage.visible {
             opacity: 1;
-            max-height: 100px; /* Sufficient height */
-            padding: 18px;
-            animation: statusFadeIn 0.8s ease-out forwards;
+            max-height: 150px; /* Adequate height for content */
+            padding: 20px;
+            animation: slideInFadeIn 0.8s ease-out forwards;
         }
 
-        @keyframes statusFadeIn {
-            0% { transform: translateY(-10px); opacity: 0; }
+        @keyframes slideInFadeIn {
+            0% { transform: translateY(-15px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
         }
 
@@ -296,65 +350,84 @@
             display: none;
         }
 
-        /* --- Toggle Links --- */
+        /* --- Toggle Links (Open Memory Box / Create New Note) --- */
         .toggle-link {
-            margin-top: 30px;
-            font-size: 0.95em;
-            color: var(--light-brown-text);
+            margin-top: 40px; /* More separation */
+            font-size: 1.1em;
+            color: var(--medium-grey-text);
+            animation: fadeIn 1.5s 0.5s forwards; /* Fade in after form */
         }
 
         .toggle-link a {
-            color: var(--warm-pink);
+            color: var(--primary-love-pink); /* Stronger link color */
             text-decoration: none;
             font-weight: bold;
-            transition: color var(--transition-duration) ease;
+            transition: color var(--transition-fast) ease, text-shadow var(--transition-fast) ease, transform 0.2s ease;
+            text-shadow: 0 0 5px rgba(255, 105, 180, 0.3);
+            display: inline-block; /* Allows transform */
+            position: relative;
+            padding: 5px 10px; /* Make clickable area larger */
+            border: 2px solid var(--primary-love-pink); /* Border for emphasis */
+            border-radius: var(--border-radius-subtle);
+            background-color: rgba(255, 105, 180, 0.1); /* Subtle pink background */
         }
 
         .toggle-link a:hover {
-            color: var(--dark-brown-text);
-            text-decoration: underline;
+            color: var(--dark-charcoal-text); /* Changes to dark text on hover */
+            text-decoration: none; /* Remove underline */
+            text-shadow: 0 0 8px rgba(255,105,180,0.6);
+            transform: scale(1.05); /* Slight growth */
+            background-color: rgba(255, 105, 180, 0.25);
+            box-shadow: var(--shadow-light);
         }
 
         /* --- Message Display Area --- */
         #messageDisplayArea {
-            min-height: 200px; /* Ensure space even when empty */
+            min-height: 250px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            gap: 18px; /* Spacing between notes */
-            padding-top: 10px;
+            gap: 15px; /* More compact spacing between notes */
             padding-bottom: 20px;
+            overflow-y: auto; /* Enable scrolling if content exceeds height */
+            max-height: 550px; /* Max height for multiple notes */
+            border-top: 1px dashed var(--secondary-rose-pink); /* Subtle separator */
+            padding-top: 25px;
         }
 
         .note-card {
-            background-color: var(--brown-note); /* Brown page view */
-            border: 1px solid #dcd3c5; /* Subtle border for the "page" */
-            border-radius: var(--border-radius-input); /* Soft corners */
-            padding: 25px; /* Ample padding */
+            background-color: var(--brown-note); /* Light, papery brown view */
+            border: 1px solid #d4c1a7; /* Subtle border for the "page" effect */
+            border-radius: var(--border-radius-subtle);
+            padding: 22px; /* Slightly more compact padding */
             text-align: left;
-            width: 100%;
+            width: 95%; /* Slightly narrower */
+            max-width: 600px; /* Max width for individual cards */
             box-sizing: border-box;
             box-shadow: var(--shadow-light);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            position: relative; /* For the "fold" effect */
+            transition: transform var(--transition-medium) ease, box-shadow var(--transition-medium) ease;
+            position: relative;
             overflow: hidden;
-            opacity: 0; /* Start hidden for animation */
-            transform: translateY(20px);
-            animation: noteCardEntry 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+            animation: noteCardReveal 0.8s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         
-        @keyframes noteCardEntry {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+        @keyframes noteCardReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .note-card:hover {
-            transform: translateY(-5px); /* Lift slightly on hover */
-            box-shadow: var(--shadow-medium);
+            transform: translateY(-7px) scale(1.01); /* More pronounced lift and scale */
+            box-shadow: var(--shadow-deep);
+            border-color: var(--primary-love-pink); /* Border color change on hover */
         }
 
-        /* Top-right folded corner for note card */
+        /* Torn/Folded corner for notes */
         .note-card::before {
             content: '';
             position: absolute;
@@ -362,37 +435,36 @@
             right: 0;
             border-width: 0 25px 25px 0; /* Adjust size of the fold */
             border-style: solid;
-            border-color: #f0f0f0 #f0f0f0 var(--brown-note) var(--brown-note);
-            background-color: #f0f0f0; /* Color of the fold */
-            box-shadow: -1px 1px 2px rgba(0,0,0,0.1);
+            border-color: #ede0d4 #ede0d4 var(--brown-note) var(--brown-note); /* Colors for folded corner */
+            background-color: #ede0d4; /* Color of the fold */
+            box-shadow: -2px 2px 5px rgba(0,0,0,0.1);
             transform: rotate(90deg);
             transform-origin: 100% 0;
-            transition: border-color 0.2s ease;
-        }
-
-        .note-card:hover::before {
-             border-color: #e0e0e0 #e0e0e0 var(--brown-note) var(--brown-note); /* Darken fold on hover */
         }
 
         .message-content {
-            white-space: pre-wrap; /* Preserves line breaks from textarea */
+            white-space: pre-wrap; /* Preserves line breaks */
             font-family: 'Cormorant Garamond', serif; /* Elegant font for message content */
-            font-style: italic; /* A gentle touch */
-            font-size: 1.25em; /* Clear and readable */
-            color: var(--dark-brown-text);
+            font-style: italic;
+            font-size: clamp(1.1em, 1.8vw, 1.3em); /* Responsive font size */
+            color: var(--dark-charcoal-text);
             line-height: 1.8;
-            margin-bottom: 15px;
-            border-left: 3px solid var(--warm-pink); /* Subtle accent line */
-            padding-left: 15px;
-            margin-left: -15px; /* Adjust for padding */
+            margin-bottom: 18px;
+            padding: 15px;
+            border-left: 5px solid var(--primary-love-pink); /* Stronger accent line */
+            background-color: rgba(255, 240, 245, 0.7); /* Very light, transparent pink background */
+            border-radius: 5px;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
         }
 
         .note-date-info {
-            font-size: 0.85em;
-            color: var(--light-brown-text);
+            font-size: 0.8em; /* Slightly smaller for subtle info */
+            color: var(--medium-grey-text);
             text-align: right;
             margin-top: 10px;
             font-style: italic;
+            border-top: 1px dashed rgba(108, 117, 125, 0.3);
+            padding-top: 8px;
         }
 
         /* --- Responsive Adjustments --- */
@@ -409,77 +481,92 @@
             }
             .greeting {
                 font-size: 2em;
+                margin-bottom: 30px;
             }
             p {
-                font-size: 1em;
+                font-size: 0.95em;
             }
             textarea, input {
-                padding: 10px;
+                padding: 12px;
             }
             button {
                 font-size: 1.1em;
-                padding: 12px 25px;
+                padding: 15px 25px;
+            }
+            .toggle-link a {
+                font-size: 0.95em;
+                padding: 8px 15px;
             }
             .note-card {
                 padding: 20px;
+                width: 98%; /* Slightly wider on smaller screens */
             }
             .message-content {
                 font-size: 1.1em;
+                padding: 12px;
             }
         }
 
         @media (max-width: 480px) {
             body {
-                padding: 15px;
+                padding: 10px;
             }
             .container {
                 padding: 25px;
                 margin: 10px auto;
+                border-radius: 12px;
             }
             h1 {
                 font-size: 1.8em;
             }
             .greeting {
-                font-size: 1.6em;
+                font-size: 1.5em;
+                margin-bottom: 25px;
             }
             p {
+                font-size: 0.85em;
+                margin-bottom: 15px;
+            }
+            label {
+                font-size: 0.9em;
+            }
+            textarea, input {
+                padding: 10px;
                 font-size: 0.9em;
             }
             textarea {
-                min-height: 150px;
+                min-height: 120px;
             }
             button {
                 font-size: 1em;
-                padding: 10px 20px;
+                padding: 12px 20px;
+            }
+            #statusMessage {
+                padding: 15px;
+                font-size: 0.9em;
+            }
+            .toggle-link {
+                margin-top: 25px;
+            }
+            .toggle-link a {
+                font-size: 0.85em;
+                padding: 7px 12px;
             }
             .note-card {
                 padding: 15px;
             }
             .message-content {
                 font-size: 1em;
+                padding: 10px;
             }
-            .note-card::before { /* Smaller fold */
-                border-width: 0 20px 20px 0;
+            .note-card::before {
+                border-width: 0 18px 18px 0; /* Smaller fold for compact view */
             }
         }
     </style>
 </head>
 <body>
-    <div class="heart-animation-bg">
-        <div class="heart" style="left:10%; top:15%; animation-delay: 0s;">💖</div>
-        <div class="heart" style="left:30%; top:40%; animation-delay: 1.5s; font-size: 1.7em;">💖</div>
-        <div class="heart" style="left:50%; top:25%; animation-delay: 3s;">💖</div>
-        <div class="heart" style="left:70%; top:60%; animation-delay: 4.5s; font-size: 1.2em;">💖</div>
-        <div class="heart" style="left:90%; top:10%; animation-delay: 6s;">💖</div>
-        <div class="heart" style="left:5%; top:70%; animation-delay: 2.5s; font-size: 1.3em;">💖</div>
-        <div class="heart" style="left:65%; top:5%; animation-delay: 5s; font-size: 1.8em;">💖</div>
-    </div>
-    <div class="coffee-animation-bg">
-        ☕
-        <div class="steam-puff" style="left: 20%; top: -30%; animation-delay: 0s; width: 15px; height: 15px;"></div>
-        <div class="steam-puff" style="left: 60%; top: -45%; animation-delay: 0.5s; width: 20px; height: 20px;"></div>
-        <div class="steam-puff" style="left: 40%; top: -60%; animation-delay: 1s; width: 18px; height: 18px;"></div>
-    </div>
+    <div class="background-elements"></div>
 
     <div class="container">
         <h2 id="timeGreeting" class="greeting"></h2>
@@ -490,14 +577,14 @@
 
             <form id="messageForm">
                 <label for="secretCodeInput">Your Secret Code:</label>
-                <input type="text" id="secretCodeInput" placeholder="e.g., MyPreciousMemory (letters & numbers only)" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers. No spaces or special characters.">
+                <input type="text" id="secretCodeInput" placeholder="e.g., MySweetheartSecret (letters & numbers only)" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers. No spaces or special characters.">
 
                 <label for="messageContent">Your Treasured Note:</label>
-                <textarea id="messageContent" rows="10" placeholder="Type your beautiful words here..."></textarea>
+                <textarea id="messageContent" rows="10" placeholder="Type your beautiful words here, straight from your heart..."></textarea>
 
                 <label for="deliveryDate">Optional Unveiling Date:</label>
                 <input type="date" id="deliveryDate">
-                <p style="font-size: 0.9em; color: var(--light-brown-text); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
+                <p style="font-size: 0.9em; color: var(--medium-grey-text); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
 
                 <button type="submit">Seal Your Memory in Time</button>
             </form>
@@ -520,7 +607,7 @@
                 <p id="noMessage" class="hidden">No notes were found for this code, or none are currently ready to be viewed.</p>
                 <div id="notesContainer"></div> 
                 </div>
-            <p class="toggle-link"><a href="#" id="showWriteMessage">Wish to create another memory?</a></p>
+            <p class="toggle-link"><a href="#" id="showWriteMessage">Wish to craft another memory?</a></p>
         </div>
     </div>
 
@@ -554,12 +641,13 @@
             const messageContentInput = document.getElementById('messageContent');
             const deliveryDateInput = document.getElementById('deliveryDate');
             const showViewMessageLink = document.getElementById('showViewMessage');
-            
+            const backgroundElementsContainer = document.querySelector('.background-elements'); // New for background animations
+
             const viewMessageSection = document.getElementById('viewMessageSection');
             const retrieveMessageForm = document.getElementById('retrieveMessageForm');
             const retrieveSecretCodeInput = document.getElementById('retrieveSecretCodeInput');
             const noMessageDiv = document.getElementById('noMessage');
-            const notesContainer = document.getElementById('notesContainer'); // Container for multiple notes
+            const notesContainer = document.getElementById('notesContainer'); 
             const showWriteMessageLink = document.getElementById('showWriteMessage');
 
             // --- Time-Based Greeting Function ---
@@ -567,15 +655,78 @@
                 const hour = new Date().getHours();
                 let greeting;
                 if (hour >= 5 && hour < 12) {
-                    greeting = "Good Morning!";
+                    greeting = "Good Morning, My Dearest!";
                 } else if (hour >= 12 && hour < 18) {
-                    greeting = "Good Afternoon!";
+                    greeting = "Good Afternoon, My Love!";
                 } else {
-                    greeting = "Good Evening!";
+                    greeting = "Good Evening, Sweetheart!";
                 }
                 timeGreeting.textContent = greeting;
             }
             setTimeGreeting(); // Call immediately on page load
+
+            // --- Background Emoji/Heart Animation Creator ---
+            const emojis = ['💖', '❤️', '💕', '💞', '✨', '⭐', '🌸', '🌹', '💌']; // More romantic emojis
+
+            function createAnimatedEmoji() {
+                const emoji = document.createElement('div');
+                emoji.classList.add('animated-emoji');
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                backgroundElementsContainer.appendChild(emoji);
+
+                const size = Math.random() * 1.5 + 0.8; // Vary size
+                emoji.style.fontSize = `${size}em`;
+                emoji.style.left = `${Math.random() * 100}vw`;
+                emoji.style.top = `${Math.random() * 100 + 50}vh`; // Start from below or slightly above viewport
+                emoji.style.animationDuration = `${Math.random() * 7 + 8}s`; // Vary speed
+                emoji.style.animationDelay = `${Math.random() * 5}s`; // Stagger start times
+
+                emoji.addEventListener('animationend', () => {
+                    emoji.remove();
+                });
+            }
+
+            // Create a steady stream of emojis
+            setInterval(createAnimatedEmoji, 800); // More frequent emoji generation
+
+            // Create specific coffee steam puffs
+            function createSteamPuff(coffeeElement) {
+                const steam = document.createElement('div');
+                steam.classList.add('steam');
+                coffeeElement.appendChild(steam);
+
+                const size = Math.random() * 10 + 5;
+                steam.style.width = `${size}px`;
+                steam.style.height = `${size}px`;
+                steam.style.left = `${Math.random() * 80 + 10}%`; // Within coffee cup area
+                steam.style.top = `${Math.random() * -10}px`; // Start slightly above cup
+                steam.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                steam.style.animationDelay = `${Math.random() * 1}s`;
+
+                steam.addEventListener('animationend', () => {
+                    steam.remove();
+                });
+            }
+
+            // Add coffee cup animation and its steam
+            function createCoffeeAnimation() {
+                const coffee = document.createElement('div');
+                coffee.classList.add('animated-coffee');
+                coffee.textContent = '☕'; // Coffee cup emoji
+                coffee.style.left = `${Math.random() * 80 + 10}vw`; // Random horizontal position
+                backgroundElementsContainer.appendChild(coffee);
+
+                // Make steam appear periodically from this coffee cup
+                const steamInterval = setInterval(() => {
+                    createSteamPuff(coffee);
+                }, 1000); // Generate steam more frequently
+
+                coffee.addEventListener('animationend', () => {
+                    clearInterval(steamInterval); // Stop steam when coffee cup disappears
+                    coffee.remove();
+                });
+            }
+            setInterval(createCoffeeAnimation, 15000); // New coffee cup every 15 seconds
 
             // --- Note Saved Status Message Display Function ---
             function showSaveStatus(message) {
@@ -592,7 +743,7 @@
                 // Hide all sections first
                 writeMessageSection.classList.add('hidden');
                 viewMessageSection.classList.add('hidden');
-                statusMessageDiv.classList.remove('visible'); // Hide status message when switching sections
+                statusMessageDiv.classList.remove('visible'); // Hide any status message when changing sections
 
                 if (sectionId === 'write') {
                     writeMessageSection.classList.remove('hidden');
@@ -619,6 +770,29 @@
                 e.preventDefault(); // Prevent default link behavior
                 showSection('write');
             });
+
+            // --- Button Ripple Effect (Enhanced) ---
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - (size / 2);
+                    const y = e.clientY - rect.top - (size / 2);
+
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+
+                    this.appendChild(ripple);
+                    ripple.addEventListener('animationend', () => {
+                        ripple.remove();
+                    });
+                });
+            });
+
 
             // --- Logic for Writing/Storing New Note with Firebase ---
             messageForm.addEventListener('submit', async (event) => {
@@ -738,7 +912,7 @@
                             if (!deliveryDate || now >= deliveryDate) {
                                 hasVisibleNotes = true;
                                 const noteCard = document.createElement('div');
-                                noteCard.classList.add('note-card');
+noteCard.classList.add('note-card');
 
                                 const messageP = document.createElement('p');
                                 messageP.classList.add('message-content');
@@ -777,7 +951,7 @@
                 }
             });
 
-            // --- Initialize (Show write section by default) ---
+            // --- Initial Load Logic (Show write section by default) ---
             showSection('write'); 
         });
     </script>
