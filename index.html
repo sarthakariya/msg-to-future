@@ -37,7 +37,7 @@
             box-sizing: border-box;
             overflow-y: auto; /* Enable scrolling for content overflow */
             position: relative; /* Needed for absolute positioned children */
-            /* Added a subtle background pattern */
+            /* Background pattern for the entire body - this is already here */
             background-image: url('https://www.transparenttextures.com/patterns/cream-pixels.png'); 
             background-repeat: repeat;
             background-blend-mode: multiply; /* Blends pattern nicely with background color */
@@ -121,11 +121,11 @@
             margin-bottom: 30px;
             border: 1px solid rgba(244, 172, 183, 0.4); /* Subtle pink border */
             animation: containerEntry 1s ease-out forwards;
-            /* Added main card texture - more pronounced */
-            background-image: url('https://www.transparenttextures.com/patterns/graphy.png'); /* A subtle graph paper texture - changed */
+            /* Main card texture - now a more distinct paper texture */
+            background-image: url('https://www.transparenttextures.com/patterns/paper.png'); /* A distinct paper texture */
             background-blend-mode: overlay; /* Blends nicely with white background */
-            background-size: 100px 100px; /* Adjust size of the pattern */
-            background-attachment: fixed; /* Keeps texture fixed during scroll */
+            background-size: 200px 200px; /* Adjust size of the pattern to be more visible */
+            background-attachment: scroll; /* Allow texture to scroll with content */
         }
 
         @keyframes containerEntry {
@@ -193,12 +193,12 @@
             font-size: 1.05em;
             margin-bottom: 5px;
             width: 100%; /* Ensure label takes full width for alignment */
-            max-width: 400px; /* Match max-width of inputs */
+            max-width: 450px; /* Adjusted to match textarea/date input width */
         }
 
+        /* Styles for textarea and date input (wider) */
         textarea,
-        input[type="date"],
-        input[type="text"] {
+        input[type="date"] {
             width: calc(100% - 24px); /* Account for padding */
             padding: 12px;
             border: 1px solid var(--warm-pink); /* Pink border */
@@ -211,12 +211,12 @@
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
             appearance: none; /* Reset default browser styles */
             -webkit-appearance: none;
-            max-width: 400px; /* Constrain width of inputs */
+            max-width: 450px; /* Width for general inputs like textarea, date */
         }
 
         textarea::placeholder,
         input[type="date"]::placeholder,
-        input[type="text"]::placeholder {
+        input[type="text"]::placeholder { /* Keep for secret code too */
             font-family: 'Gentium Plus', serif;
             color: rgba(121, 85, 72, 0.6); /* Muted brown placeholder */
         }
@@ -262,14 +262,15 @@
             font-size: 1.2em;
         }
 
-        /* --- Unique Secret Code Input Style (shorter width) --- */
+        /* --- Unique Secret Code Input Style (shorter width, distinct from others) --- */
         #secretCodeInput, #retrieveSecretCodeInput {
             border: 2px solid var(--warm-pink);
             background-color: #fff8f5; /* Lighter, more distinct background */
             box-shadow: inset 0 0 5px rgba(244, 172, 183, 0.3); /* Inner glow */
             padding-left: 45px; /* Space for icon */
             position: relative; /* For the pseudo-element icon */
-            max-width: 300px; /* Shorter width for secret code inputs */
+            max-width: 300px; /* Explicitly shorter width for secret code inputs */
+            width: calc(100% - 24px); /* Ensure it scales down for small screens */
         }
         #secretCodeInput::before, #retrieveSecretCodeInput::before {
             content: '🔑'; /* Key emoji as icon */
@@ -507,17 +508,13 @@
             p {
                 font-size: 1em;
             }
-            textarea, input[type="date"], input[type="text"] {
-                padding: 10px;
+            /* Adjust input widths for smaller screens to be full width */
+            textarea, input[type="date"], input[type="text"], label, button {
                 max-width: 100%; /* Allow full width on small screens */
-            }
-            label {
-                max-width: 100%;
             }
             button {
                 font-size: 1.1em;
                 padding: 12px 25px;
-                max-width: 100%;
             }
             .note-card {
                 padding: 20px;
@@ -533,7 +530,6 @@
             }
             #secretCodeInput, #retrieveSecretCodeInput {
                 padding-left: 35px; /* Adjust for smaller screen icon spacing */
-                max-width: 100%;
             }
             #secretCodeInput::before, #retrieveSecretCodeInput::before {
                 left: 10px;
@@ -825,7 +821,7 @@
                 }
 
                 // --- EASTER EGG IMPLEMENTATION ---
-                const EASTER_EGG_CODE = "mammamspecialnote"; // Convert to lowercase for comparison
+                const EASTER_EGG_CODE = "mammamspecialnote"; // Converted to lowercase for comparison
                 if (retrieveCode === EASTER_EGG_CODE) {
                     const specialMessage = "Dearest Mammam, this little app was made with love, just like your warm hugs and delicious food! Always thinking of you. ❤️ - Sarthak";
                     const specialNoteCard = document.createElement('div');
