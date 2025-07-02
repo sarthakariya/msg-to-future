@@ -5,45 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✨ Your Treasured Time Capsule ✨</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cormorant+Garamond:ital,wght@1,700&family=Gentium+Plus:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;700&family=Gentium+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- CSS Variables and Color Palette --- */
+        /* Define a harmonious color palette and shadow effects */
         :root {
-            --soft-pink-bg: #ffe0f0;
-            --warm-pink: #ffb6c1;
-            --brown-note: #fdf6e3;
-            --dark-brown-text: #4e342e;
-            --light-brown-text: #795548;
-            --light-text-on-dark: #dbe4f0;
-            --accent-gold: #ffd700;
-            --light-blackish: #2a2f3b;
+            --soft-pink-bg: #ffe0f0; /* Very light pink for background (new) */
+            --warm-pink: #ffb6c1; /* Lighter, inviting pink */
+            --brown-note: #fdf6e3; /* Creamy, parchment-like background for notes */
+            --dark-brown-text: #4e342e; /* Rich, deep brown for primary text */
+            --light-brown-text: #795548; /* Softer brown for secondary text */
+            --light-text-on-dark: #dbe4f0; /* Brighter text color for dark backgrounds (new) */
+            --accent-gold: #ffd700; /* Subtle gold for special highlights */
             --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
-            --transition-duration: 0.4s;
-            --border-radius-card: 20px;
-            --border-radius-input: 10px;
+            --transition-duration: 0.3s;
+            --border-radius-card: 20px; /* More rounded corners (adjusted) */
+            --border-radius-input: 10px; /* More rounded input corners (adjusted) */
+
+            /* New Lightened Black Color */
+            --light-blackish: #2a2f3b; /* Lighter shade of black/dark grey (adjusted) */
         }
 
         /* --- Global & Background Styles --- */
         body {
-            font-family: 'Gentium Plus', serif;
-            background: linear-gradient(135deg, var(--soft-pink-bg) 0%, #fff0f5 100%);
-            background-size: 300% 300%;
-            animation: rollingBackground 25s linear infinite;
+            font-family: 'Gentium Plus', serif; /* Elegant, classic serif font */
+            background: linear-gradient(135deg, var(--soft-pink-bg) 0%, #fff0f5 100%); /* Light pink gradient (adjusted) */
+            background-size: 300% 300%; /* Larger background for more visible rolling effect */
+            animation: rollingBackground 25s linear infinite; /* Rolling animation */
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: flex-start; /* Align to top for proper scrolling */
             min-height: 100vh;
             margin: 0;
-            color: var(--dark-brown-text);
-            line-height: 1.7;
-            padding: 30px;
+            color: var(--dark-brown-text); /* Adjust text color for light background (adjusted) */
+            line-height: 1.7; /* Enhanced line height for readability */
+            padding: 30px; /* Generous overall padding */
             box-sizing: border-box;
-            overflow-y: auto;
-            position: relative;
+            overflow-y: auto; /* Enable scrolling for content overflow */
+            position: relative; /* Needed for absolute positioned children */
         }
 
         @keyframes rollingBackground {
@@ -51,7 +51,7 @@
             100% { background-position: 100% 100%; }
         }
 
-        /* --- Heart Animation Background --- */
+        /* Heart Animation Background */
         .heart-animation-bg {
             position: absolute;
             top: 0;
@@ -60,172 +60,213 @@
             height: 100%;
             pointer-events: none;
             overflow: hidden;
-            z-index: 0;
+            z-index: 0; /* Ensures it stays behind content */
         }
 
         .heart {
-            color: rgba(255, 182, 193, 0.8);
-            font-size: 2.2em;
+            color: rgba(255, 182, 193, 0.8); /* Visible hearts */
+            font-size: 2.2em; /* Larger hearts */
             position: absolute;
-            animation: floatAndTwinkle 12s infinite ease-in-out;
-            opacity: 0;
-            text-shadow: 0 0 12px rgba(255, 182, 193, 1);
+            animation: floatAndTwinkle 10s infinite ease-in-out, shimmer 2.5s infinite alternate; /* Added shimmer */
+            opacity: 0; /* Start hidden */
+            text-shadow: 0 0 12px rgba(255, 182, 193, 1); /* Stronger glow */
         }
 
         @keyframes floatAndTwinkle {
-            0% { transform: translateY(0) scale(0.5); opacity: 0; }
-            10% { transform: translateY(-10vh) scale(1); opacity: 0.9; }
-            90% { transform: translateY(-90vh) scale(1); opacity: 0.9; }
-            100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+            0% { transform: translateY(0px) scale(0.5); opacity: 0; }
+            10% { opacity: 0.9; transform: translateY(-10%) scale(1); }
+            90% { opacity: 0.9; transform: translateY(-90%) scale(1); }
+            100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
         }
 
-        /* --- Main Container & Animations --- */
+        @keyframes shimmer {
+            0% { filter: brightness(100%) hue-rotate(0deg); }
+            50% { filter: brightness(120%) hue-rotate(15deg); } /* Subtle color shift and brighter */
+            100% { filter: brightness(100%) hue-rotate(0deg); }
+        }
+
+
+        /* --- Main Container & Overall Layout --- */
         .container {
-            background-color: var(--light-blackish);
-            padding: 50px;
-            border-radius: var(--border-radius-card);
-            box-shadow: var(--shadow-medium);
+            background-color: var(--light-blackish); /* Changed to lighter black */
+            padding: 50px; /* More padding for a grander feel */
+            border-radius: var(--border-radius-card); /* Softly rounded corners (adjusted) */
+            box-shadow: var(--shadow-medium); /* Prominent shadow for depth */
             width: 100%;
             max-width: 750px;
             text-align: center;
+            box-sizing: border-box;
             position: relative;
-            z-index: 1;
-            margin: 30px 0;
-            border: 1px solid rgba(244, 172, 183, 0.4);
+            z-index: 1; /* Ensures it's above background animations */
+            margin-top: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(244, 172, 183, 0.4); /* Subtle pink border */
             animation: containerEntry 1s ease-out forwards;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-        
-        .container.is-flipping {
-            transform: rotateY(180deg);
         }
 
         @keyframes containerEntry {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        
-        /* --- Section Styling & Transitions --- */
-        section {
-            opacity: 1;
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-            backface-visibility: hidden; /* Prevents flickering during flip */
-        }
-
-        section.hidden {
-            display: block !important; /* Keep for layout calculations */
-            opacity: 0;
-            pointer-events: none;
-            position: absolute;
-            top: 50px; /* Match container padding */
-            left: 50px;
-            right: 50px;
-        }
-        
-        #viewMessageSection {
-             transform: rotateY(180deg);
+            0% { opacity: 0;
+            transform: translateY(30px) scale(0.95); }
+            100% { opacity: 1;
+            transform: translateY(0) scale(1); }
         }
 
         /* --- Typography --- */
         h1 {
-            font-family: 'Playfair Display', serif;
-            color: var(--warm-pink);
-            margin: 0 0 25px;
-            font-size: 2.8em;
+            font-family: 'Playfair Display', serif; /* Elegant heading font */
+            color: var(--warm-pink); /* Adjusted for dark background */
+            margin-bottom: 25px;
+            font-size: 2.8em; /* Impactful size */
             font-weight: 700;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+            line-height: 1.2;
+            background: linear-gradient(45deg, #ffb6c1, #ffd700, #ffb6c1); /* Subtle gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.05); /* Subtle text shadow */
+            animation: textGlow 2s infinite alternate; /* Text glow animation */
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.5), 0 0 10px rgba(255, 182, 193, 0.5); }
+            100% { text-shadow: 0 0 8px rgba(255, 215, 0, 0.8), 0 0 15px rgba(255, 182, 193, 0.8); }
         }
 
         .greeting {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Cormorant Garamond', serif; /* A graceful, italicized greeting font */
             font-style: italic;
             font-weight: 700;
-            font-size: 2.4em;
-            color: var(--accent-gold);
+            font-size: 2.4em; /* Prominent greeting */
+            color: var(--accent-gold); /* Adjusted for dark background */
             margin-bottom: 35px;
-            text-shadow: 1px 1px 5px rgba(244, 172, 183, 0.7);
+            text-shadow: 1px 1px 5px rgba(244, 172, 183, 0.7); /* Soft glow for greeting */
             animation: greetingPulse 3s infinite ease-in-out alternate;
         }
 
         @keyframes greetingPulse {
-            from { transform: scale(1); }
-            to { transform: scale(1.02); }
+            0% { transform: scale(1);
+            }
+            50% { transform: scale(1.02);
+            }
+            100% { transform: scale(1);
+            }
         }
 
         p {
-            margin: 0 auto 25px;
-            color: var(--light-text-on-dark);
+            margin-bottom: 25px;
+            color: var(--light-text-on-dark); /* Changed for readability on dark container */
             font-size: 1.05em;
             max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
             line-height: 1.8;
+        }
+
+        .instruction-text {
+            font-weight: 600;
+            color: var(--warm-pink);
+            font-size: 1.1em;
         }
 
         /* --- Form Elements --- */
         form {
             display: flex;
             flex-direction: column;
-            gap: 22px;
+            gap: 22px; /* Consistent spacing */
             margin-top: 30px;
         }
 
         label {
             text-align: left;
             font-weight: 700;
-            color: var(--warm-pink);
+            color: var(--warm-pink); /* Adjusted for dark container background */
             font-size: 1.05em;
-            margin-bottom: -15px;
-            transition: color 0.3s;
+            margin-bottom: 5px;
         }
 
-        input[type="text"],
-        input[type="date"],
-        textarea {
-            width: 100%;
+        textarea,
+        input[type="date"] {
+            width: calc(100% - 24px); /* Account for padding */
             padding: 12px;
-            border: 1px solid var(--warm-pink);
-            border-radius: var(--border-radius-input);
+            border: 1px solid var(--warm-pink); /* Pink border */
+            border-radius: var(--border-radius-input); /* Softly rounded input fields (adjusted) */
             font-size: 1em;
-            font-family: 'Gentium Plus', serif;
+            font-family: 'Gentium Plus', serif; /* Consistent elegant font */
             transition: border-color var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
-            background-color: #fffaf0;
+            background-color: #fffaf0; /* Slightly off-white for a warm feel */
             color: var(--dark-brown-text);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-            box-sizing: border-box;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
+            appearance: none; /* Reset default browser styles */
+            -webkit-appearance: none;
+            /* max-width for textarea moved below */
         }
 
-        textarea {
-            resize: vertical;
-            min-height: 180px;
+        textarea::placeholder,
+        input[type="date"]::placeholder,
+        input[type="text"]::placeholder {
+            font-family: 'Gentium Plus', serif;
+            color: rgba(121, 85, 72, 0.6); /* Muted brown placeholder */
         }
 
-        input:focus,
-        textarea:focus {
+        textarea:focus,
+        input[type="date"]:focus,
+        input[type="text"]:focus {
             border-color: var(--dark-brown-text);
-            box-shadow: 0 0 0 4px rgba(244, 172, 183, 0.6);
+            box-shadow: 0 0 0 3px rgba(244, 172, 183, 0.5); /* Pink glow on focus */
             background-color: white;
             outline: none;
         }
 
-        /* --- Secret Code Input --- */
-        .secret-code-input { position: relative; }
-        .secret-code-input::before {
-            content: '🔑';
+        textarea {
+            resize: vertical;
+            min-height: 180px; /* Adequate height for notes */
+            max-width: 600px; /* Wider for better writing experience (adjusted) */
+        }
+
+        input[type="date"] {
+            max-width: 450px; /* Keep date input narrower */
+        }
+
+
+        /* Custom styling for date input icon */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            background: transparent;
+            bottom: 0;
+            color: var(--light-brown-text); /* Ensure icon is visible */
+            cursor: pointer;
+            height: auto;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto;
+        }
+
+        /* --- Unique Secret Code Input Style (shorter width, distinct from others) --- */
+        #secretCodeInput, #retrieveSecretCodeInput {
+            border: 2px solid var(--warm-pink);
+            background-color: #fff8f5; /* Lighter, more distinct background */
+            box-shadow: inset 0 0 5px rgba(244, 172, 183, 0.3); /* Inner glow */
+            padding: 18px 12px 18px 45px; /* Increased vertical padding */
+            position: relative; /* For the pseudo-element icon */
+            width: calc(100% - 24px); /* Account for padding */
+            color: var(--dark-brown-text);
+            max-width: 600px; /* Increased width for secret code inputs only */
+            line-height: normal; /* Ensure text is vertically centered */
+            border-radius: var(--border-radius-input); /* Apply adjusted border-radius */
+        }
+        #secretCodeInput::before, #retrieveSecretCodeInput::before {
+            content: '🔑'; /* Key emoji as icon */
             position: absolute;
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
             font-size: 1.3em;
             color: var(--dark-brown-text);
-            opacity: 0.7;
-            transition: opacity 0.3s;
         }
-        #secretCodeInput,
-        #retrieveSecretCodeInput {
-            padding-left: 45px;
-            border: 2px solid var(--warm-pink);
+        #secretCodeInput:focus, #retrieveSecretCodeInput:focus {
+            border-color: var(--dark-brown-text);
+            box-shadow: 0 0 0 4px rgba(244, 172, 183, 0.7), inset 0 0 5px rgba(244, 172, 183, 0.5); /* Stronger glow */
         }
-        .secret-code-input:focus-within::before { opacity: 1; }
 
         /* --- Buttons --- */
         button {
@@ -233,139 +274,181 @@
             color: white;
             padding: 15px 30px;
             border: none;
-            border-radius: var(--border-radius-input);
+            border-radius: var(--border-radius-input); /* Adjusted */
             cursor: pointer;
             font-size: 1.2em;
             font-weight: bold;
-            transition: all 0.2s ease;
+            transition: background-color var(--transition-duration) ease, transform 0.15s ease, box-shadow var(--transition-duration) ease;
+            letter-spacing: 0.5px;
             box-shadow: var(--shadow-light);
-            display: flex;
+            display: flex; /* Allow content and emoji to align */
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin: 0 auto;
+            gap: 8px; /* Space between text and emoji */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         button:hover {
-            background-color: #e6518f;
-            transform: translateY(-3px) scale(1.02);
+            background-color: #e6518f; /* Slightly darker pink on hover */
+            transform: translateY(-2px); /* Subtle lift */
             box-shadow: var(--shadow-medium);
         }
 
         button:active {
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
+            box-shadow: var(--shadow-light);
             background-color: #d1427c;
+        }
+
+        /* Secondary button style for navigation */
+        .secondary-button {
+            background-color: #a76a8d; /* A more muted pink/purple */
+            border: 1px solid #c998b4;
+            color: #fff;
+            padding: 12px 25px; /* Slightly smaller padding */
+            margin-top: 30px; /* Space it out */
+        }
+
+        .secondary-button:hover {
+            background-color: #8c5a75;
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-2px);
+        }
+
+        .secondary-button:active {
+            background-color: #7a4f65;
+            transform: translateY(0);
             box-shadow: var(--shadow-light);
         }
 
-        /* --- Separated View Button Container --- */
-        .view-box-cta {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 182, 193, 0.3);
-        }
 
-        .secondary-button {
-            background-color: #a76a8d;
-        }
-        .secondary-button:hover {
-            background-color: #8c5a75;
-        }
-
-        /* --- Status & Note Display --- */
-        #statusMessage, #noMessage {
+        /* --- Status Messages --- */
+        #statusMessage {
             margin-top: 30px;
             padding: 18px;
-            border-radius: var(--border-radius-input);
+            border-radius: var(--border-radius-input); /* Adjusted */
             font-weight: 600;
-            transition: all 0.5s ease-out;
+            font-size: 1em;
+            text-align: center;
             opacity: 0;
             max-height: 0;
             overflow: hidden;
-            animation: fadeInDown 0.6s ease-out forwards;
-        }
-        
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            transition: opacity 0.5s ease-out, max-height 0.5s ease-out, padding 0.5s ease-out; /* Smooth transition */
+            background-color: #e8f5e9; /* Light green for success */
+            color: #2e7d32; /* Dark green text */
+            border: 1px solid #a5d6a7; /* Green border */
         }
 
-        #statusMessage.visible, #noMessage.visible {
+        #statusMessage.visible {
             opacity: 1;
-            max-height: 100px;
+            max-height: 100px; /* Sufficient height */
             padding: 18px;
+            animation: statusFadeIn 0.8s ease-out forwards;
         }
 
-        #statusMessage {
-            background-color: #e8f5e9;
-            color: #2e7d32;
-            border: 1px solid #a5d6a7;
+        @keyframes statusFadeIn {
+            0% { transform: translateY(-10px);
+            opacity: 0; }
+            100% { transform: translateY(0); opacity: 1;
+            }
         }
-        
-        #noMessage {
-            background-color: #fff3e0;
-            color: #e65100;
-            border: 1px solid #ffcc80;
+
+        .hidden {
+            display: none;
         }
-        
+
+        /* --- Toggle Links (Only the "create another memory" will use this now) --- */
+        .toggle-link {
+            margin-top: 30px;
+            font-size: 0.95em;
+            color: var(--light-text-on-dark); /* Adjusted for dark container */
+        }
+
+        .toggle-link a {
+            color: var(--warm-pink);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color var(--transition-duration) ease;
+        }
+
+        .toggle-link a:hover {
+            color: var(--dark-brown-text); /* Adjusted for light background */
+            text-decoration: underline;
+        }
+
+        /* --- Message Display Area --- */
         #messageDisplayArea {
-            min-height: 200px;
+            min-height: 200px; /* Ensure space even when empty */
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 18px; /* Spacing between notes */
             padding-top: 10px;
+            padding-bottom: 20px;
         }
 
         .note-card {
-            background-color: var(--brown-note);
-            border: 1px solid #dcd3c5;
-            border-radius: var(--border-radius-input);
-            padding: 25px;
+            background-color: var(--brown-note); /* Creamy page view */
+            border: 1px solid #dcd3c5; /* Subtle border for the "page" */
+            border-radius: var(--border-radius-input); /* Soft corners (adjusted) */
+            padding: 25px; /* Ample padding */
             text-align: left;
             width: 100%;
             box-sizing: border-box;
             box-shadow: var(--shadow-light);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative; /* For the "fold" effect */
             overflow: hidden;
+            opacity: 0; /* Start hidden for animation */
+            transform: translateY(20px);
             animation: noteCardEntry 0.6s ease-out forwards;
         }
 
         @keyframes noteCardEntry {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            0% { opacity: 0;
+            transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0);
+            }
         }
 
         .note-card:hover {
-            transform: translateY(-5px) rotate(0.5deg);
+            transform: translateY(-5px); /* Lift slightly on hover */
             box-shadow: var(--shadow-medium);
         }
 
+        /* Top-right folded corner for note card */
         .note-card::before {
             content: '';
             position: absolute;
-            top: -2px;
-            right: -2px;
-            border-width: 0 30px 30px 0;
+            top: 0;
+            right: 0;
+            border-width: 0 25px 25px 0; /* Adjust size of the fold */
             border-style: solid;
-            border-color: transparent transparent var(--light-blackish) var(--light-blackish);
-            box-shadow: -2px 2px 4px rgba(0,0,0,0.15);
-            transition: all 0.3s;
+            border-color: #f0f0f0 #f0f0f0 var(--brown-note) var(--brown-note);
+            background-color: #f0f0f0; /* Color of the fold */
+            box-shadow: -1px 1px 2px rgba(0,0,0,0.1);
+            transform: rotate(90deg);
+            transform-origin: 100% 0;
+            transition: border-color 0.2s ease;
         }
+
         .note-card:hover::before {
-             border-color: transparent transparent var(--warm-pink) var(--warm-pink);
+             border-color: #e0e0e0 #e0e0e0 var(--brown-note) var(--brown-note); /* Darken fold on hover */
         }
 
         .message-content {
-            white-space: pre-wrap;
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.25em;
+            white-space: pre-wrap; /* Preserves line breaks from textarea */
+            font-family: 'Cormorant Garamond', serif; /* Elegant font for message content */
+            font-style: italic; /* A gentle touch */
+            font-size: 1.25em; /* Clear and readable */
             color: var(--dark-brown-text);
             line-height: 1.8;
             margin-bottom: 15px;
-            border-left: 3px solid var(--warm-pink);
+            border-left: 3px solid var(--warm-pink); /* Subtle accent line */
             padding-left: 15px;
+            margin-left: -15px; /* Adjust for padding */
         }
 
         .note-date-info {
@@ -376,267 +459,433 @@
             font-style: italic;
         }
 
-        .toggle-link {
-            margin-top: 30px;
-            font-size: 0.95em;
-        }
-        .toggle-link a {
-            color: var(--warm-pink);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        .toggle-link a:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-
         /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
-            body { padding: 20px; }
-            .container { padding: 35px; }
-            h1 { font-size: 2.2em; }
-            .greeting { font-size: 2em; }
-            p { font-size: 1em; }
-            section.hidden { top: 35px; left: 35px; right: 35px; }
+            body {
+                padding: 20px;
+            }
+            .container {
+                padding: 35px;
+                margin: 15px auto;
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            .greeting {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            textarea,
+            #secretCodeInput, #retrieveSecretCodeInput { /* Apply to secret code inputs specifically */
+                max-width: 100%; /* Allow full width on small screens */
+                padding: 10px; /* Adjust padding for smaller screens */
+            }
+            input[type="date"] {
+                max-width: 100%; /* Make date input also full width on small screens */
+            }
+            button {
+                font-size: 1.1em;
+                padding: 12px 25px;
+            }
+            .note-card {
+                padding: 20px;
+            }
+            .message-content {
+                font-size: 1.1em;
+            }
         }
 
         @media (max-width: 480px) {
-            body { padding: 15px; }
-            .container { padding: 25px; }
-            h1 { font-size: 1.8em; }
-            .greeting { font-size: 1.7em; }
-            textarea { min-height: 150px; }
-            button { font-size: 1em; padding: 12px 22px; }
-            section.hidden { top: 25px; left: 25px; right: 25px; }
+            body {
+                padding: 15px;
+            }
+            .container {
+                padding: 25px;
+                margin: 10px auto;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .greeting {
+                font-size: 1.6em;
+            }
+            p {
+                font-size: 0.9em;
+            }
+            textarea {
+                min-height: 150px;
+            }
+            button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+            .note-card {
+                padding: 15px;
+            }
+            .message-content {
+                font-size: 1em;
+            }
+            .note-card::before { /* Smaller fold */
+                border-width: 0 20px 20px 0;
+            }
         }
     </style>
 </head>
 <body>
-
     <div class="heart-animation-bg">
-        <div class="heart" style="left:10%; top:10%; animation-delay: 0s;">💖</div><div class="heart" style="left:20%; top:0%; animation-delay: 1s; font-size: 1.7em;">💖</div><div class="heart" style="left:30%; top:15%; animation-delay: 2s;">💖</div><div class="heart" style="left:40%; top:5%; animation-delay: 3s; font-size: 1.2em;">💖</div><div class="heart" style="left:50%; top:20%; animation-delay: 4s;">💖</div><div class="heart" style="left:60%; top:0%; animation-delay: 5s; font-size: 1.5em;">💖</div><div class="heart" style="left:70%; top:10%; animation-delay: 6s;">💖</div><div class="heart" style="left:80%; top:3%; animation-delay: 7s; font-size: 1.8em;">💖</div><div class="heart" style="left:90%; top:18%; animation-delay: 8s;">💖</div><div class="heart" style="left:5%; top:30%; animation-delay: 9s; font-size: 1.1em;">💖</div><div class="heart" style="left:15%; top:25%; animation-delay: 10s; font-size: 1.3em;">💖</div><div class="heart" style="left:25%; top:30%; animation-delay: 11s;">💖</div><div class="heart" style="left:35%; top:22%; animation-delay: 12s; font-size: 1.6em;">💖</div><div class="heart" style="left:45%; top:35%; animation-delay: 13s;">💖</div><div class="heart" style="left:55%; top:28%; animation-delay: 14s; font-size: 1.1em;">💖</div><div class="heart" style="left:65%; top:40%; animation-delay: 15s;">💖</div><div class="heart" style="left:75%; top:33%; animation-delay: 16s; font-size: 1.9em;">💖</div><div class="heart" style="left:85%; top:45%; animation-delay: 17s;">💖</div><div class="heart" style="left:95%; top:25%; animation-delay: 18s; font-size: 1.4em;">💖</div>
+        <div class="heart" style="left:10%; top:10%; animation-delay: 0s;">💖</div>
+        <div class="heart" style="left:20%; top:0%; animation-delay: 1s; font-size: 1.7em;">💖</div>
+        <div class="heart" style="left:30%; top:15%; animation-delay: 2s;">💖</div>
+        <div class="heart" style="left:40%; top:5%; animation-delay: 3s; font-size: 1.2em;">💖</div>
+        <div class="heart" style="left:50%; top:20%; animation-delay: 4s;">💖</div>
+        <div class="heart" style="left:60%; top:0%; animation-delay: 5s; font-size: 1.5em;">💖</div>
+        <div class="heart" style="left:70%; top:10%; animation-delay: 6s;">💖</div>
+        <div class="heart" style="left:80%; top:3%; animation-delay: 7s; font-size: 1.8em;">💖</div>
+        <div class="heart" style="left:90%; top:18%; animation-delay: 8s;">💖</div>
+        <div class="heart" style="left:5%; top:30%; animation-delay: 9s; font-size: 1.1em;">💖</div>
+        <div class="heart" style="left:15%; top:25%; animation-delay: 10s; font-size: 1.3em;">💖</div>
+        <div class="heart" style="left:25%; top:30%; animation-delay: 11s;">💖</div>
+        <div class="heart" style="left:35%; top:22%; animation-delay: 12s; font-size: 1.6em;">💖</div>
+        <div class="heart" style="left:45%; top:35%; animation-delay: 13s;">💖</div>
+        <div class="heart" style="left:55%; top:28%; animation-delay: 14s; font-size: 1.1em;">💖</div>
+        <div class="heart" style="left:65%; top:40%; animation-delay: 15s;">💖</div>
+        <div class="heart" style="left:75%; top:33%; animation-delay: 16s; font-size: 1.9em;">💖</div>
+        <div class="heart" style="left:85%; top:45%; animation-delay: 17s;">💖</div>
+        <div class="heart" style="left:95%; top:25%; animation-delay: 18s; font-size: 1.4em;">💖</div>
+        <div class="heart" style="left:2%; top:50%; animation-delay: 19s;">💖</div>
+        <div class="heart" style="left:12%; top:55%; animation-delay: 20s; font-size: 2em;">💖</div>
+        <div class="heart" style="left:22%; top:48%; animation-delay: 21s;">💖</div>
+        <div class="heart" style="left:32%; top:52%; animation-delay: 22s; font-size: 1.6em;">💖</div>
+        <div class="heart" style="left:42%; top:60%; animation-delay: 23s;">💖</div>
+        <div class="heart" style="left:52%; top:53%; animation-delay: 24s; font-size: 1.2em;">💖</div>
+        <div class="heart" style="left:62%; top:65%; animation-delay: 25s;">💖</div>
+        <div class="heart" style="left:72%; top:58%; animation-delay: 26s; font-size: 1.7em;">💖</div>
+        <div class="heart" style="left:82%; top:70%; animation-delay: 27s;">💖</div>
+        <div class="heart" style="left:92%; top:63%; animation-delay: 28s; font-size: 1.5em;">💖</div>
     </div>
 
-    <main class="container">
-        
-        <section id="writeMessageSection">
-            <h2 id="timeGreeting" class="greeting">Welcome!</h2>
+    <div class="container">
+        <h2 id="timeGreeting" class="greeting">Welcome!</h2>
+
+        <div id="writeMessageSection">
             <h1>✍️ Craft a Cherished Note</h1>
-            <p>Pen your special messages and secure them with a unique Secret Code. You can set a future date for these memories to be revealed or access them instantly.</p>
+            <p>Here, you can pen your special messages and secure them with a unique Secret Code. You may also choose a specific date for these memories to be revealed, or access them instantly.</p>
 
             <form id="messageForm">
                 <label for="secretCodeInput">Your Secret Code:</label>
-                <div class="secret-code-input">
-                     <input type="text" id="secretCodeInput" placeholder="e.g., MyPreciousMemory" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers.">
-                </div>
+                <input type="text" id="secretCodeInput" placeholder="e.g., MyPreciousMemory (letters & numbers only)" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers.
+No spaces or special characters.">
 
                 <label for="messageContent">Your Treasured Note:</label>
-                <textarea id="messageContent" placeholder="Type your beautiful words here..."></textarea>
+                <textarea id="messageContent" rows="10" placeholder="Type your beautiful words here..."></textarea>
 
                 <label for="deliveryDate">Optional Unveiling Date:</label>
                 <input type="date" id="deliveryDate">
-                <p style="font-size: 0.9em; color: var(--light-text-on-dark); margin-top: -15px;">Leave this blank to access your note immediately.</p>
+                <p
+style="font-size: 0.9em; color: var(--light-text-on-dark); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
 
-                <button type="submit">Seal Your Memory ✉️</button>
+                <button type="submit">Seal Your Memory in Time ✉️</button>
             </form>
-            
-            <div id="statusMessage"></div>
-            
-            <div class="view-box-cta">
-                <button type="button" class="secondary-button" id="showViewMessage">Open Memory Box 🔮</button>
-            </div>
-        </section>
 
-        <section id="viewMessageSection" class="hidden">
+            <div id="statusMessage" class="hidden">Your note has been successfully saved!</div>
+
+            <button type="button" class="secondary-button" id="showViewMessage">Open Your Memory Box 🔮</button>
+        </div>
+
+        <div id="viewMessageSection" class="hidden">
             <h1>📦 Your Past Notes</h1>
-            <p>Enter your Secret Code below to unlock your treasured memories.</p>
+            <p>Kindly enter your Secret Code below to unlock and view your collection of treasured memories.</p>
             <form id="retrieveMessageForm">
                 <label for="retrieveSecretCodeInput">Enter Secret Code:</label>
-                <div class="secret-code-input">
-                    <input type="text" id="retrieveSecretCodeInput" placeholder="Your Secret Code" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers.">
-                </div>
+
+                 <input type="text" id="retrieveSecretCodeInput" placeholder="Your Secret Code" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers.
+No spaces or special characters.">
                 <button type="submit">Reveal Memories 📖</button>
             </form>
 
             <div id="messageDisplayArea">
-                 <div id="noMessage"></div>
+                <p id="noMessage" class="hidden">No notes were found for this code, or none are currently ready to be viewed.</p>
                 <div id="notesContainer"></div>
-            </div>
-            <p class="toggle-link"><a href="#" id="showWriteMessage">Want to create another memory?</a></p>
-        </section>
-    </main>
+
+              </div>
+            <p class="toggle-link"><a href="#" id="showWriteMessage">Wish to create another memory?</a></p>
+        </div>
+    </div>
 
     <script type="module">
+        // Import the necessary functions from the Firebase SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, query, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, collection, addDoc, query, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
+        // Your web app's Firebase configuration - DO NOT CHANGE THIS UNLESS YOUR PROJECT ID CHANGES
         const firebaseConfig = {
             apiKey: "AIzaSyDSDP55e5_yeoNJNX9Ix6RprkHnO3xsbNA",
             authDomain: "timelessnotesapp.firebaseapp.com",
             projectId: "timelessnotesapp",
             storageBucket: "timelessnotesapp.firebasestorage.app",
             messagingSenderId: "709543240404",
-            appId: "1:709543240404:web:fb1c269ddbf6cbcf02d141"
-        };
 
+           appId: "1:709543240404:web:fb1c269ddbf6cbcf02d141",
+            measurementId: "G-Z0ML78V61B"
+        };
+ // Initialize Firebase application and Firestore database
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
         document.addEventListener('DOMContentLoaded', () => {
-            const ui = {
-                container: document.querySelector('.container'),
-                timeGreeting: document.getElementById('timeGreeting'),
-                writeSection: document.getElementById('writeMessageSection'),
-                viewSection: document.getElementById('viewMessageSection'),
-                messageForm: document.getElementById('messageForm'),
-                retrieveForm: document.getElementById('retrieveMessageForm'),
-                secretCodeInput: document.getElementById('secretCodeInput'),
-                messageContentInput: document.getElementById('messageContent'),
-                deliveryDateInput: document.getElementById('deliveryDate'),
-                retrieveCodeInput: document.getElementById('retrieveSecretCodeInput'),
-                statusMessage: document.getElementById('statusMessage'),
-                noMessage: document.getElementById('noMessage'),
-                notesContainer: document.getElementById('notesContainer'),
-                showViewBtn: document.getElementById('showViewMessage'),
-                showWriteLink: document.getElementById('showWriteMessage'),
-            };
+            // --- DOM Element References ---
+            const timeGreeting = document.getElementById('timeGreeting');
+            const writeMessageSection = document.getElementById('writeMessageSection');
+            const messageForm = document.getElementById('messageForm');
+            const statusMessageDiv = document.getElementById('statusMessage');
+            const secretCodeInput = document.getElementById('secretCodeInput');
 
-            const setTimeGreeting = () => {
+            const messageContentInput = document.getElementById('messageContent');
+            const deliveryDateInput = document.getElementById('deliveryDate');
+            const showViewMessageLink = document.getElementById('showViewMessage');
+
+            const viewMessageSection = document.getElementById('viewMessageSection');
+            const retrieveMessageForm = document.getElementById('retrieveMessageForm');
+            const retrieveSecretCodeInput
+= document.getElementById('retrieveSecretCodeInput');
+            const noMessageDiv = document.getElementById('noMessage');
+            const notesContainer = document.getElementById('notesContainer');
+// Container for multiple notes
+            const showWriteMessageLink = document.getElementById('showWriteMessage');
+// --- Time-Based Greeting Function ---
+            function setTimeGreeting() {
                 const hour = new Date().getHours();
-                let greeting = "Good Evening, My Friend!";
-                if (hour >= 5 && hour < 18) {
-                    greeting = "Good Morning, My Friend!";
-                }
-                ui.timeGreeting.textContent = greeting;
-            };
-
-            const showFeedback = (element, message, duration = 5000) => {
-                element.textContent = message;
-                element.classList.add('visible');
-                if (duration > 0) {
-                    setTimeout(() => element.classList.remove('visible'), duration);
-                }
-            };
-            
-            const hideFeedback = (...elements) => {
-                elements.forEach(el => el.classList.remove('visible'));
-            };
-
-            const setMinDate = () => {
-                ui.deliveryDateInput.min = new Date().toISOString().split('T')[0];
-            };
-
-            const switchView = (view) => {
-                const isWriting = view === 'write';
-                ui.container.classList.toggle('is-flipping', !isWriting);
-
-                setTimeout(() => {
-                    ui.writeSection.classList.toggle('hidden', !isWriting);
-                    ui.viewSection.classList.toggle('hidden', isWriting);
-                }, 300); // Halfway through the flip
-                
-                if (isWriting) {
-                    ui.messageForm.reset();
-                    setMinDate();
+                let greeting;
+                if (hour >= 5 && hour < 12) {
+                    greeting = "Good Morning!";
+                } else if (hour >= 12 && hour < 18) {
+                    greeting = "Good Afternoon!";
                 } else {
-                    ui.retrieveForm.reset();
-                    ui.notesContainer.innerHTML = '';
-                    hideFeedback(ui.noMessage);
+                    greeting = "Good Evening!";
                 }
-            };
+                timeGreeting.textContent = greeting;
+            }
+            setTimeGreeting();
+// Call immediately on page load
 
-            const handleSaveNote = async (e) => {
-                e.preventDefault();
-                hideFeedback(ui.statusMessage);
-                const secretCode = ui.secretCodeInput.value.trim().toLowerCase();
-                const messageContent = ui.messageContentInput.value.trim();
-                
+            // --- Note Saved Status Message Display Function ---
+            function showSaveStatus(message) {
+                statusMessageDiv.textContent = message;
+                statusMessageDiv.classList.add('visible');
+                // The warning will automatically disappear after 5 seconds
+                setTimeout(() => {
+                    statusMessageDiv.classList.remove('visible');
+                }, 5000);
+            }
+
+            // --- Section Visibility Toggling Functions ---
+            function showSection(sectionId) {
+                // Hide all sections first
+                writeMessageSection.classList.add('hidden');
+                viewMessageSection.classList.add('hidden');
+                statusMessageDiv.classList.remove('visible'); // Hide status message when switching sections
+
+                if (sectionId === 'write') {
+                    writeMessageSection.classList.remove('hidden');
+                    messageForm.reset(); // Clear form when navigating to write section
+                    // Set min date for deliveryDateInput to today
+                    const today = new Date();
+                    const minDate = today.toISOString().split('T')[0];
+                    deliveryDateInput.setAttribute('min', minDate);
+                } else if (sectionId === 'view') {
+                    viewMessageSection.classList.remove('hidden');
+                    notesContainer.innerHTML = ''; // Clear previously displayed notes
+                    noMessageDiv.classList.add('hidden');
+// Hide "no message" text initially
+                    retrieveSecretCodeInput.value = '';
+// Clear secret code input
+                }
+            }
+
+            // --- Event Listeners for Section Navigation Links ---
+            showViewMessageLink.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default link behavior
+
+         showSection('view');
+            });
+            showWriteMessageLink.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default link behavior
+                showSection('write');
+            });
+ // --- Logic for Writing/Storing New Note with Firebase ---
+            messageForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                statusMessageDiv.classList.remove('visible'); // Hide any previous status
+
+                const secretCode = secretCodeInput.value.trim().toLowerCase();
+
+                const messageContent = messageContentInput.value.trim();
+                const deliveryDate = deliveryDateInput.value;
+                const now = new Date(); // Current date for validation
+
+                // Input validation
                 if (!secretCode || !messageContent) {
-                    return alert('Please provide both a Secret Code and a Note.');
+
+                    alert('Please ensure both the Secret Code and Your Note fields are filled.');
+                    return;
+                }
+                if (!/^[a-zA-Z0-9]+$/.test(secretCode)) {
+                    alert('Your Secret Code should only contain letters
+and numbers.');
+                    return;
+                }
+                if (deliveryDate) {
+                    const chosenDate = new Date(deliveryDate + 'T00:00:00');
+// Ensure date comparison is consistent
+                    if (chosenDate < new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
+                        alert('The Unveiling Date cannot be in the past.');
+                        return;
+                    }
                 }
 
                 try {
-                    const notesCollectionRef = collection(db, "messages", secretCode, "notes");
-                    await addDoc(notesCollectionRef, {
-                        messageContent,
-                        deliveryDate: ui.deliveryDateInput.value || null,
+                    // Create or update the parent document for the secret code
+                    const secretCodeDocRef = doc(db, "messages", secretCode);
+                    await setDoc(secretCodeDocRef, { lastUpdated: new Date().toISOString() }, { merge: true });
+// Prepare note data
+                    const noteData = {
+                        messageContent: messageContent,
+                        // Store deliveryDate as null if not provided
+
+                        deliveryDate: deliveryDate || null,
+                        // Record creation date for sorting/tracking
                         createdAt: new Date().toISOString().split('T')[0]
-                    });
-                    showFeedback(ui.statusMessage, 'Your note has been successfully saved!');
-                    ui.messageForm.reset();
-                    setMinDate();
+                    };
+ // Add the new note to the 'notes' subcollection under the secret code
+                    const notesCollectionRef = collection(db, "messages", secretCode, "notes");
+                    await addDoc(notesCollectionRef, noteData);
+
+                    // Display success message and clear form
+                    showSaveStatus('Your note has been successfully saved!');
+                    messageForm.reset();
+                    // Reset min date after successful submission
+                    const today = new Date();
+                    const minDate = today.toISOString().split('T')[0];
+                    deliveryDateInput.setAttribute('min', minDate);
+
                 } catch (error) {
                     console.error('Error saving note:', error);
-                    alert('An error occurred. Please try again.');
+                    alert('An unexpected error occurred while saving your note. Please try again later.');
                 }
-            };
+            });
+ // --- Logic for Retrieving and Displaying Multiple Notes from Firebase ---
+            retrieveMessageForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
 
-            const displayNotes = (notes) => {
-                ui.notesContainer.innerHTML = '';
-                let hasVisibleNotes = false;
-                const now = new Date();
-                
-                notes
-                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                    .forEach(note => {
-                        const deliveryDate = note.deliveryDate ? new Date(note.deliveryDate + 'T00:00:00') : null;
-                        if (!deliveryDate || now >= deliveryDate) {
-                            hasVisibleNotes = true;
-                            const noteCard = document.createElement('div');
-                            noteCard.className = 'note-card';
-                            noteCard.innerHTML = `
-                                <p class="message-content">${note.messageContent.replace(/\n/g, '<br>')}</p>
-                                <p class="note-date-info">Created: ${new Date(note.createdAt).toLocaleDateString()}</p>
-                            `;
-                            ui.notesContainer.appendChild(noteCard);
-                        }
-                    });
+                // Clear previous notes and messages
+                notesContainer.innerHTML = '';
 
-                if (!hasVisibleNotes) {
-                    showFeedback(ui.noMessage, "Your notes are patiently waiting for their unveiling date.", 0);
+                noMessageDiv.classList.add('hidden');
+                statusMessageDiv.classList.remove('visible'); // Hide any previous status
+
+                const retrieveCode = retrieveSecretCodeInput.value.trim().toLowerCase();
+
+                // --- Easter Egg Check ---
+                if (retrieveCode === "dreamycode") {
+                    noMessageDiv.classList.remove('hidden');
+                    noMessageDiv.textContent = "You've uncovered a hidden message, just like the special feelings in your heart. Keep shining!";
+                    return; // Stop further processing for the easter egg
                 }
-            };
 
-            const handleRetrieveNotes = async (e) => {
-                e.preventDefault();
-                hideFeedback(ui.noMessage);
-                ui.notesContainer.innerHTML = '';
-                const retrieveCode = ui.retrieveCodeInput.value.trim().toLowerCase();
 
+                // Input validation for retrieval
                 if (!retrieveCode) {
-                    return showFeedback(ui.noMessage, "Please enter a Secret Code.", 3000);
+
+                    noMessageDiv.textContent = "Please enter your Secret Code to retrieve notes.";
+                    noMessageDiv.classList.remove('hidden');
+                    return;
+                }
+                if (!/^[a-zA-Z0-9]+$/.test(retrieveCode)) {
+
+                    noMessageDiv.textContent = 'The Secret Code should only contain letters and numbers.';
+                    noMessageDiv.classList.remove('hidden');
+                    return;
                 }
 
                 try {
-                    const notesRef = collection(db, "messages", retrieveCode, "notes");
-                    const querySnapshot = await getDocs(query(notesRef));
+                    // Check if the parent secret code document exists first
+                    const secretCodeDocRef = doc(db, "messages", retrieveCode);
+                    const secretCodeDocSnap = await getDoc(secretCodeDocRef);
 
-                    if (querySnapshot.empty) {
-                        return showFeedback(ui.noMessage, "No notes found. Why not create one?", 0);
+                    if (!secretCodeDocSnap.exists()) {
+                        noMessageDiv.textContent = "No notes are associated with this Secret Code. Perhaps you'd like to create one?";
+                        noMessageDiv.classList.remove('hidden');
+                        return;
                     }
 
-                    const notes = querySnapshot.docs.map(doc => doc.data());
-                    displayNotes(notes);
+                    // Query the 'notes' subcollection for the given secret code
+                    const notesCollectionRef = collection(db, "messages", retrieveCode, "notes");
+                    const q = query(notesCollectionRef);
+                    const querySnapshot = await getDocs(q);
 
+                    const notes = [];
+                    querySnapshot.forEach((doc) => {
+                        notes.push({ id: doc.id, ...doc.data() });
+                    });
+ if (notes.length > 0) {
+                        let hasVisibleNotes = false;
+                        const now = new Date();
+                        // Sort notes by creation date, most recent first
+                        notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                        notes.forEach(note => {
+                            const deliveryDate = note.deliveryDate ? new Date(note.deliveryDate + 'T00:00:00') : null; // Ensure consistency
+                            const createdAtDate = new Date(note.createdAt).toLocaleDateString();
+
+
+                            // Only display notes that are ready to be unveiled
+                            if (!deliveryDate || now >= deliveryDate) {
+                                hasVisibleNotes = true;
+
+                                const noteCard = document.createElement('div');
+                                noteCard.classList.add('note-card');
+
+                                const messageP = document.createElement('p');
+
+                                messageP.classList.add('message-content');
+                                // Use innerHTML and replace newlines with <br> for proper formatting
+                                messageP.innerHTML = note.messageContent.replace(/\n/g, '<br>');
+
+                                const dateInfoP = document.createElement('p');
+                                dateInfoP.classList.add('note-date-info');
+                                dateInfoP.textContent = `Created on: ${createdAtDate}`;
+
+                                noteCard.appendChild(messageP);
+                                noteCard.appendChild(dateInfoP);
+                                notesContainer.appendChild(noteCard);
+                            }
+                        });
+ // If notes were found but none are yet ready for viewing
+                        if (!hasVisibleNotes && notes.length > 0) {
+                             noMessageDiv.textContent = "All your notes are patiently awaiting their scheduled unveiling dates. None are ready for viewing just yet!";
+                            noMessageDiv.classList.remove('hidden');
+                        } else if (notes.length === 0) {
+                            // This case should ideally be caught by secretCodeDocSnap.exists(), but as a fallback
+                            noMessageDiv.textContent = "No notes were found for this Secret Code. Perhaps you'd like to create one?";
+                            noMessageDiv.classList.remove('hidden');
+                        }
+
+                    } else {
+                        // If the secret code exists, but no notes are under it
+                        noMessageDiv.textContent = "No notes were found for this Secret Code. Perhaps you'd like to create one?";
+                        noMessageDiv.classList.remove('hidden');
+                    }
                 } catch (error) {
                     console.error('Error retrieving notes:', error);
-                    showFeedback(ui.noMessage, "An error occurred retrieving your notes.", 0);
+                    noMessageDiv.textContent = "An unexpected error occurred while retrieving your notes. Please check your connection or try again later.";
+                    noMessageDiv.classList.remove('hidden');
                 }
-            };
-
-            // Initial setup & Event Listeners
-            setTimeGreeting();
-            setMinDate();
-            
-            ui.showViewBtn.addEventListener('click', () => switchView('view'));
-            ui.showWriteLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                switchView('write');
             });
 
-            ui.messageForm.addEventListener('submit', handleSaveNote);
-            ui.retrieveForm.addEventListener('submit', handleRetrieveNotes);
+            // --- Initialize (Show write section by default) ---
+            showSection('write');
         });
     </script>
 </body>
