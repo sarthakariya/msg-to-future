@@ -861,12 +861,12 @@ No spaces or special characters.">
                 }
 
                 // --- EASTER EGG IMPLEMENTATION ---
-                const EASTER_EGG_CODE = "mammamspecialnote"; // Converted to lowercase for comparison
+                const EASTER_EGG_CODE = "Reechita"; // Changed code for Reechita
                 if (retrieveCode === EASTER_EGG_CODE) {
-                    const specialMessage = "Dearest Mammam, this little app was made with love, just like your warm hugs and delicious food! Always thinking of you. ❤️ - Sarthak";
+                    const specialMessage = "Dearest Reechita, this app was made with love, like your warm presence. Hope it brings a smile. Always thinking of you. ❤️ - Sarthak"; // Updated message for Reechita
                     const specialNoteCard = document.createElement('div');
                     specialNoteCard.classList.add('note-card');
-                    specialNoteCard.style.backgroundColor = '#e0e0e0'; // A special grey color for Mammam's note
+                    specialNoteCard.style.backgroundColor = '#e0e0e0'; // A special grey color for this note
                     specialNoteCard.style.borderColor = '#c0c0c0';
                     const messageP = document.createElement('p');
                     messageP.classList.add('message-content');
@@ -875,7 +875,7 @@ No spaces or special characters.">
 
                     const dateInfoP = document.createElement('p');
                     dateInfoP.classList.add('note-date-info');
-                    dateInfoP.textContent = "A special message from Sarthak! 💖";
+                    dateInfoP.textContent = "A thoughtful message for you! 💖"; // Updated date info text
                     dateInfoP.style.color = '#666666';
 
                     specialNoteCard.appendChild(messageP);
