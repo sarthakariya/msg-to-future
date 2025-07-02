@@ -21,23 +21,35 @@
             --transition-duration: 0.3s;
             --border-radius-card: 12px;
             --border-radius-input: 8px;
+
+            /* New Bluish-Black Colors */
+            --bluish-black: #1a202c; /* Deep bluish-black for container */
+            --dark-blue-gradient-start: #0f172a; /* Darker blue for gradient start */
+            --dark-blue-gradient-end: #1e293b; /* Lighter blue for gradient end */
         }
 
         /* --- Global & Background Styles --- */
         body {
             font-family: 'Gentium Plus', serif; /* Elegant, classic serif font */
-            background-color: var(--soft-pink-bg);
+            background: linear-gradient(135deg, var(--dark-blue-gradient-start) 0%, var(--dark-blue-gradient-end) 100%); /* Bluish-black gradient */
+            background-size: 200% 200%; /* Larger background for rolling effect */
+            animation: rollingBackground 20s linear infinite; /* Rolling animation */
             display: flex;
             justify-content: center;
             align-items: flex-start; /* Align to top for proper scrolling */
             min-height: 100vh;
             margin: 0;
-            color: var(--dark-brown-text);
+            color: var(--brown-note); /* Adjust text color for dark background */
             line-height: 1.7; /* Enhanced line height for readability */
             padding: 30px; /* Generous overall padding */
             box-sizing: border-box;
             overflow-y: auto; /* Enable scrolling for content overflow */
             position: relative; /* Needed for absolute positioned children */
+        }
+
+        @keyframes rollingBackground {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
         }
 
         /* Heart Animation Background */
@@ -53,24 +65,21 @@
         }
 
         .heart {
-            color: rgba(244, 172, 183, 0.5); /* Muted, transparent heart color */
-            font-size: 1.5em; /* Larger hearts */
+            color: rgba(244, 172, 183, 0.7); /* More opaque, visible hearts */
+            font-size: 2em; /* Larger hearts */
             position: absolute;
-            animation: floatAndTwinkle 8s infinite ease-in-out;
+            animation: floatAndTwinkle 10s infinite ease-in-out; /* Adjusted speed */
             opacity: 0; /* Start hidden */
-            text-shadow: 0 0 8px rgba(244, 172, 183, 0.8); /* Subtle glow */
+            text-shadow: 0 0 10px rgba(244, 172, 183, 1); /* Stronger glow */
         }
 
         @keyframes floatAndTwinkle {
-            0% { transform: translateY(0px) scale(0.5);
-            opacity: 0; }
-            20% { opacity: 0.6;
-            transform: translateY(-20px) scale(1); }
-            80% { opacity: 0.3;
-            transform: translateY(-80px) scale(0.8); }
-            100% { transform: translateY(-100px) scale(0.5);
-            opacity: 0; }
+            0% { transform: translateY(0px) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; transform: translateY(-10%) scale(1); }
+            90% { opacity: 0.8; transform: translateY(-90%) scale(1); }
+            100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
         }
+
 
         /* Coffee Steam Animation */
         .coffee-animation-bg {
@@ -112,7 +121,7 @@
 
         /* --- Main Container & Overall Layout --- */
         .container {
-            background-color: white;
+            background-color: var(--bluish-black); /* Changed to bluish-black */
             padding: 50px; /* More padding for a grander feel */
             border-radius: var(--border-radius-card); /* Softly rounded corners */
             box-shadow: var(--shadow-medium); /* Prominent shadow for depth */
@@ -138,7 +147,7 @@
         /* --- Typography --- */
         h1 {
             font-family: 'Playfair Display', serif; /* Elegant heading font */
-            color: var(--dark-brown-text);
+            color: var(--warm-pink); /* Adjusted for dark background */
             margin-bottom: 25px;
             font-size: 2.8em; /* Impactful size */
             font-weight: 700;
@@ -151,7 +160,7 @@
             font-style: italic;
             font-weight: 700;
             font-size: 2.4em; /* Prominent greeting */
-            color: var(--warm-pink);
+            color: var(--accent-gold); /* Adjusted for dark background */
             margin-bottom: 35px;
             text-shadow: 1px 1px 5px rgba(244, 172, 183, 0.7); /* Soft glow for greeting */
             animation: greetingPulse 3s infinite ease-in-out alternate;
@@ -168,7 +177,7 @@
 
         p {
             margin-bottom: 25px;
-            color: var(--light-brown-text);
+            color: var(--brown-note); /* Adjusted for dark background */
             font-size: 1.05em;
             max-width: 650px;
             margin-left: auto;
@@ -193,7 +202,7 @@
         label {
             text-align: left;
             font-weight: 700;
-            color: var(--dark-brown-text);
+            color: var(--warm-pink); /* Adjusted for dark background */
             font-size: 1.05em;
             margin-bottom: 5px;
         }
@@ -341,7 +350,7 @@
         .toggle-link {
             margin-top: 30px;
             font-size: 0.95em;
-            color: var(--light-brown-text);
+            color: var(--brown-note); /* Adjusted for dark background */
         }
 
         .toggle-link a {
@@ -352,7 +361,7 @@
         }
 
         .toggle-link a:hover {
-            color: var(--dark-brown-text);
+            color: var(--brown-note); /* Adjusted for dark background */
             text-decoration: underline;
         }
 
@@ -511,14 +520,23 @@
 </head>
 <body>
     <div class="heart-animation-bg">
-        <div class="heart" style="left:10%; top:15%; animation-delay: 0s;">💖</div>
-        <div class="heart" style="left:30%; top:40%; animation-delay: 1.5s; font-size: 1.7em;">💖</div>
-        <div class="heart" style="left:50%; top:25%; animation-delay: 3s;">💖</div>
-        <div class="heart" style="left:70%; top:60%; animation-delay: 4.5s; font-size: 1.2em;">💖</div>
-        <div class="heart" style="left:90%; top:10%; animation-delay: 6s;">💖</div>
-        <div class="heart" style="left:5%; top:70%; animation-delay: 2.5s;
-font-size: 1.3em;">💖</div>
-        <div class="heart" style="left:65%; top:5%; animation-delay: 5s; font-size: 1.8em;">💖</div>
+        <div class="heart" style="left:10%; top:10%; animation-delay: 0s;">💖</div>
+        <div class="heart" style="left:20%; top:0%; animation-delay: 1s; font-size: 1.7em;">💖</div>
+        <div class="heart" style="left:30%; top:15%; animation-delay: 2s;">💖</div>
+        <div class="heart" style="left:40%; top:5%; animation-delay: 3s; font-size: 1.2em;">💖</div>
+        <div class="heart" style="left:50%; top:20%; animation-delay: 4s;">💖</div>
+        <div class="heart" style="left:60%; top:0%; animation-delay: 5s; font-size: 1.5em;">💖</div>
+        <div class="heart" style="left:70%; top:10%; animation-delay: 6s;">💖</div>
+        <div class="heart" style="left:80%; top:3%; animation-delay: 7s; font-size: 1.8em;">💖</div>
+        <div class="heart" style="left:90%; top:18%; animation-delay: 8s;">💖</div>
+        <div class="heart" style="left:15%; top:25%; animation-delay: 9s; font-size: 1.3em;">💖</div>
+        <div class="heart" style="left:25%; top:30%; animation-delay: 10s;">💖</div>
+        <div class="heart" style="left:35%; top:22%; animation-delay: 11s; font-size: 1.6em;">💖</div>
+        <div class="heart" style="left:45%; top:35%; animation-delay: 12s;">💖</div>
+        <div class="heart" style="left:55%; top:28%; animation-delay: 13s; font-size: 1.1em;">💖</div>
+        <div class="heart" style="left:65%; top:40%; animation-delay: 14s;">💖</div>
+        <div class="heart" style="left:75%; top:33%; animation-delay: 15s; font-size: 1.9em;">💖</div>
+        <div class="heart" style="left:85%; top:45%; animation-delay: 16s;">💖</div>
     </div>
     <div class="coffee-animation-bg">
         ☕
@@ -547,7 +565,7 @@ No spaces or special characters.">
                 <label for="deliveryDate">Optional Unveiling Date:</label>
                 <input type="date" id="deliveryDate">
                 <p
-style="font-size: 0.9em; color: var(--light-brown-text); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
+style="font-size: 0.9em; color: var(--brown-note); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
 
                 <button type="submit">Seal Your Memory in Time</button>
             </form>
