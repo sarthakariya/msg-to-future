@@ -19,449 +19,480 @@
             --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
             --transition-duration: 0.3s;
-            --border-radius-card: 12px;
-            --border-radius-input: 8px;
+            --border-radius-input: 8px; /* Kept for input fields */
         }
 
         /* --- Global & Background Styles --- */
         body {
-            font-family: 'Gentium Plus', serif; [cite_start]/* Elegant, classic serif font */ [cite: 10]
-            [cite_start]background-color: var(--soft-pink-bg); [cite: 11]
-            [cite_start]display: flex; [cite: 11]
-            [cite_start]justify-content: center; [cite: 11]
-            align-items: flex-start; [cite_start]/* Align to top for proper scrolling */ [cite: 11]
-            [cite_start]min-height: 100vh; [cite: 12]
-            [cite_start]margin: 0; [cite: 12]
-            [cite_start]color: var(--dark-brown-text); [cite: 12]
-            line-height: 1.7; [cite_start]/* Enhanced line height for readability */ [cite: 12]
-            padding: 30px; [cite_start]/* Generous overall padding */ [cite: 13]
-            [cite_start]box-sizing: border-box; [cite: 13]
-            overflow-y: auto; [cite_start]/* Enable scrolling for content overflow */ [cite: 14]
-            position: relative; [cite_start]/* Needed for absolute positioned children */ [cite: 15]
+            font-family: 'Gentium Plus', serif; /* Elegant, classic serif font */
+            background-color: var(--soft-pink-bg);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top for proper scrolling */
+            min-height: 100vh;
+            margin: 0;
+            color: var(--dark-brown-text);
+            line-height: 1.7; /* Enhanced line height for readability */
+            padding: 30px; /* Generous overall padding */
+            box-sizing: border-box;
+            overflow-y: auto; /* Enable scrolling for content overflow */
+            position: relative; /* Needed for absolute positioned children */
+            /* Added a subtle background pattern */
+            background-image: url('https://www.transparenttextures.com/patterns/cream-pixels.png'); 
+            background-repeat: repeat;
+            background-blend-mode: multiply; /* Blends pattern nicely with background color */
         }
 
         /* Heart Animation Background */
         .heart-animation-bg {
-            [cite_start]position: absolute; [cite: 16]
-            [cite_start]top: 0; [cite: 16]
-            [cite_start]left: 0; [cite: 16]
-            [cite_start]width: 100%; [cite: 16]
-            [cite_start]height: 100%; [cite: 16]
-            [cite_start]pointer-events: none; [cite: 16]
-            [cite_start]overflow: hidden; [cite: 16]
-            z-index: 0; [cite_start]/* Ensures it stays behind content */ [cite: 17]
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0; /* Ensures it stays behind content */
         }
 
         .heart {
-            color: rgba(244, 172, 183, 0.5); [cite_start]/* Muted, transparent heart color */ [cite: 18]
-            font-size: 1.5em; [cite_start]/* Larger hearts */ [cite: 19]
-            [cite_start]position: absolute; [cite: 20]
-            [cite_start]animation: floatAndTwinkle 8s infinite ease-in-out; [cite: 20]
-            opacity: 0; [cite_start]/* Start hidden */ [cite: 20]
-            text-shadow: 0 0 8px rgba(244, 172, 183, 0.8); [cite_start]/* Subtle glow */ [cite: 21]
+            color: rgba(244, 172, 183, 0.5); /* Muted, transparent heart color */
+            font-size: 1.5em; /* Larger hearts */
+            position: absolute;
+            animation: floatAndTwinkle 8s infinite ease-in-out;
+            opacity: 0; /* Start hidden */
+            text-shadow: 0 0 8px rgba(244, 172, 183, 0.8); /* Subtle glow */
         }
 
         @keyframes floatAndTwinkle {
-            0% { transform: translateY(0px) scale(0.5); opacity: 0; [cite_start]} [cite: 22]
-            20% { opacity: 0.6; transform: translateY(-20px) scale(1); [cite_start]} [cite: 23]
-            80% { opacity: 0.3; transform: translateY(-80px) scale(0.8); [cite_start]} [cite: 24]
-            100% { transform: translateY(-100px) scale(0.5); opacity: 0; [cite_start]} [cite: 25]
+            0% { transform: translateY(0px) scale(0.5); opacity: 0; }
+            20% { opacity: 0.6; transform: translateY(-20px) scale(1); }
+            80% { opacity: 0.3; transform: translateY(-80px) scale(0.8); }
+            100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
         }
 
         /* Coffee Steam Animation */
         .coffee-animation-bg {
-            [cite_start]position: absolute; [cite: 26]
-            bottom: 0px; [cite_start]/* Aligned to bottom of viewport */ [cite: 26]
-            left: 5%; [cite_start]/* From the left edge */ [cite: 27]
-            font-size: 3em; [cite_start]/* Larger coffee cup */ [cite: 28]
-            color: rgba(160, 82, 45, 0.6); [cite_start]/* Semi-transparent coffee color */ [cite: 29]
-            [cite_start]opacity: 0.7; [cite: 29]
-            [cite_start]pointer-events: none; [cite: 30]
-            [cite_start]z-index: 0; [cite: 30]
-            animation: coffeeFadeIn 2s ease-out forwards; [cite_start]/* Fade in with the page */ [cite: 30]
+            position: absolute;
+            bottom: 0px; /* Aligned to bottom of viewport */
+            left: 5%; /* From the left edge */
+            font-size: 3em; /* Larger coffee cup */
+            color: rgba(160, 82, 45, 0.6); /* Semi-transparent coffee color */
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 0;
+            animation: coffeeFadeIn 2s ease-out forwards; /* Fade in with the page */
         }
 
         .steam-puff {
-            [cite_start]position: absolute; [cite: 31]
-            [cite_start]background-color: rgba(255, 255, 255, 0.7); [cite: 31]
-            [cite_start]border-radius: 50%; [cite: 31]
-            [cite_start]animation: steamPuff 3s infinite ease-out; [cite: 31]
-            [cite_start]opacity: 0; [cite: 31]
-            [cite_start]box-shadow: 0 0 10px rgba(255,255,255,0.5); [cite: 32]
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: steamPuff 3s infinite ease-out;
+            opacity: 0;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
         @keyframes coffeeFadeIn {
-            0% { opacity: 0; transform: translateY(50px); [cite_start]} [cite: 33]
-            100% { opacity: 0.7; transform: translateY(0); [cite_start]} [cite: 34]
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 0.7; transform: translateY(0); }
         }
 
         @keyframes steamPuff {
-            0% { transform: scale(0.2) translateY(0); opacity: 0; [cite_start]} [cite: 35]
-            20% { opacity: 0.8; [cite_start]} [cite: 36]
-            100% { transform: scale(1.5) translateY(-80px); opacity: 0; [cite_start]} [cite: 37]
+            0% { transform: scale(0.2) translateY(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: scale(1.5) translateY(-80px); opacity: 0; }
         }
 
         /* --- Main Container & Overall Layout --- */
         .container {
-            [cite_start]background-color: white; [cite: 38]
-            padding: 50px; [cite_start]/* More padding for a grander feel */ [cite: 38]
-            /* Custom "blob" border-radius for a unique, non-box shape */
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; 
-            box-shadow: var(--shadow-medium); [cite_start]/* Prominent shadow for depth */ [cite: 40]
-            [cite_start]width: 100%; [cite: 41]
-            max-width: 750px; [cite_start]/* Wider container for spaciousness */ [cite: 41]
-            [cite_start]text-align: center; [cite: 42]
-            [cite_start]box-sizing: border-box; [cite: 42]
-            [cite_start]position: relative; [cite: 42]
-            z-index: 1; [cite_start]/* Ensures it's above background animations */ [cite: 43]
-            [cite_start]margin-top: 30px; [cite: 43]
-            [cite_start]margin-bottom: 30px; [cite: 43]
-            border: 1px solid rgba(244, 172, 183, 0.4); [cite_start]/* Subtle pink border */ [cite: 43]
-            [cite_start]animation: containerEntry 1s ease-out forwards; [cite: 44]
-        [cite_start]} [cite: 44]
+            background-color: white;
+            padding: 50px; /* More padding for a grander feel */
+            /* More elegant, organic border-radius */
+            border-radius: 35px 70px 45px 80px / 80px 45px 70px 35px;
+            box-shadow: var(--shadow-medium); /* Prominent shadow for depth */
+            width: 100%;
+            max-width: 750px; /* Wider container for spaciousness */
+            text-align: center;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1; /* Ensures it's above background animations */
+            margin-top: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(244, 172, 183, 0.4); /* Subtle pink border */
+            animation: containerEntry 1s ease-out forwards;
+        }
 
         @keyframes containerEntry {
-            0% { opacity: 0; transform: translateY(30px) scale(0.95); [cite_start]} [cite: 45]
-            100% { opacity: 1; transform: translateY(0) scale(1); [cite_start]} [cite: 46]
+            0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         /* --- Typography --- */
         h1 {
-            font-family: 'Playfair Display', serif; [cite_start]/* Elegant heading font */ [cite: 47]
-            [cite_start]color: var(--dark-brown-text); [cite: 47]
-            [cite_start]margin-bottom: 25px; [cite: 48]
-            font-size: 2.8em; [cite_start]/* Impactful size */ [cite: 48]
-            [cite_start]font-weight: 700; [cite: 49]
-            [cite_start]line-height: 1.2; [cite: 49]
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.05); [cite_start]/* Subtle text shadow */ [cite: 49]
+            font-family: 'Playfair Display', serif; /* Elegant heading font */
+            color: var(--dark-brown-text);
+            margin-bottom: 25px;
+            font-size: 2.8em; /* Impactful size */
+            font-weight: 700;
+            line-height: 1.2;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.05); /* Subtle text shadow */
         }
 
         .greeting {
-            font-family: 'Cormorant Garamond', serif; [cite_start]/* A graceful, italicized greeting font */ [cite: 50]
-            [cite_start]font-style: italic; [cite: 51]
-            [cite_start]font-weight: 700; [cite: 51]
-            font-size: 2.4em; [cite_start]/* Prominent greeting */ [cite: 52]
-            [cite_start]color: var(--warm-pink); [cite: 52]
-            [cite_start]margin-bottom: 35px; [cite: 52]
-            text-shadow: 1px 1px 5px rgba(244, 172, 183, 0.7); [cite_start]/* Soft glow for greeting */ [cite: 53]
-            [cite_start]animation: greetingPulse 3s infinite ease-in-out alternate; [cite: 54]
+            font-family: 'Cormorant Garamond', serif; /* A graceful, italicized greeting font */
+            font-style: italic;
+            font-weight: 700;
+            font-size: 2.4em; /* Prominent greeting */
+            color: var(--warm-pink);
+            margin-bottom: 35px;
+            text-shadow: 1px 1px 5px rgba(244, 172, 183, 0.7); /* Soft glow for greeting */
+            animation: greetingPulse 3s infinite ease-in-out alternate;
         }
 
         @keyframes greetingPulse {
-            0% { transform: scale(1); [cite_start]} [cite: 55]
-            50% { transform: scale(1.02); [cite_start]} [cite: 56]
-            100% { transform: scale(1); [cite_start]} [cite: 57]
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
 
         p {
-            [cite_start]margin-bottom: 25px; [cite: 58]
-            [cite_start]color: var(--light-brown-text); [cite: 58]
-            [cite_start]font-size: 1.05em; [cite: 58]
-            [cite_start]max-width: 650px; [cite: 59]
-            [cite_start]margin-left: auto; [cite: 59]
-            [cite_start]margin-right: auto; [cite: 59]
-            [cite_start]line-height: 1.8; [cite: 59]
+            margin-bottom: 25px;
+            color: var(--light-brown-text);
+            font-size: 1.05em;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
         }
         
         .instruction-text {
-            [cite_start]font-weight: 600; [cite: 60]
-            [cite_start]color: var(--warm-pink); [cite: 60]
-            [cite_start]font-size: 1.1em; [cite: 60]
+            font-weight: 600;
+            color: var(--warm-pink);
+            font-size: 1.1em;
+        }
+
+        /* --- Device Info Section --- */
+        #deviceInfo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95em;
+            color: var(--light-brown-text);
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(121, 85, 72, 0.3); /* Dotted separator */
+        }
+        #deviceInfo p {
+            margin: 5px 0;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+        #deviceInfo strong {
+            color: var(--dark-brown-text);
         }
 
         /* --- Form Elements --- */
         form {
-            [cite_start]display: flex; [cite: 61]
-            [cite_start]flex-direction: column; [cite: 61]
-            gap: 22px; [cite_start]/* Consistent spacing */ [cite: 62]
-            [cite_start]margin-top: 30px; [cite: 62]
+            display: flex;
+            flex-direction: column;
+            gap: 22px; /* Consistent spacing */
+            margin-top: 30px;
         }
 
         label {
-            [cite_start]text-align: left; [cite: 63]
-            [cite_start]font-weight: 700; [cite: 63]
-            [cite_start]color: var(--dark-brown-text); [cite: 63]
-            [cite_start]font-size: 1.05em; [cite: 63]
-            [cite_start]margin-bottom: 5px; [cite: 63]
+            text-align: left;
+            font-weight: 700;
+            color: var(--dark-brown-text);
+            font-size: 1.05em;
+            margin-bottom: 5px;
         }
 
         textarea,
         input[type="date"],
         input[type="text"] {
-            width: calc(100% - 24px); [cite_start]/* Account for padding */ [cite: 64]
-            [cite_start]padding: 12px; [cite: 65]
-            border: 1px solid var(--warm-pink); [cite_start]/* Pink border */ [cite: 65]
-            border-radius: var(--border-radius-input); [cite_start]/* Softly rounded input fields */ [cite: 66]
-            [cite_start]font-size: 1em; [cite: 67]
-            font-family: 'Gentium Plus', serif; [cite_start]/* Consistent elegant font */ [cite: 67]
-            [cite_start]transition: border-color var(--transition-duration) ease, box-shadow var(--transition-duration) ease; [cite: 68]
-            background-color: #fffaf0; [cite_start]/* Slightly off-white for a warm feel */ [cite: 68]
-            [cite_start]color: var(--dark-brown-text); [cite: 69]
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); [cite_start]/* Subtle inner shadow */ [cite: 69]
-            appearance: none; [cite_start]/* Reset default browser styles */ [cite: 70]
-            [cite_start]-webkit-appearance: none; [cite: 71]
+            width: calc(100% - 24px); /* Account for padding */
+            padding: 12px;
+            border: 1px solid var(--warm-pink); /* Pink border */
+            border-radius: var(--border-radius-input); /* Softly rounded input fields */
+            font-size: 1em;
+            font-family: 'Gentium Plus', serif; /* Consistent elegant font */
+            transition: border-color var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
+            background-color: #fffaf0; /* Slightly off-white for a warm feel */
+            color: var(--dark-brown-text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
+            appearance: none; /* Reset default browser styles */
+            -webkit-appearance: none;
         }
 
         textarea::placeholder,
         input[type="date"]::placeholder,
         input[type="text"]::placeholder {
-            [cite_start]font-family: 'Gentium Plus', serif; [cite: 72]
-            color: rgba(121, 85, 72, 0.6); [cite_start]/* Muted brown placeholder */ [cite: 72]
+            font-family: 'Gentium Plus', serif;
+            color: rgba(121, 85, 72, 0.6); /* Muted brown placeholder */
         }
 
         textarea:focus,
         input[type="date"]:focus,
         input[type="text"]:focus {
-            [cite_start]border-color: var(--dark-brown-text); [cite: 73]
-            box-shadow: 0 0 0 3px rgba(244, 172, 183, 0.5); [cite_start]/* Pink glow on focus */ [cite: 73]
-            [cite_start]background-color: white; [cite: 74]
-            [cite_start]outline: none; [cite: 74]
+            border-color: var(--dark-brown-text);
+            box-shadow: 0 0 0 3px rgba(244, 172, 183, 0.5); /* Pink glow on focus */
+            background-color: white;
+            outline: none;
         }
 
         textarea {
-            [cite_start]resize: vertical; [cite: 75]
-            min-height: 180px; [cite_start]/* Adequate height for notes */ [cite: 75]
+            resize: vertical;
+            min-height: 180px; /* Adequate height for notes */
         }
         
         /* Custom styling for date input icon */
         input[type="date"]::-webkit-calendar-picker-indicator {
-            [cite_start]background: transparent; [cite: 76]
-            [cite_start]bottom: 0; [cite: 76]
-            color: var(--light-brown-text); [cite_start]/* Ensure icon is visible */ [cite: 77]
-            [cite_start]cursor: pointer; [cite: 77]
-            [cite_start]height: auto; [cite: 77]
-            [cite_start]left: 0; [cite: 77]
-            [cite_start]position: absolute; [cite: 77]
-            [cite_start]right: 0; [cite: 77]
-            [cite_start]top: 0; [cite: 78]
-            [cite_start]width: auto; [cite: 78]
+            background: transparent;
+            bottom: 0;
+            color: var(--light-brown-text); /* Ensure icon is visible */
+            cursor: pointer;
+            height: auto;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto;
         }
 
         /* --- Buttons --- */
         button {
-            [cite_start]background-color: var(--warm-pink); [cite: 79]
-            [cite_start]color: white; [cite: 79]
-            [cite_start]padding: 15px 30px; [cite: 79]
-            [cite_start]border: none; [cite: 79]
-            [cite_start]border-radius: var(--border-radius-input); [cite: 79]
-            [cite_start]cursor: pointer; [cite: 80]
-            [cite_start]font-size: 1.2em; [cite: 80]
-            [cite_start]font-weight: bold; [cite: 80]
-            [cite_start]transition: background-color var(--transition-duration) ease, transform 0.15s ease, box-shadow var(--transition-duration) ease; [cite: 80]
-            [cite_start]letter-spacing: 0.5px; [cite: 81]
-            [cite_start]box-shadow: var(--shadow-light); [cite: 81]
+            background-color: var(--warm-pink);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: var(--border-radius-input);
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color var(--transition-duration) ease, transform 0.15s ease, box-shadow var(--transition-duration) ease;
+            letter-spacing: 0.5px;
+            box-shadow: var(--shadow-light);
         }
 
         button:hover {
-            background-color: #e6518f; [cite_start]/* Slightly darker pink on hover */ [cite: 82]
-            transform: translateY(-2px); [cite_start]/* Subtle lift */ [cite: 83]
-            [cite_start]box-shadow: var(--shadow-medium); [cite: 84]
+            background-color: #e6518f; /* Slightly darker pink on hover */
+            transform: translateY(-2px); /* Subtle lift */
+            box-shadow: var(--shadow-medium);
         }
 
         button:active {
-            [cite_start]transform: translateY(0); [cite: 85]
-            [cite_start]box-shadow: var(--shadow-light); [cite: 85]
-            [cite_start]background-color: #d1427c; [cite: 85]
+            transform: translateY(0);
+            box-shadow: var(--shadow-light);
+            background-color: #d1427c;
         }
 
         /* --- Status Messages --- */
         #statusMessage {
-            [cite_start]margin-top: 30px; [cite: 86]
-            [cite_start]padding: 18px; [cite: 86]
-            [cite_start]border-radius: var(--border-radius-input); [cite: 86]
-            [cite_start]font-weight: 600; [cite: 86]
-            [cite_start]font-size: 1em; [cite: 86]
-            [cite_start]text-align: center; [cite: 87]
-            [cite_start]opacity: 0; [cite: 87]
-            [cite_start]max-height: 0; [cite: 87]
-            [cite_start]overflow: hidden; [cite: 87]
-            transition: opacity 0.5s ease-out, max-height 0.5s ease-out, padding 0.5s ease-out; [cite_start]/* Smooth transition */ [cite: 88]
-            background-color: #e8f5e9; [cite_start]/* Light green for success */ [cite: 89]
-            color: #2e7d32; [cite_start]/* Dark green text */ [cite: 90]
-            border: 1px solid #a5d6a7; [cite_start]/* Green border */ [cite: 91]
+            margin-top: 30px;
+            padding: 18px;
+            border-radius: var(--border-radius-input);
+            font-weight: 600;
+            font-size: 1em;
+            text-align: center;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease-out, max-height 0.5s ease-out, padding 0.5s ease-out; /* Smooth transition */
+            background-color: #e8f5e9; /* Light green for success */
+            color: #2e7d32; /* Dark green text */
+            border: 1px solid #a5d6a7; /* Green border */
         }
 
         #statusMessage.visible {
-            [cite_start]opacity: 1; [cite: 92]
-            max-height: 100px; [cite_start]/* Sufficient height */ [cite: 92]
-            [cite_start]padding: 18px; [cite: 93]
-            [cite_start]animation: statusFadeIn 0.8s ease-out forwards; [cite: 93]
+            opacity: 1;
+            max-height: 100px; /* Sufficient height */
+            padding: 18px;
+            animation: statusFadeIn 0.8s ease-out forwards;
         }
 
         @keyframes statusFadeIn {
-            0% { transform: translateY(-10px); opacity: 0; [cite_start]} [cite: 94]
-            100% { transform: translateY(0); opacity: 1; [cite_start]} [cite: 95]
+            0% { transform: translateY(-10px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
         .hidden {
-            [cite_start]display: none; [cite: 96]
+            display: none;
         }
 
         /* --- Toggle Links --- */
         .toggle-link {
-            [cite_start]margin-top: 30px; [cite: 97]
-            [cite_start]font-size: 0.95em; [cite: 97]
-            [cite_start]color: var(--light-brown-text); [cite: 97]
+            margin-top: 30px;
+            font-size: 0.95em;
+            color: var(--light-brown-text);
         }
 
         .toggle-link a {
-            [cite_start]color: var(--warm-pink); [cite: 98]
-            [cite_start]text-decoration: none; [cite: 98]
-            [cite_start]font-weight: bold; [cite: 98]
-            [cite_start]transition: color var(--transition-duration) ease; [cite: 98]
+            color: var(--warm-pink);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color var(--transition-duration) ease;
         }
 
         .toggle-link a:hover {
-            [cite_start]color: var(--dark-brown-text); [cite: 99]
-            [cite_start]text-decoration: underline; [cite: 99]
+            color: var(--dark-brown-text);
+            text-decoration: underline;
         }
 
         /* --- Message Display Area --- */
         #messageDisplayArea {
-            min-height: 200px; [cite_start]/* Ensure space even when empty */ [cite: 100]
-            [cite_start]display: flex; [cite: 101]
-            [cite_start]flex-direction: column; [cite: 101]
-            [cite_start]justify-content: flex-start; [cite: 101]
-            [cite_start]align-items: center; [cite: 101]
-            gap: 18px; [cite_start]/* Spacing between notes */ [cite: 102]
-            [cite_start]padding-top: 10px; [cite: 102]
-            [cite_start]padding-bottom: 20px; [cite: 102]
+            min-height: 200px; /* Ensure space even when empty */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 18px; /* Spacing between notes */
+            padding-top: 10px;
+            padding-bottom: 20px;
         }
 
         .note-card {
-            background-color: var(--brown-note); [cite_start]/* Brown page view */ [cite: 103]
-            border: 1px solid #dcd3c5; [cite_start]/* Subtle border for the "page" */ [cite: 104]
-            /* Custom "blob" border-radius for a unique, less uniform note shape */
-            border-radius: 20% 80% 30% 70% / 60% 60% 40% 40%;
-            padding: 25px; [cite_start]/* Ample padding */ [cite: 106]
-            [cite_start]text-align: left; [cite: 106]
-            [cite_start]width: 100%; [cite: 107]
-            [cite_start]box-sizing: border-box; [cite: 107]
-            [cite_start]box-shadow: var(--shadow-light); [cite: 107]
-            [cite_start]transition: transform 0.2s ease, box-shadow 0.2s ease; [cite: 107]
-            position: relative; [cite_start]/* For the "fold" effect */ [cite: 108]
-            [cite_start]overflow: hidden; [cite: 109]
-            opacity: 0; [cite_start]/* Start hidden for animation */ [cite: 109]
-            [cite_start]transform: translateY(20px); [cite: 110]
-            [cite_start]animation: noteCardEntry 0.6s ease-out forwards; [cite: 110]
+            background-color: var(--brown-note); /* Brown page view */
+            border: 1px solid #dcd3c5; /* Subtle border for the "page" */
+            /* Unique, asymmetrical border-radius for notes */
+            border-radius: 15px 50px 20px 40px / 40px 20px 50px 15px;
+            padding: 25px; /* Ample padding */
+            text-align: left;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: var(--shadow-light);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative; /* For the "fold" effect */
+            overflow: hidden;
+            opacity: 0; /* Start hidden for animation */
+            transform: translateY(20px);
+            animation: noteCardEntry 0.6s ease-out forwards;
         }
         
         @keyframes noteCardEntry {
-            0% { opacity: 0; transform: translateY(20px); [cite_start]} [cite: 111]
-            100% { opacity: 1; transform: translateY(0); [cite_start]} [cite: 112]
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .note-card:hover {
-            transform: translateY(-5px); [cite_start]/* Lift slightly on hover */ [cite: 113]
-            [cite_start]box-shadow: var(--shadow-medium); [cite: 114]
+            transform: translateY(-5px); /* Lift slightly on hover */
+            box-shadow: var(--shadow-medium);
         }
 
         /* Top-right folded corner for note card */
         .note-card::before {
-            [cite_start]content: ''; [cite: 115]
-            [cite_start]position: absolute; [cite: 115]
-            [cite_start]top: 0; [cite: 115]
-            [cite_start]right: 0; [cite: 115]
-            border-width: 0 25px 25px 0; [cite_start]/* Adjust size of the fold */ [cite: 116]
-            [cite_start]border-style: solid; [cite: 117]
-            [cite_start]border-color: #f0f0f0 #f0f0f0 var(--brown-note) var(--brown-note); [cite: 117]
-            background-color: #f0f0f0; [cite_start]/* Color of the fold */ [cite: 117]
-            [cite_start]box-shadow: -1px 1px 2px rgba(0,0,0,0.1); [cite: 118]
-            [cite_start]transform: rotate(90deg); [cite: 118]
-            [cite_start]transform-origin: 100% 0; [cite: 118]
-            [cite_start]transition: border-color 0.2s ease; [cite: 118]
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-width: 0 25px 25px 0; /* Adjust size of the fold */
+            border-style: solid;
+            border-color: #f0f0f0 #f0f0f0 var(--brown-note) var(--brown-note);
+            background-color: #f0f0f0; /* Color of the fold */
+            box-shadow: -1px 1px 2px rgba(0,0,0,0.1);
+            transform: rotate(90deg);
+            transform-origin: 100% 0;
+            transition: border-color 0.2s ease;
         }
 
         .note-card:hover::before {
-             border-color: #e0e0e0 #e0e0e0 var(--brown-note) var(--brown-note); [cite_start]/* Darken fold on hover */ [cite: 119]
+             border-color: #e0e0e0 #e0e0e0 var(--brown-note) var(--brown-note); /* Darken fold on hover */
         }
 
         .message-content {
-            white-space: pre-wrap; [cite_start]/* Preserves line breaks from textarea */ [cite: 120]
-            font-family: 'Cormorant Garamond', serif; [cite_start]/* Elegant font for message content */ [cite: 121]
-            font-style: italic; [cite_start]/* A gentle touch */ [cite: 122]
-            font-size: 1.25em; [cite_start]/* Clear and readable */ [cite: 123]
-            [cite_start]color: var(--dark-brown-text); [cite: 124]
-            [cite_start]line-height: 1.8; [cite: 124]
-            [cite_start]margin-bottom: 15px; [cite: 124]
-            border-left: 3px solid var(--warm-pink); [cite_start]/* Subtle accent line */ [cite: 125]
-            [cite_start]padding-left: 15px; [cite: 125]
-            margin-left: -15px; [cite_start]/* Adjust for padding */ [cite: 125]
+            white-space: pre-wrap; /* Preserves line breaks from textarea */
+            font-family: 'Cormorant Garamond', serif; /* Elegant font for message content */
+            font-style: italic; /* A gentle touch */
+            font-size: 1.25em; /* Clear and readable */
+            color: var(--dark-brown-text);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--warm-pink); /* Subtle accent line */
+            padding-left: 15px;
+            margin-left: -15px; /* Adjust for padding */
         }
 
         .note-date-info {
-            [cite_start]font-size: 0.85em; [cite: 126]
-            [cite_start]color: var(--light-brown-text); [cite: 126]
-            [cite_start]text-align: right; [cite: 126]
-            [cite_start]margin-top: 10px; [cite: 126]
-            [cite_start]font-style: italic; [cite: 126]
+            font-size: 0.85em;
+            color: var(--light-brown-text);
+            text-align: right;
+            margin-top: 10px;
+            font-style: italic;
         }
 
         /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
             body {
-                [cite_start]padding: 20px; [cite: 127]
+                padding: 20px;
             }
             .container {
-                [cite_start]padding: 35px; [cite: 128]
-                [cite_start]margin: 15px auto; [cite: 128]
+                padding: 35px;
+                margin: 15px auto;
+                 border-radius: 25px 50px 35px 60px / 60px 35px 50px 25px; /* Adjust for smaller screens */
             }
             h1 {
-                [cite_start]font-size: 2.2em; [cite: 129]
+                font-size: 2.2em;
             }
             .greeting {
-                [cite_start]font-size: 2em; [cite: 130]
+                font-size: 2em;
             }
             p {
-                [cite_start]font-size: 1em; [cite: 131]
+                font-size: 1em;
             }
             textarea, input {
-                [cite_start]padding: 10px; [cite: 132]
+                padding: 10px;
             }
             button {
-                [cite_start]font-size: 1.1em; [cite: 133]
-                [cite_start]padding: 12px 25px; [cite: 133]
+                font-size: 1.1em;
+                padding: 12px 25px;
             }
             .note-card {
-                [cite_start]padding: 20px; [cite: 134]
+                padding: 20px;
+                 border-radius: 10px 40px 15px 30px / 30px 15px 40px 10px; /* Adjust for smaller screens */
             }
             .message-content {
-                [cite_start]font-size: 1.1em; [cite: 135]
+                font-size: 1.1em;
+            }
+            #deviceInfo {
+                font-size: 0.85em;
             }
         }
 
         @media (max-width: 480px) {
             body {
-                [cite_start]padding: 15px; [cite: 136]
+                padding: 15px;
             }
             .container {
-                [cite_start]padding: 25px; [cite: 137]
-                [cite_start]margin: 10px auto; [cite: 137]
+                padding: 25px;
+                margin: 10px auto;
+                 border-radius: 20px 40px 30px 50px / 50px 30px 40px 20px; /* Adjust for smallest screens */
             }
             h1 {
-                [cite_start]font-size: 1.8em; [cite: 138]
+                font-size: 1.8em;
             }
             .greeting {
-                [cite_start]font-size: 1.6em; [cite: 139]
+                font-size: 1.6em;
             }
             p {
-                [cite_start]font-size: 0.9em; [cite: 140]
+                font-size: 0.9em;
             }
             textarea {
-                [cite_start]min-height: 150px; [cite: 141]
+                min-height: 150px;
             }
             button {
-                [cite_start]font-size: 1em; [cite: 142]
-                [cite_start]padding: 10px 20px; [cite: 142]
+                font-size: 1em;
+                padding: 10px 20px;
             }
             .note-card {
-                [cite_start]padding: 15px; [cite: 143]
+                padding: 15px;
+                 border-radius: 8px 30px 12px 25px / 25px 12px 30px 8px; /* Adjust for smallest screens */
             }
             .message-content {
-                [cite_start]font-size: 1em; [cite: 144]
+                font-size: 1em;
             }
-            [cite_start].note-card::before { /* Smaller fold */ [cite: 145]
-                [cite_start]border-width: 0 20px 20px 0; [cite: 145]
+            .note-card::before { /* Smaller fold */
+                border-width: 0 20px 20px 0;
+            }
+            #deviceInfo {
+                font-size: 0.8em;
             }
         }
     </style>
@@ -473,235 +504,285 @@
         <div class="heart" style="left:50%; top:25%; animation-delay: 3s;">💖</div>
         <div class="heart" style="left:70%; top:60%; animation-delay: 4.5s; font-size: 1.2em;">💖</div>
         <div class="heart" style="left:90%; top:10%; animation-delay: 6s;">💖</div>
-        [cite_start]<div class="heart" style="left:5%; top:70%; animation-delay: 2.5s; font-size: 1.3em;">💖</div> [cite: 146]
+        <div class="heart" style="left:5%; top:70%; animation-delay: 2.5s; font-size: 1.3em;">💖</div>
         <div class="heart" style="left:65%; top:5%; animation-delay: 5s; font-size: 1.8em;">💖</div>
     </div>
     <div class="coffee-animation-bg">
         ☕
         <div class="steam-puff" style="left: 20%; top: -30%; animation-delay: 0s; width: 15px; height: 15px;"></div>
-        [cite_start]<div class="steam-puff" style="left: 60%; top: -45%; animation-delay: 0.5s; width: 20px; height: 20px;"></div> [cite: 147]
-        [cite_start]<div class="steam-puff" style="left: 40%; top: -60%; animation-delay: 1s; width: 18px; height: 18px;"></div> [cite: 148]
+        <div class="steam-puff" style="left: 60%; top: -45%; animation-delay: 0.5s; width: 20px; height: 20px;"></div>
+        <div class="steam-puff" style="left: 40%; top: -60%; animation-delay: 1s; width: 18px; height: 18px;"></div>
     </div>
 
     <div class="container">
         <h2 id="timeGreeting" class="greeting"></h2>
 
         <div id="writeMessageSection">
-            [cite_start]<h1>Craft a Cherished Note</h1> [cite: 149]
+            <h1>Craft a Cherished Note</h1>
             <p>Here, you can pen your special messages and secure them with a unique Secret Code. You may also choose a specific date for these memories to be revealed, or access them instantly.</p>
 
-            [cite_start]<form id="messageForm"> [cite: 149]
-                [cite_start]<label for="secretCodeInput">Your Secret Code:</label> [cite: 150]
-                [cite_start]<input type="text" id="secretCodeInput" placeholder="e.g., MyPreciousMemory (letters & numbers only)" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers. No spaces or special characters."> [cite: 150]
+            <form id="messageForm">
+                <label for="secretCodeInput">Your Secret Code:</label>
+                <input type="text" id="secretCodeInput" placeholder="e.g., MyPreciousMemory (letters & numbers only)" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers. No spaces or special characters.">
 
-                [cite_start]<label for="messageContent">Your Treasured Note:</label> [cite: 150]
-                [cite_start]<textarea id="messageContent" rows="10" placeholder="Type your beautiful words here..."></textarea> [cite: 150]
+                <label for="messageContent">Your Treasured Note:</label>
+                <textarea id="messageContent" rows="10" placeholder="Type your beautiful words here..."></textarea>
 
-                [cite_start]<label for="deliveryDate">Optional Unveiling Date:</label> [cite: 151]
-                [cite_start]<input type="date" id="deliveryDate"> [cite: 151]
-                [cite_start]<p style="font-size: 0.9em; color: var(--light-brown-text); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p> [cite: 151]
+                <label for="deliveryDate">Optional Unveiling Date:</label>
+                <input type="date" id="deliveryDate">
+                <p style="font-size: 0.9em; color: var(--light-brown-text); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
 
-                [cite_start]<button type="submit">Seal Your Memory in Time</button> [cite: 151]
-            [cite_start]</form> [cite: 151]
+                <button type="submit">Seal Your Memory in Time</button>
+            </form>
 
-            [cite_start]<div id="statusMessage" class="hidden">Your note has been successfully saved!</div> [cite: 151]
+            <div id="statusMessage" class="hidden">Your note has been successfully saved!</div>
             
-            <p class="toggle-link">Ready to reflect on your saved memories? [cite_start]<a href="#" id="showViewMessage">Open Your Memory Box</a></p> [cite: 152]
+            <p class="toggle-link">Ready to reflect on your saved memories? <a href="#" id="showViewMessage">Open Your Memory Box</a></p>
         </div>
 
         <div id="viewMessageSection" class="hidden">
-            [cite_start]<h1>Your Past Notes</h1> [cite: 152]
-            [cite_start]<p>Kindly enter your Secret Code below to unlock and view your collection of treasured memories.</p> [cite: 152]
-            [cite_start]<form id="retrieveMessageForm"> [cite: 153]
-                [cite_start]<label for="retrieveSecretCodeInput">Enter Secret Code:</label> [cite: 153]
-                [cite_start]<input type="text" id="retrieveSecretCodeInput" placeholder="Your Secret Code" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers. No spaces or special characters."> [cite: 154]
-                [cite_start]<button type="submit">Reveal Memories</button> [cite: 154]
-            [cite_start]</form> [cite: 154]
+            <h1>Your Past Notes</h1>
+            <p>Kindly enter your Secret Code below to unlock and view your collection of treasured memories.</p>
+            <form id="retrieveMessageForm">
+                <label for="retrieveSecretCodeInput">Enter Secret Code:</label>
+                <input type="text" id="retrieveSecretCodeInput" placeholder="Your Secret Code" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers. No spaces or special characters.">
+                <button type="submit">Reveal Memories</button>
+            </form>
 
-            [cite_start]<div id="messageDisplayArea"> [cite: 155]
-                [cite_start]<p id="noMessage" class="hidden">No notes were found for this code, or none are currently ready to be viewed.</p> [cite: 155]
-                [cite_start]<div id="notesContainer"></div> [cite: 155]
-            [cite_start]</div> [cite: 155]
-            [cite_start]<p class="toggle-link"><a href="#" id="showWriteMessage">Wish to create another memory?</a></p> [cite: 155]
+            <div id="messageDisplayArea">
+                <p id="noMessage" class="hidden">No notes were found for this code, or none are currently ready to be viewed.</p>
+                <div id="notesContainer"></div>
+            </div>
+            <p class="toggle-link"><a href="#" id="showWriteMessage">Wish to create another memory?</a></p>
+        </div>
+
+        <div id="deviceInfo">
+            <p>
+                <span class="emoji">✨</span> Currently, you're exploring this timeless space using:
+            </p>
+            <p>
+                <span class="emoji">💻</span> An **<span id="osInfo"></span>** device,
+            </p>
+            <p>
+                <span class="emoji">🌐</span> With your trusty **<span id="browserInfo"></span>**!
+            </p>
+            <p>
+                <span class="emoji">📏</span> Your screen embraces this view at **<span id="screenResInfo"></span>**.
+            </p>
         </div>
     </div>
 
     <script type="module">
         // Import the necessary functions from the Firebase SDKs
-        [cite_start]import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"; [cite: 155]
-        [cite_start]import { getFirestore, doc, setDoc, collection, addDoc, query, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"; [cite: 156]
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getFirestore, doc, setDoc, collection, addDoc, query, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
         // Your web app's Firebase configuration - IMPORTANT: REPLACE WITH YOUR ACTUAL FIREBASE CONFIG
         // You can find these values in your Firebase project settings -> "Your apps" -> "Web"
         const firebaseConfig = {
-            [cite_start]apiKey: "AIzaSyDSDP55e5_yeoNJNX9Ix6RprkHnO3xsbNA", [cite: 156]
-            [cite_start]authDomain: "timelessnotesapp.firebaseapp.com", [cite: 156]
-            [cite_start]projectId: "timelessnotesapp", [cite: 156]
-            [cite_start]storageBucket: "timelessnotesapp.firebasestorage.app", [cite: 156]
-            [cite_start]messagingSenderId: "709543240404", [cite: 157]
-            [cite_start]appId: "1:709543240404:web:fb1c269ddbf6cbcf02d141", [cite: 157]
-            [cite_start]measurementId: "G-Z0ML78V61B" [cite: 157]
+            apiKey: "AIzaSyDSDP55e5_yeoNJNX9Ix6RprkHnO3xsbNA",
+            authDomain: "timelessnotesapp.firebaseapp.com",
+            projectId: "timelessnotesapp",
+            storageBucket: "timelessnotesapp.firebasestorage.app",
+            messagingSenderId: "709543240404",
+            appId: "1:709543240404:web:fb1c269ddbf6cbcf02d141",
+            measurementId: "G-Z0ML78V61B"
         };
         // Initialize Firebase application and Firestore database
-        [cite_start]const app = initializeApp(firebaseConfig); [cite: 158]
-        [cite_start]const db = getFirestore(app); [cite: 159]
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
         document.addEventListener('DOMContentLoaded', () => {
             // --- DOM Element References ---
-            [cite_start]const timeGreeting = document.getElementById('timeGreeting'); [cite: 159]
-            [cite_start]const writeMessageSection = document.getElementById('writeMessageSection'); [cite: 159]
-            [cite_start]const messageForm = document.getElementById('messageForm'); [cite: 159]
-            [cite_start]const statusMessageDiv = document.getElementById('statusMessage'); [cite: 159]
-            [cite_start]const secretCodeInput = document.getElementById('secretCodeInput'); [cite: 160]
-            [cite_start]const messageContentInput = document.getElementById('messageContent'); [cite: 160]
-            [cite_start]const deliveryDateInput = document.getElementById('deliveryDate'); [cite: 160]
-            [cite_start]const showViewMessageLink = document.getElementById('showViewMessage'); [cite: 161]
+            const timeGreeting = document.getElementById('timeGreeting');
+            const writeMessageSection = document.getElementById('writeMessageSection');
+            const messageForm = document.getElementById('messageForm');
+            const statusMessageDiv = document.getElementById('statusMessage');
+            const secretCodeInput = document.getElementById('secretCodeInput');
+            const messageContentInput = document.getElementById('messageContent');
+            const deliveryDateInput = document.getElementById('deliveryDate');
+            const showViewMessageLink = document.getElementById('showViewMessage');
             
-            [cite_start]const viewMessageSection = document.getElementById('viewMessageSection'); [cite: 161]
-            [cite_start]const retrieveMessageForm = document.getElementById('retrieveMessageForm'); [cite: 161]
-            [cite_start]const retrieveSecretCodeInput = document.getElementById('retrieveSecretCodeInput'); [cite: 161]
-            [cite_start]const noMessageDiv = document.getElementById('noMessage'); [cite: 162]
-            const notesContainer = document.getElementById('notesContainer'); [cite_start]// Container for multiple notes [cite: 162]
-            [cite_start]const showWriteMessageLink = document.getElementById('showWriteMessage'); [cite: 163]
+            const viewMessageSection = document.getElementById('viewMessageSection');
+            const retrieveMessageForm = document.getElementById('retrieveMessageForm');
+            const retrieveSecretCodeInput = document.getElementById('retrieveSecretCodeInput');
+            const noMessageDiv = document.getElementById('noMessage');
+            const notesContainer = document.getElementById('notesContainer'); // Container for multiple notes
+            const showWriteMessageLink = document.getElementById('showWriteMessage');
+
+            // Device Info Elements
+            const osInfo = document.getElementById('osInfo');
+            const browserInfo = document.getElementById('browserInfo');
+            const screenResInfo = document.getElementById('screenResInfo');
 
             // --- Time-Based Greeting Function ---
             function setTimeGreeting() {
-                [cite_start]const hour = new Date().getHours(); [cite: 164]
-                [cite_start]let greeting; [cite: 164]
+                const hour = new Date().getHours();
+                let greeting;
                 if (hour >= 5 && hour < 12) {
-                    [cite_start]greeting = "Good Morning!"; [cite: 165]
+                    greeting = "Good Morning, My Dearest!";
                 } else if (hour >= 12 && hour < 18) {
-                    [cite_start]greeting = "Good Afternoon!"; [cite: 166]
+                    greeting = "Good Afternoon, My Dearest!";
                 } else {
-                    [cite_start]greeting = "Good Evening!"; [cite: 167]
+                    greeting = "Good Evening, My Dearest!";
                 }
-                [cite_start]timeGreeting.textContent = greeting; [cite: 168]
+                timeGreeting.textContent = greeting;
             }
-            setTimeGreeting(); [cite_start]// Call immediately on page load [cite: 169]
+            setTimeGreeting(); // Call immediately on page load
+
+            // --- Device Information Detection ---
+            function displayDeviceInfo() {
+                let os = "Unknown OS";
+                const userAgent = navigator.userAgent;
+
+                if (userAgent.includes("Win")) os = "Windows";
+                else if (userAgent.includes("Mac")) os = "macOS";
+                else if (userAgent.includes("Linux")) os = "Linux";
+                else if (userAgent.includes("Android")) os = "Android";
+                else if (userAgent.includes("iPhone") || userAgent.includes("iPad")) os = "iOS";
+
+                let browser = "Unknown Browser";
+                if (userAgent.includes("Firefox")) browser = "Mozilla Firefox";
+                else if (userAgent.includes("SamsungBrowser")) browser = "Samsung Internet";
+                else if (userAgent.includes("Opera") || userAgent.includes("Opr")) browser = "Opera";
+                else if (userAgent.includes("Edge")) browser = "Microsoft Edge";
+                else if (userAgent.includes("Chrome")) browser = "Google Chrome";
+                else if (userAgent.includes("Safari")) browser = "Apple Safari";
+                
+
+                const screenWidth = window.screen.width;
+                const screenHeight = window.screen.height;
+
+                osInfo.textContent = os;
+                browserInfo.textContent = browser;
+                screenResInfo.textContent = `${screenWidth}x${screenHeight} pixels`;
+            }
+            displayDeviceInfo(); // Call immediately on page load
+
 
             // --- Note Saved Status Message Display Function ---
             function showSaveStatus(message) {
-                [cite_start]statusMessageDiv.textContent = message; [cite: 170]
-                [cite_start]statusMessageDiv.classList.add('visible'); [cite: 170]
+                statusMessageDiv.textContent = message;
+                statusMessageDiv.classList.add('visible');
                 // The warning will automatically disappear after 5 seconds
                 setTimeout(() => {
-                    [cite_start]statusMessageDiv.classList.remove('visible'); [cite: 171]
-                [cite_start]}, 5000); [cite: 171]
+                    statusMessageDiv.classList.remove('visible');
+                }, 5000);
             }
 
             // --- Section Visibility Toggling Functions ---
             function showSection(sectionId) {
                 // Hide all sections first
-                [cite_start]writeMessageSection.classList.add('hidden'); [cite: 172]
-                [cite_start]viewMessageSection.classList.add('hidden'); [cite: 172]
-                statusMessageDiv.classList.remove('visible'); [cite_start]// Hide status message when switching sections [cite: 172]
+                writeMessageSection.classList.add('hidden');
+                viewMessageSection.classList.add('hidden');
+                statusMessageDiv.classList.remove('visible'); // Hide status message when switching sections
 
                 if (sectionId === 'write') {
-                    [cite_start]writeMessageSection.classList.remove('hidden'); [cite: 173]
-                    messageForm.reset(); [cite_start]// Clear form when navigating to write section [cite: 173]
+                    writeMessageSection.classList.remove('hidden');
+                    messageForm.reset(); // Clear form when navigating to write section
                     // Set min date for deliveryDateInput to today
-                    [cite_start]const today = new Date(); [cite: 174]
-                    [cite_start]const minDate = today.toISOString().split('T')[0]; [cite: 174]
-                    [cite_start]deliveryDateInput.setAttribute('min', minDate); [cite: 174]
+                    const today = new Date();
+                    const minDate = today.toISOString().split('T')[0];
+                    deliveryDateInput.setAttribute('min', minDate);
                 } else if (sectionId === 'view') {
-                    [cite_start]viewMessageSection.classList.remove('hidden'); [cite: 175]
-                    notesContainer.innerHTML = ''; [cite_start]// Clear previously displayed notes [cite: 175]
-                    noMessageDiv.classList.add('hidden'); [cite_start]// Hide "no message" text initially [cite: 176]
-                    retrieveSecretCodeInput.value = ''; [cite_start]// Clear secret code input [cite: 177]
+                    viewMessageSection.classList.remove('hidden');
+                    notesContainer.innerHTML = ''; // Clear previously displayed notes
+                    noMessageDiv.classList.add('hidden'); // Hide "no message" text initially
+                    retrieveSecretCodeInput.value = ''; // Clear secret code input
                 }
             }
 
             // --- Event Listeners for Section Navigation Links ---
             showViewMessageLink.addEventListener('click', (e) => {
-                [cite_start]e.preventDefault(); // Prevent default link behavior [cite: 178]
-                [cite_start]showSection('view'); [cite: 178]
+                e.preventDefault(); // Prevent default link behavior
+                showSection('view');
             });
             showWriteMessageLink.addEventListener('click', (e) => {
-                [cite_start]e.preventDefault(); // Prevent default link behavior [cite: 179]
-                [cite_start]showSection('write'); [cite: 179]
-            [cite_start]}); [cite: 180]
+                e.preventDefault(); // Prevent default link behavior
+                showSection('write');
+            });
 
             // --- Logic for Writing/Storing New Note with Firebase ---
             messageForm.addEventListener('submit', async (event) => {
-                [cite_start]event.preventDefault(); // Prevent default form submission [cite: 180]
+                event.preventDefault(); // Prevent default form submission
 
-                statusMessageDiv.classList.remove('visible'); [cite_start]// Hide any previous status [cite: 181]
+                statusMessageDiv.classList.remove('visible'); // Hide any previous status
 
-                [cite_start]const secretCode = secretCodeInput.value.trim().toLowerCase(); [cite: 181]
-                [cite_start]const messageContent = messageContentInput.value.trim(); [cite: 181]
-                [cite_start]const deliveryDate = deliveryDateInput.value; [cite: 181]
-                const now = new Date(); [cite_start]// Current date for validation [cite: 181]
+                const secretCode = secretCodeInput.value.trim().toLowerCase();
+                const messageContent = messageContentInput.value.trim();
+                const deliveryDate = deliveryDateInput.value;
+                const now = new Date(); // Current date for validation
 
                 // Input validation
                 if (!secretCode || !messageContent) {
-                    [cite_start]alert('Please ensure both the Secret Code and Your Note fields are filled.'); [cite: 182]
-                    [cite_start]return; [cite: 182]
+                    alert('Please ensure both the Secret Code and Your Note fields are filled.');
+                    return;
                 }
                 if (!/^[a-zA-Z0-9]+$/.test(secretCode)) {
-                    [cite_start]alert('Your Secret Code should only contain letters and numbers.'); [cite: 183]
-                    [cite_start]return; [cite: 184]
+                    alert('Your Secret Code should only contain letters and numbers.');
+                    return;
                 }
                 if (deliveryDate) { 
-                    const chosenDate = new Date(deliveryDate + 'T00:00:00'); [cite_start]// Ensure date comparison is consistent [cite: 185]
+                    const chosenDate = new Date(deliveryDate + 'T00:00:00'); // Ensure date comparison is consistent
                     if (chosenDate < new Date(now.getFullYear(), now.getMonth(), now.getDate())) { 
-                        [cite_start]alert('The Unveiling Date cannot be in the past.'); [cite: 186]
-                        [cite_start]return; [cite: 186]
+                        alert('The Unveiling Date cannot be in the past.');
+                        return;
                     }
                 }
 
                 try {
                     // Create or update the parent document for the secret code
-                    [cite_start]const secretCodeDocRef = doc(db, "messages", secretCode); [cite: 187]
-                    [cite_start]await setDoc(secretCodeDocRef, { lastUpdated: new Date().toISOString() }, { merge: true }); [cite: 188]
+                    const secretCodeDocRef = doc(db, "messages", secretCode);
+                    await setDoc(secretCodeDocRef, { lastUpdated: new Date().toISOString() }, { merge: true });
 
                     // Prepare note data
                     const noteData = {
-                        [cite_start]messageContent: messageContent, [cite: 188]
+                        messageContent: messageContent,
                         // Store deliveryDate as null if not provided
-                        [cite_start]deliveryDate: deliveryDate || null, [cite: 189]
+                        deliveryDate: deliveryDate || null,
                         // Record creation date for sorting/tracking
-                        [cite_start]createdAt: new Date().toISOString().split('T')[0] [cite: 189]
-                    [cite_start]}; [cite: 190]
+                        createdAt: new Date().toISOString().split('T')[0]
+                    };
 
                     // Add the new note to the 'notes' subcollection under the secret code
-                    [cite_start]const notesCollectionRef = collection(db, "messages", secretCode, "notes"); [cite: 191]
-                    [cite_start]await addDoc(notesCollectionRef, noteData); [cite: 191]
+                    const notesCollectionRef = collection(db, "messages", secretCode, "notes");
+                    await addDoc(notesCollectionRef, noteData);
 
                     // Display success message and clear form
-                    [cite_start]showSaveStatus('Your note has been successfully saved!'); [cite: 192]
-                    [cite_start]messageForm.reset(); [cite: 192]
+                    showSaveStatus('Your note has been successfully saved!');
+                    messageForm.reset();
                     // Reset min date after successful submission
-                    [cite_start]const today = new Date(); [cite: 193]
-                    [cite_start]const minDate = today.toISOString().split('T')[0]; [cite: 193]
-                    [cite_start]deliveryDateInput.setAttribute('min', minDate); [cite: 193]
+                    const today = new Date();
+                    const minDate = today.toISOString().split('T')[0];
+                    deliveryDateInput.setAttribute('min', minDate);
 
                 } catch (error) {
-                    [cite_start]console.error('Error saving note:', error); [cite: 194]
-                    [cite_start]alert('An unexpected error occurred while saving your note. Please try again later.'); [cite: 195]
+                    console.error('Error saving note:', error);
+                    alert('An unexpected error occurred while saving your note. Please try again later.');
                 }
-            [cite_start]}); [cite: 196]
+            });
 
             // --- Logic for Retrieving and Displaying Multiple Notes from Firebase (with Easter Egg) ---
             retrieveMessageForm.addEventListener('submit', async (event) => {
-                [cite_start]event.preventDefault(); // Prevent default form submission [cite: 196]
+                event.preventDefault(); // Prevent default form submission
 
                 // Clear previous notes and messages
-                [cite_start]notesContainer.innerHTML = ''; [cite: 197]
-                [cite_start]noMessageDiv.classList.add('hidden'); [cite: 197]
-                statusMessageDiv.classList.remove('visible'); [cite_start]// Hide any previous status [cite: 197]
+                notesContainer.innerHTML = '';
+                noMessageDiv.classList.add('hidden');
+                statusMessageDiv.classList.remove('visible'); // Hide any previous status
 
-                [cite_start]const retrieveCode = retrieveSecretCodeInput.value.trim().toLowerCase(); [cite: 197]
+                const retrieveCode = retrieveSecretCodeInput.value.trim().toLowerCase();
 
                 // Input validation for retrieval
                 if (!retrieveCode) {
-                    [cite_start]noMessageDiv.textContent = "Please enter your Secret Code to retrieve notes."; [cite: 198]
-                    [cite_start]noMessageDiv.classList.remove('hidden'); [cite: 198]
-                    [cite_start]return; [cite: 198]
+                    noMessageDiv.textContent = "Please enter your Secret Code to retrieve notes.";
+                    noMessageDiv.classList.remove('hidden');
+                    return;
                 }
                 if (!/^[a-zA-Z0-9]+$/.test(retrieveCode)) {
-                    [cite_start]noMessageDiv.textContent = 'The Secret Code should only contain letters and numbers.'; [cite: 199]
-                    [cite_start]noMessageDiv.classList.remove('hidden'); [cite: 199]
-                    [cite_start]return; [cite: 200]
+                    noMessageDiv.textContent = 'The Secret Code should only contain letters and numbers.';
+                    noMessageDiv.classList.remove('hidden');
+                    return;
                 }
 
                 // --- EASTER EGG IMPLEMENTATION ---
@@ -732,78 +813,78 @@
 
                 try {
                     // Check if the parent secret code document exists first
-                    [cite_start]const secretCodeDocRef = doc(db, "messages", retrieveCode); [cite: 201]
-                    [cite_start]const secretCodeDocSnap = await getDoc(secretCodeDocRef); [cite: 201]
+                    const secretCodeDocRef = doc(db, "messages", retrieveCode);
+                    const secretCodeDocSnap = await getDoc(secretCodeDocRef);
 
                     if (!secretCodeDocSnap.exists()) {
-                        [cite_start]noMessageDiv.textContent = "No notes are associated with this Secret Code. Perhaps you'd like to create one?"; [cite: 202]
-                        [cite_start]noMessageDiv.classList.remove('hidden'); [cite: 202]
-                        [cite_start]return; [cite: 202]
+                        noMessageDiv.textContent = "No notes are associated with this Secret Code. Perhaps you'd like to create one?";
+                        noMessageDiv.classList.remove('hidden');
+                        return;
                     }
 
                     // Query the 'notes' subcollection for the given secret code
-                    [cite_start]const notesCollectionRef = collection(db, "messages", retrieveCode, "notes"); [cite: 203]
-                    [cite_start]const q = query(notesCollectionRef); [cite: 203]
-                    [cite_start]const querySnapshot = await getDocs(q); [cite: 203]
+                    const notesCollectionRef = collection(db, "messages", retrieveCode, "notes");
+                    const q = query(notesCollectionRef);
+                    const querySnapshot = await getDocs(q);
 
-                    [cite_start]const notes = []; [cite: 204]
+                    const notes = [];
                     querySnapshot.forEach((doc) => {
-                        [cite_start]notes.push({ id: doc.id, ...doc.data() }); [cite: 205]
+                        notes.push({ id: doc.id, ...doc.data() });
                     });
 
                     if (notes.length > 0) {
-                        [cite_start]let hasVisibleNotes = false; [cite: 206]
-                        [cite_start]const now = new Date(); [cite: 206]
+                        let hasVisibleNotes = false;
+                        const now = new Date();
                         // Sort notes by creation date, most recent first
-                        [cite_start]notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); [cite: 207]
+                        notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
                         notes.forEach(note => {
-                            [cite_start]const deliveryDate = note.deliveryDate ? new Date(note.deliveryDate + 'T00:00:00') : null; // Ensure consistency [cite: 207]
-                            [cite_start]const createdAtDate = new Date(note.createdAt).toLocaleDateString(); [cite: 208]
+                            const deliveryDate = note.deliveryDate ? new Date(note.deliveryDate + 'T00:00:00') : null; // Ensure consistency
+                            const createdAtDate = new Date(note.createdAt).toLocaleDateString();
 
                             // Only display notes that are ready to be unveiled
                             if (!deliveryDate || now >= deliveryDate) {
-                                [cite_start]hasVisibleNotes = true; [cite: 208]
-                                [cite_start]const noteCard = document.createElement('div'); [cite: 209]
-                                [cite_start]noteCard.classList.add('note-card'); [cite: 209]
+                                hasVisibleNotes = true;
+                                const noteCard = document.createElement('div');
+                                noteCard.classList.add('note-card');
 
-                                [cite_start]const messageP = document.createElement('p'); [cite: 210]
-                                [cite_start]messageP.classList.add('message-content'); [cite: 210]
+                                const messageP = document.createElement('p');
+                                messageP.classList.add('message-content');
                                 // Use innerHTML and replace newlines with <br> for proper formatting
-                                [cite_start]messageP.innerHTML = note.messageContent.replace(/\n/g, '<br>'); [cite: 211]
+                                messageP.innerHTML = note.messageContent.replace(/\n/g, '<br>');
                                 
-                                [cite_start]const dateInfoP = document.createElement('p'); [cite: 212]
-                                [cite_start]dateInfoP.classList.add('note-date-info'); [cite: 212]
-                                [cite_start]dateInfoP.textContent = `Created on: ${createdAtDate}`; [cite: 212]
+                                const dateInfoP = document.createElement('p');
+                                dateInfoP.classList.add('note-date-info');
+                                dateInfoP.textContent = `Created on: ${createdAtDate}`;
                                 
-                                [cite_start]noteCard.appendChild(messageP); [cite: 212]
-                                [cite_start]noteCard.appendChild(dateInfoP); [cite: 212]
-                                [cite_start]notesContainer.appendChild(noteCard); [cite: 212]
+                                noteCard.appendChild(messageP);
+                                noteCard.appendChild(dateInfoP);
+                                notesContainer.appendChild(noteCard);
                             }
-                        [cite_start]}); [cite: 213]
+                        });
                         // If notes were found but none are yet ready for viewing
                         if (!hasVisibleNotes && notes.length > 0) { 
-                             [cite_start]noMessageDiv.textContent = "All your notes are patiently awaiting their scheduled unveiling dates. None are ready for viewing just yet!"; [cite: 214]
-                             [cite_start]noMessageDiv.classList.remove('hidden'); [cite: 214]
+                             noMessageDiv.textContent = "All your notes are patiently awaiting their scheduled unveiling dates. None are ready for viewing just yet!";
+                             noMessageDiv.classList.remove('hidden');
                         } else if (notes.length === 0) { 
                             // This case should ideally be caught by secretCodeDocSnap.exists(), but as a fallback
-                            [cite_start]noMessageDiv.textContent = "No notes were found for this Secret Code. Perhaps you'd like to create one?"; [cite: 215]
-                            [cite_start]noMessageDiv.classList.remove('hidden'); [cite: 215]
+                            noMessageDiv.textContent = "No notes were found for this Secret Code. Perhaps you'd like to create one?";
+                            noMessageDiv.classList.remove('hidden');
                         }
 
                     } else {
                         // If the secret code exists, but no notes are under it
-                        [cite_start]noMessageDiv.textContent = "No notes were found for this Secret Code. Perhaps you'd like to create one?"; [cite: 216]
-                        [cite_start]noMessageDiv.classList.remove('hidden'); [cite: 216]
+                        noMessageDiv.textContent = "No notes were found for this Secret Code. Perhaps you'd like to create one?";
+                        noMessageDiv.classList.remove('hidden');
                     }
                 } catch (error) {
-                    [cite_start]console.error('Error retrieving notes:', error); [cite: 217]
-                    [cite_start]noMessageDiv.textContent = "An unexpected error occurred while retrieving your notes. Please check your connection or try again later."; [cite: 218]
-                    [cite_start]noMessageDiv.classList.remove('hidden'); [cite: 218]
+                    console.error('Error retrieving notes:', error);
+                    noMessageDiv.textContent = "An unexpected error occurred while retrieving your notes. Please check your connection or try again later.";
+                    noMessageDiv.classList.remove('hidden');
                 }
-            [cite_start]}); [cite: 219]
+            });
             // --- Initialize (Show write section by default) ---
-            [cite_start]showSection('write'); [cite: 220]
-        [cite_start]}); [cite: 220]
+            showSection('write');
+        });
     </script>
 </body>
 </html>
