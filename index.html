@@ -21,6 +21,7 @@
             --shadow-elevated: 0 10px 30px rgba(0, 0, 0, 0.25);
             --success-color: #2ecc71;
             --error-color: #e74c3c;
+            --pending-color: #f39c12; /* Orange for pending status */
         }
 
         body {
@@ -143,7 +144,8 @@
         }
 
         textarea,
-        input[type="date"] {
+        input[type="date"],
+        input[type="text"] { /* Added text input for secret code */
             width: calc(100% - 32px); /* Adjust for padding */
             padding: 16px; /* Larger padding */
             border: 2px solid var(--secondary-accent); /* Thicker border with teal accent */
@@ -158,7 +160,8 @@
         }
 
         textarea:focus,
-        input[type="date"]:focus {
+        input[type="date"]:focus,
+        input[type="text"]:focus { /* Added text input for secret code */
             border-color: var(--primary-accent);
             box-shadow: 0 0 0 5px rgba(255, 107, 107, 0.4); /* Vibrant glow on focus */
             background-color: #fff;
@@ -287,40 +290,40 @@
             min-height: 200px; /* Ensure height for content */
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start; /* Align to top for multiple notes */
             align-items: center;
+            gap: 20px; /* Space between notes */
         }
 
-        #revealedMessage {
+        .note-card {
             background-color: var(--card-bg);
             border: 1px solid var(--secondary-accent);
-            border-radius: 18px; /* More rounded */
-            padding: 30px; /* More padding */
+            border-radius: 18px;
+            padding: 30px;
             text-align: left;
             width: 100%;
             box-sizing: border-box;
-            margin-top: 20px;
             box-shadow: var(--shadow-subtle);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            transform-style: preserve-3d; /* For flip animation */
+            transform-style: preserve-3d;
             perspective: 1000px;
+            max-height: 400px; /* Max height for scrolling */
+            overflow-y: auto; /* Enable vertical scrolling */
+            opacity: 0; /* For animation */
+            transform: translateY(20px); /* For animation */
+            animation: fadeInLiftCard 0.6s forwards ease-out; /* Note-specific animation */
         }
 
-        /* Pop-out/Flip animation for revealed message */
-        .message-revealed {
-            animation: cardPopOut 1s forwards cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        @keyframes fadeInLiftCard {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        @keyframes cardPopOut {
-            0% { transform: scale(0.8) rotateY(90deg); opacity: 0; }
-            50% { transform: scale(1.05) rotateY(-10deg); opacity: 1; }
-            100% { transform: scale(1) rotateY(0deg); opacity: 1; }
-        }
-
-        #revealedMessage p {
-            margin-bottom: 12px;
-            color: var(--dark-text);
-            font-weight: 600;
+        .note-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: var(--shadow-elevated);
         }
 
         .message-content {
@@ -337,12 +340,31 @@
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        .revealed-date {
+        .note-date-info {
             font-size: 0.9em;
             color: var(--light-text);
             text-align: right;
             margin-top: 20px;
             font-style: italic;
+        }
+
+        .note-status {
+            font-weight: bold;
+            text-align: center;
+            padding: 5px 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .note-status.unveiled {
+            background-color: rgba(46, 204, 113, 0.1); /* Greenish tint */
+            color: var(--success-color);
+        }
+
+        .note-status.pending {
+            background-color: rgba(243, 156, 18, 0.1); /* Orangish tint */
+            color: var(--pending-color);
         }
 
         /* --- Easter Egg: Particle/Sparkle Effect (more subtle) --- */
@@ -434,7 +456,7 @@
                 font-size: 1.1em;
                 padding: 15px 25px;
             }
-            textarea, input[type="date"] {
+            textarea, input[type="date"], input[type="text"] {
                 font-size: 1em;
                 padding: 14px;
             }
@@ -463,7 +485,7 @@
                 font-size: 1em;
                 padding: 12px 20px;
             }
-            textarea, input[type="date"] {
+            textarea, input[type="date"], input[type="text"] {
                 font-size: 0.95em;
                 padding: 12px;
             }
@@ -481,65 +503,96 @@
         <h2 id="timeGreeting" class="greeting"></h2>
 
         <div id="writeMessageSection">
-            <h1>Capture a Thought, Seal a Memory</h1>
-            <p>Ready to send a message to your future self, or perhaps a special note for someone to discover later? Just type your thoughts below.</p>
-            <p class="instruction-text">It will patiently wait here, stored only in *this browser* on *this device*, to be unveiled on the exact date you choose. No emails, no servers, just pure future connection!</p>
+            <h1>Create a New Timeless Note</h1>
+            <p>Ready to jot down a thought, a goal, or a sweet message? This note will be securely stored in the cloud, linked to your unique Secret Code.</p>
+            <p class="instruction-text">You can choose a future date for it to "unveil," or leave the date blank if you want it immediately viewable!</p>
 
             <form id="messageForm">
-                <label for="messageContent">Your Precious Words:</label>
-                <textarea id="messageContent" rows="10" placeholder="Dear Future You, on this day I felt... What are my dreams? What promises do I make?"></textarea>
+                <label for="secretCodeInput">Your Personal Secret Code:</label>
+                <input type="text" id="secretCodeInput" placeholder="e.g., MyMemoryBox or AlphaOmega7 (Letters and Numbers Only!)" required pattern="[a-zA-Z0-9]+" title="Only letters and numbers allowed. No spaces or special characters. This is your key!">
 
-                <label for="deliveryDate">Choose the Unveiling Date:</label>
-                <input type="date" id="deliveryDate" required>
+                <label for="messageContent">Your Precious Words for the Note:</label>
+                <textarea id="messageContent" rows="10" placeholder="Dear Future Self, on this day I felt... What are my dreams? What promises do I make?"></textarea>
 
-                <button type="submit">Seal Your Message in Time</button>
+                <label for="deliveryDate">Optional: Choose an Unveiling Date (leave blank for immediate access):</label>
+                <input type="date" id="deliveryDate"> <button type="submit">Seal Your Note in Time</button>
             </form>
 
             <div id="statusMessage" class="hidden"></div>
-            <p class="toggle-link">Already sent a message to the future? <a href="#" id="showViewMessage">Open the Time Capsule!</a></p>
+            <p class="toggle-link">Want to read your past notes? <a href="#" id="showViewMessage">Open Your Time Capsule!</a></p>
         </div>
 
         <div id="viewMessageSection" class="hidden">
-            <h1>Your Moment of Revelation</h1>
+            <h1>Your Collection of Notes</h1>
+            <p class="instruction-text">Enter your **Secret Code** below to unlock all your notes from the past!</p>
+            <form id="retrieveMessageForm">
+                <label for="retrieveSecretCodeInput">Enter Your Secret Code:</label>
+                <input type="text" id="retrieveSecretCodeInput" placeholder="Your Secret Code" required pattern="[a-zA-Z0-9]+" title="Only letters and numbers allowed. No spaces or special characters.">
+                <button type="submit">Reveal My Notes</button>
+            </form>
+
             <div id="messageDisplayArea">
-                <p id="noMessage" class="hidden">There isn't a message waiting here just yet, or the moment of revelation hasn't quite arrived. Perhaps it's time to create a new one?</p>
-                <div id="revealedMessage" class="hidden">
-                    <p><strong>A cherished whisper from your past:</strong></p>
-                    <div class="message-content" id="displayedContent"></div>
-                    <p class="revealed-date">Originally sealed on: <span id="sealedDate"></span></p>
-                </div>
+                <p id="noMessage" class="hidden">No notes found for this Secret Code, or the moment of revelation for some hasn't arrived. Try creating one!</p>
+                <div id="notesContainer"></div> 
                 <div id="easterEggMessage" class="hidden message-content">
                     <p style="text-align: center; margin-bottom: 10px;">✨ A special note from the universe just for you! ✨</p>
                     <p id="easterEggContent" style="font-style: italic;"></p>
                 </div>
             </div>
-            <p class="toggle-link"><a href="#" id="showWriteMessage">Compose a new message.</a></p>
+            <p class="toggle-link"><a href="#" id="showWriteMessage">Compose a new note.</a></p>
         </div>
     </div>
 
     <div id="confettiContainer" class="confetti-container"></div>
 
-    <script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getFirestore, doc, setDoc, collection, addDoc, query, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+        // Note: getAnalytics is typically imported if you specifically use it for logging events,
+        // but for basic Firestore interaction, it's not strictly necessary in this script.
+        // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDSDP55e5_yeoNJNX9Ix6RprkHnO3xsbNA",
+            authDomain: "timelessnotesapp.firebaseapp.com",
+            projectId: "timelessnotesapp",
+            storageBucket: "timelessnotesapp.firebasestorage.app",
+            messagingSenderId: "709543240404",
+            appId: "1:709543240404:web:fb1c269ddbf6cbcf02d141",
+            measurementId: "G-Z0ML78V61B"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        // If you were using getAnalytics directly in this script, you would uncomment this:
+        // const analytics = getAnalytics(app); 
+
+
         document.addEventListener('DOMContentLoaded', () => {
             // --- DOM Elements ---
             const timeGreeting = document.getElementById('timeGreeting');
             const writeMessageSection = document.getElementById('writeMessageSection');
             const messageForm = document.getElementById('messageForm');
             const statusMessageDiv = document.getElementById('statusMessage');
+            const secretCodeInput = document.getElementById('secretCodeInput');
+            const messageContentInput = document.getElementById('messageContent');
             const deliveryDateInput = document.getElementById('deliveryDate');
             const showViewMessageLink = document.getElementById('showViewMessage');
             const particleContainer = document.getElementById('particle-container');
 
             const viewMessageSection = document.getElementById('viewMessageSection');
+            const retrieveMessageForm = document.getElementById('retrieveMessageForm');
+            const retrieveSecretCodeInput = document.getElementById('retrieveSecretCodeInput');
             const noMessageDiv = document.getElementById('noMessage');
-            const revealedMessageDiv = document.getElementById('revealedMessage');
-            const displayedContent = document.getElementById('displayedContent');
-            const sealedDateSpan = document.getElementById('sealedDate'); // Renamed for clarity
-            const showWriteMessageLink = document.getElementById('showWriteMessage');
-
+            const notesContainer = document.getElementById('notesContainer'); // Container for multiple notes
             const easterEggMessageDiv = document.getElementById('easterEggMessage');
             const easterEggContent = document.getElementById('easterEggContent');
             const confettiContainer = document.getElementById('confettiContainer');
+            const showWriteMessageLink = document.getElementById('showWriteMessage');
 
             // --- Time-Based Greeting ---
             function setTimeGreeting() {
@@ -562,45 +615,46 @@
                 particle.classList.add('particle');
                 particleContainer.appendChild(particle);
 
-                const size = Math.random() * 8 + 2; // Size between 2px and 10px
+                const size = Math.random() * 8 + 2;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 particle.style.left = `${Math.random() * 100}vw`;
                 particle.style.top = `${Math.random() * 100}vh`;
-                particle.style.animationDuration = `${Math.random() * 5 + 5}s`; // 5-10s animation
-                particle.style.animationDelay = `${Math.random() * 3}s`; // Random delay
+                particle.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                particle.style.animationDelay = `${Math.random() * 3}s`;
 
                 particle.addEventListener('animationend', () => {
                     particle.remove();
                 });
             }
-
-            // Create particles every X ms
-            setInterval(createParticle, 500); // Adjust frequency
-
-            // Initial burst of particles
+            setInterval(createParticle, 500);
             for (let i = 0; i < 50; i++) {
                 createParticle();
             }
 
-
-            // --- Initial Setup for Date Input (tomorrow onwards) ---
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            const minDate = tomorrow.toISOString().split('T')[0];
+            // --- Initial Setup for Date Input (today onwards) ---
+            const today = new Date(); // Can now be today if optional
+            const minDate = today.toISOString().split('T')[0];
             deliveryDateInput.setAttribute('min', minDate);
 
             // --- Section Toggling Functions ---
             function showSection(sectionId) {
                 writeMessageSection.classList.add('hidden');
                 viewMessageSection.classList.add('hidden');
-                statusMessageDiv.classList.remove('visible'); // Hide status when switching
+                statusMessageDiv.classList.remove('visible');
 
                 if (sectionId === 'write') {
                     writeMessageSection.classList.remove('hidden');
+                    messageForm.reset(); // Clear form when switching to write
+                    statusMessageDiv.classList.remove('visible'); // Clear status
+                    deliveryDateInput.setAttribute('min', minDate); // Reset min date
                 } else if (sectionId === 'view') {
                     viewMessageSection.classList.remove('hidden');
-                    loadAndDisplayMessage(); // Refresh message display when view section is shown
+                    // Clear previous notes and status
+                    notesContainer.innerHTML = '';
+                    noMessageDiv.classList.add('hidden');
+                    easterEggMessageDiv.classList.add('hidden');
+                    retrieveSecretCodeInput.value = ''; // Clear secret code input
                 }
             }
 
@@ -615,7 +669,7 @@
                 showSection('write');
             });
 
-            // --- Button Ripple Effect (added to all buttons) ---
+            // --- Button Ripple Effect ---
             const buttons = document.querySelectorAll('button');
             buttons.forEach(button => {
                 button.addEventListener('click', function(e) {
@@ -637,44 +691,60 @@
                 });
             });
 
-
-            // --- Logic for Writing/Storing Message ---
-            messageForm.addEventListener('submit', (event) => {
+            // --- Logic for Writing/Storing New Note with Firebase ---
+            messageForm.addEventListener('submit', async (event) => {
                 event.preventDefault();
 
                 statusMessageDiv.classList.remove('visible', 'success', 'error');
 
-                const messageContent = document.getElementById('messageContent').value.trim();
-                const deliveryDate = document.getElementById('deliveryDate').value;
+                const secretCode = secretCodeInput.value.trim().toLowerCase();
+                const messageContent = messageContentInput.value.trim();
+                const deliveryDate = deliveryDateInput.value; // Can be empty if optional
 
-                if (!messageContent || !deliveryDate) {
-                    showStatus('Please write your message and choose the date you want it revealed.', 'error');
+                if (!secretCode || !messageContent) {
+                    showStatus('Please provide your Secret Code and write your note!', 'error');
                     return;
                 }
 
-                const chosenDate = new Date(deliveryDate + 'T00:00:00'); // Consistent comparison
-                const now = new Date();
-
-                if (chosenDate < now) {
-                    showStatus('The unveiling date must be in the future. Let\'s keep it a delightful surprise!', 'error');
+                if (!/^[a-zA-Z0-9]+$/.test(secretCode)) {
+                    showStatus('Secret Code can only contain letters and numbers (no spaces or special characters).', 'error');
                     return;
+                }
+
+                if (deliveryDate) { // Only validate if a date is provided
+                    const chosenDate = new Date(deliveryDate + 'T00:00:00');
+                    const now = new Date();
+                    // Allow today's date if selected, but not past dates
+                    if (chosenDate < new Date(now.getFullYear(), now.getMonth(), now.getDate())) { // Compare just dates, not time
+                        showStatus('The unveiling date must be today or in the future. Let\'s keep it a delightful surprise!', 'error');
+                        return;
+                    }
                 }
 
                 try {
-                    const messageToStore = {
-                        messageContent: messageContent,
-                        deliveryDate: deliveryDate,
-                        // Store the date it was created for "sealed on" display
-                        createdAt: new Date().toISOString().split('T')[0] 
-                    };
-                    localStorage.setItem('futureMessage', JSON.stringify(messageToStore));
+                    // First, ensure the parent secret code document exists. Firestore will create it if not.
+                    // This is mainly to satisfy security rules on the parent document.
+                    const secretCodeDocRef = doc(db, "messages", secretCode);
+                    await setDoc(secretCodeDocRef, { lastUpdated: new Date().toISOString() }, { merge: true });
 
-                    showStatus('Your message is now sealed in time! It will unveil itself on your chosen date. Come back to this same browser to discover it.', 'success');
+                    const noteData = {
+                        messageContent: messageContent,
+                        deliveryDate: deliveryDate || null, // Store null if no date provided
+                        createdAt: new Date().toISOString().split('T')[0] // Store creation date in YYYY-MM-DD format
+                    };
+
+                    // Get a reference to the specific secret code's notes subcollection
+                    const notesCollectionRef = collection(db, "messages", secretCode, "notes");
+                    
+                    // Add a new document with an auto-generated ID to the notes subcollection
+                    await addDoc(notesCollectionRef, noteData);
+
+                    showStatus('Your note is now sealed in time in the cloud! Use your Secret Code to retrieve all your notes.', 'success');
                     messageForm.reset();
-                    deliveryDateInput.setAttribute('min', minDate);
+                    deliveryDateInput.setAttribute('min', minDate); // Reset min date
                 } catch (error) {
-                    console.error('Error storing message:', error);
-                    showStatus('Oh no! Could not seal your message. Your browser\'s storage might be full or disabled. Try again?', 'error');
+                    console.error('Error sealing note to Firebase:', error);
+                    showStatus('Oh no! Could not seal your note to the cloud. Please check your Secret Code or try again later. Error: ' + error.message, 'error');
                 }
             });
 
@@ -683,54 +753,140 @@
                 statusMessageDiv.className = `status visible ${type}`;
             }
 
-            // --- Logic for Loading and Displaying Message ---
-            function loadAndDisplayMessage() {
-                noMessageDiv.classList.add('hidden');
-                revealedMessageDiv.classList.add('hidden', 'message-revealed'); // Hide and remove animation class initially
-                easterEggMessageDiv.classList.add('hidden');
+            // --- Logic for Retrieving and Displaying Multiple Notes from Firebase ---
+            retrieveMessageForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
 
-                const storedMessageJSON = localStorage.getItem('futureMessage');
-                const now = new Date();
-                
-                let isEasterEggDay = false;
-                // Check for Valentine's Day (Feb 14) or October 26th
-                if ((now.getMonth() === 1 && now.getDate() === 14) || (now.getMonth() === 9 && now.getDate() === 26)) {
-                    isEasterEggDay = true;
+                notesContainer.innerHTML = ''; // Clear previous notes
+                noMessageDiv.classList.add('hidden');
+                easterEggMessageDiv.classList.add('hidden');
+                statusMessageDiv.classList.remove('visible'); // Clear status from write form
+
+                const retrieveCode = retrieveSecretCodeInput.value.trim().toLowerCase();
+
+                if (!retrieveCode) {
+                    noMessageDiv.textContent = "Please enter your Secret Code to retrieve your notes.";
+                    noMessageDiv.classList.remove('hidden');
+                    return;
                 }
 
-                if (storedMessageJSON) {
-                    const storedMessage = JSON.parse(storedMessageJSON);
-                    const deliveryDate = new Date(storedMessage.deliveryDate + 'T00:00:00');
-                    const createdAtDate = storedMessage.createdAt ? new Date(storedMessage.createdAt).toLocaleDateString() : 'An earlier time';
+                if (!/^[a-zA-Z0-9]+$/.test(retrieveCode)) {
+                    noMessageDiv.textContent = 'Secret Code can only contain letters and numbers (no spaces or special characters).';
+                    noMessageDiv.classList.remove('hidden');
+                    return;
+                }
 
+                try {
+                    // Check if the parent secret code document exists first
+                    const secretCodeDocRef = doc(db, "messages", retrieveCode);
+                    const secretCodeDocSnap = await getDoc(secretCodeDocRef);
 
-                    if (now >= deliveryDate) {
-                        // Message is ready to be revealed!
-                        displayedContent.innerHTML = storedMessage.messageContent.replace(/\n/g, '<br>');
-                        sealedDateSpan.textContent = createdAtDate; // Display creation date
-                        revealedMessageDiv.classList.remove('hidden');
-                        revealedMessageDiv.classList.add('message-revealed'); // Trigger animation
+                    if (!secretCodeDocSnap.exists()) {
+                        noMessageDiv.textContent = "No notes found for this Secret Code. Double-check your code or start by creating your first note!";
+                        noMessageDiv.classList.remove('hidden');
+                        return;
+                    }
+
+                    // Get a reference to the specific secret code's notes subcollection
+                    const notesCollectionRef = collection(db, "messages", retrieveCode, "notes");
+                    const q = query(notesCollectionRef); 
+                    const querySnapshot = await getDocs(q);
+
+                    const notes = [];
+                    querySnapshot.forEach((doc) => {
+                        notes.push({ id: doc.id, ...doc.data() }); // Include doc.id for potential future use
+                    });
+
+                    if (notes.length > 0) {
+                        let hasVisibleNotes = false;
+                        const now = new Date();
+                        // Sort by creation date, newest first
+                        notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); 
+
+                        notes.forEach(note => {
+                            const deliveryDate = note.deliveryDate ? new Date(note.deliveryDate + 'T00:00:00') : null;
+                            const createdAtDate = new Date(note.createdAt).toLocaleDateString();
+
+                            const noteCard = document.createElement('div');
+                            noteCard.classList.add('note-card');
+
+                            let noteStatusText = '';
+                            let noteStatusClass = '';
+
+                            if (!deliveryDate || now >= deliveryDate) {
+                                hasVisibleNotes = true;
+                                noteStatusText = 'Status: Unveiled!';
+                                noteStatusClass = 'unveiled';
+                            } else {
+                                noteStatusText = `Status: Pending - Unveils on ${new Date(note.deliveryDate).toLocaleDateString()}`;
+                                noteStatusClass = 'pending';
+                                // Optionally, grey out or visually distinguish pending notes
+                                // noteCard.style.opacity = '0.6';
+                                // noteCard.style.filter = 'grayscale(50%)';
+                            }
+
+                            const statusDiv = document.createElement('div');
+                            statusDiv.classList.add('note-status', noteStatusClass);
+                            statusDiv.textContent = noteStatusText;
+                            noteCard.appendChild(statusDiv);
+
+                            const messageP = document.createElement('p');
+                            messageP.innerHTML = '<strong>Your Note:</strong>';
+                            noteCard.appendChild(messageP);
+
+                            const contentDiv = document.createElement('div');
+                            contentDiv.classList.add('message-content');
+                            contentDiv.innerHTML = note.messageContent.replace(/\n/g, '<br>');
+                            noteCard.appendChild(contentDiv);
+
+                            const dateInfoP = document.createElement('p');
+                            dateInfoP.classList.add('note-date-info');
+                            dateInfoP.textContent = `Sealed on: ${createdAtDate}`;
+                            noteCard.appendChild(dateInfoP);
+
+                            notesContainer.appendChild(noteCard);
+                        });
+
+                        // Easter Egg for specific dates, applied once for the collection
+                        let isEasterEggDay = false;
+                        // Checking for October 26th (your Mammam's birthday!)
+                        const nowForEasterEgg = new Date();
+                        if (nowForEasterEgg.getMonth() === 9 && nowForEasterEgg.getDate() === 26) { 
+                            isEasterEggDay = true;
+                        }
+                        // Also checking for Valentine's Day
+                        if (nowForEasterEgg.getMonth() === 1 && nowForEasterEgg.getDate() === 14) { 
+                            isEasterEggDay = true;
+                        }
 
                         if (isEasterEggDay) {
                             triggerEasterEgg("You are an absolutely wonderful person, radiating kindness and light. May your journey be filled with joy, discovery, and every happiness you deserve!");
                         }
+
+                        if (!hasVisibleNotes && notes.length > 0) { // All notes are pending
+                             noMessageDiv.textContent = "All your notes are waiting for their special unveiling dates. Nothing's ready to be revealed just yet!";
+                             noMessageDiv.classList.remove('hidden');
+                        } else if (notes.length === 0) { // No notes at all for this code (should be caught by parent doc check above)
+                            noMessageDiv.textContent = "No notes found for this Secret Code. Double-check your code or start by creating your first note!";
+                            noMessageDiv.classList.remove('hidden');
+                        }
+
                     } else {
-                        // Not yet time
-                        noMessageDiv.textContent = `Your message is patiently waiting to be unveiled on ${new Date(storedMessage.deliveryDate).toLocaleDateString()}. The grand moment isn't quite here yet. Stay excited!`;
+                        noMessageDiv.textContent = "No notes found for this Secret Code. Double-check your code or start by creating your first note!";
                         noMessageDiv.classList.remove('hidden');
                     }
-                } else {
-                    // No message stored at all
+                } catch (error) {
+                    console.error('Error retrieving notes from Firebase:', error);
+                    noMessageDiv.textContent = "An error occurred while trying to retrieve your notes. Please check your internet connection or try again later.";
                     noMessageDiv.classList.remove('hidden');
-                    noMessageDiv.textContent = "It looks like there's no message sealed here for you. Why not create a beautiful new one now?";
                 }
-            }
+            });
 
             // --- Easter Egg Function ---
             function triggerEasterEgg(message) {
                 easterEggContent.textContent = message;
                 easterEggMessageDiv.classList.remove('hidden');
-                burstConfetti(40, ['💖', '✨', '🌟', '😊', '💕']); // More variety of emojis
+                burstConfetti(40, ['💖', '✨', '🌟', '😊', '💕']);
             }
 
             // --- Animation: Confetti Burst ---
@@ -740,9 +896,9 @@
                     confetti.classList.add('confetti-item');
                     confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
                     confetti.style.left = `${Math.random() * 100}vw`;
-                    confetti.style.top = `${Math.random() * 50 - 50}px`; // Start above screen
-                    confetti.style.animationDelay = `${Math.random() * 1.5}s`; // Staggered start
-                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`; // Initial random rotation
+                    confetti.style.top = `${Math.random() * 50 - 50}px`;
+                    confetti.style.animationDelay = `${Math.random() * 1.5}s`;
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
                     confettiContainer.appendChild(confetti);
 
                     confetti.addEventListener('animationend', () => {
@@ -753,18 +909,14 @@
 
             // --- Secret Console Message Easter Egg ---
             console.log("%c🌟 Hey there, curious soul! 🌟", "font-size: 1.5em; font-weight: bold; color: #ff6b6b; font-family: 'Pacifico', cursive;");
-            console.log("%cThis little digital time capsule is holding a special secret, just for you, right here in your browser. Pretty magical, isn't it?", "font-size: 1.1em; color: #2c3e50;");
+            console.log("%cThis digital time capsule is holding special secrets, just for you, accessible with your unique code from anywhere. Pretty magical, isn't it?", "font-size: 1.1em; color: #2c3e50;");
             console.log("%cKeep an eye on the calendar... some days hold an extra sprinkle of enchantment! ✨", "font-size: 1.1em; color: #4ecdc4; font-weight: bold; font-style: italic;");
             console.log("%cAnd remember, you're truly wonderful! 😊", "font-size: 1.2em; color: #ff69b4; font-weight: bold;");
+            console.log(`%cToday is July 2, 2025. Mammam's birthday (October 26th) is a special day! 🎉`, "font-size: 1em; color: #6a0dad;");
 
 
             // --- Initial Load Logic ---
-            // Decide which section to show initially
-            if (localStorage.getItem('futureMessage')) {
-                showSection('view'); // If a message exists, show the view section
-            } else {
-                showSection('write'); // Otherwise, show the write section
-            }
+            showSection('write'); // Start on the "write" message section by default
         });
     </script>
 </body>
