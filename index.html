@@ -13,13 +13,15 @@
             --soft-pink-bg: #fce4ec; /* Very light, soft pink for background */
             --warm-pink: #f48fb1; /* A slightly deeper, inviting pink */
             --brown-note: #fdf6e3; /* Creamy, parchment-like background for notes */
-            --dark-brown-text: #4e342e; /* Rich, deep brown for primary text */
-            --light-brown-text: #795548; /* Softer brown for secondary text */
+            --dark-brown-text: #4e342e; /* Rich, deep brown for primary text (used for elements on light bg) */
+            --light-brown-text: #795548; /* Softer brown for secondary text (used for elements on light bg) */
+            --dark-container-bg: #2C1E1B; /* NEW: Deep, dark brown for the main container */
+            --light-text-on-dark: #fefefe; /* NEW: Almost white for text on dark backgrounds */
             --accent-gold: #ffd700; /* Subtle gold for special highlights */
             --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
             --transition-duration: 0.3s;
-            --border-radius-input: 8px; /* Kept for input fields */
+            --border-radius-input: 8px;
         }
 
         /* --- Global & Background Styles --- */
@@ -31,13 +33,13 @@
             align-items: flex-start; /* Align to top for proper scrolling */
             min-height: 100vh;
             margin: 0;
-            color: var(--dark-brown-text);
+            color: var(--dark-brown-text); /* Default text color, will be overridden in .container */
             line-height: 1.7; /* Enhanced line height for readability */
             padding: 30px; /* Generous overall padding */
             box-sizing: border-box;
             overflow-y: auto; /* Enable scrolling for content overflow */
             position: relative; /* Needed for absolute positioned children */
-            /* Background pattern for the entire body - this is already here */
+            /* Background pattern for the entire body */
             background-image: url('https://www.transparenttextures.com/patterns/cream-pixels.png'); 
             background-repeat: repeat;
             background-blend-mode: multiply; /* Blends pattern nicely with background color */
@@ -106,10 +108,12 @@
 
         /* --- Main Container & Overall Layout --- */
         .container {
-            background-color: white;
+            background-color: var(--dark-container-bg); /* NEW: Dark background */
+            background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); /* NEW: Subtle dark texture */
+            background-size: 100px 100px;
+            background-blend-mode: soft-light; /* NEW: Blend mode for the texture */
             padding: 50px; /* More padding for a grander feel */
-            /* More elegant, organic border-radius */
-            border-radius: 35px 70px 45px 80px / 80px 45px 70px 35px;
+            border-radius: 20px; /* NEW: Consistent and simpler border-radius */
             box-shadow: var(--shadow-medium); /* Prominent shadow for depth */
             width: 100%;
             max-width: 750px; /* Wider container for spaciousness */
@@ -119,24 +123,29 @@
             z-index: 1; /* Ensures it's above background animations */
             margin-top: 30px;
             margin-bottom: 30px;
-            border: 1px solid rgba(244, 172, 183, 0.4); /* Subtle pink border */
-            animation: containerEntry 1s ease-out forwards;
-            /* Main card texture - now a more distinct paper texture */
-            background-image: url('https://www.transparenttextures.com/patterns/paper.png'); /* A distinct paper texture */
-            background-blend-mode: overlay; /* Blends nicely with white background */
-            background-size: 200px 200px; /* Adjust size of the pattern to be more visible */
-            background-attachment: scroll; /* Allow texture to scroll with content */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* NEW: Lighter border for dark background */
+            animation: containerEntry 1s ease-out forwards; /* Changed animation */
+            color: var(--light-text-on-dark); /* NEW: Default text color inside container */
         }
 
+        /* Modified containerEntry for rolling animation */
         @keyframes containerEntry {
-            0% { opacity: 0; transform: translateY(30px) scale(0.95); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+            0% {
+                opacity: 0;
+                transform: translateY(50px) rotateX(90deg) scale(0.9); /* Start further down, rotated, slightly smaller */
+                transform-origin: bottom center; /* Pivot from the bottom edge */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg) scale(1); /* End at original position, no rotation */
+                transform-origin: bottom center;
+            }
         }
 
         /* --- Typography --- */
         h1 {
             font-family: 'Playfair Display', serif; /* Elegant heading font */
-            color: var(--dark-brown-text);
+            color: var(--warm-pink); /* NEW: Warm pink for headings on dark bg */
             margin-bottom: 25px;
             font-size: 2.8em; /* Impactful size */
             font-weight: 700;
@@ -163,7 +172,7 @@
 
         p {
             margin-bottom: 25px;
-            color: var(--light-brown-text);
+            color: var(--light-text-on-dark); /* NEW: Light text for paragraphs on dark bg */
             font-size: 1.05em;
             max-width: 650px;
             margin-left: auto;
@@ -173,7 +182,7 @@
         
         .instruction-text {
             font-weight: 600;
-            color: var(--warm-pink);
+            color: var(--warm-pink); /* Should still be warm pink */
             font-size: 1.1em;
         }
 
@@ -189,7 +198,7 @@
         label {
             text-align: left;
             font-weight: 700;
-            color: var(--dark-brown-text);
+            color: var(--light-text-on-dark); /* NEW: Light text for labels on dark bg */
             font-size: 1.05em;
             margin-bottom: 5px;
             width: 100%; /* Ensure label takes full width for alignment */
@@ -206,8 +215,8 @@
             font-size: 1em;
             font-family: 'Gentium Plus', serif; /* Consistent elegant font */
             transition: border-color var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
-            background-color: #fffaf0; /* Slightly off-white for a warm feel */
-            color: var(--dark-brown-text);
+            background-color: #fffaf0; /* Slightly off-white for a warm feel (remains light) */
+            color: var(--dark-brown-text); /* Dark text color for input content */
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
             appearance: none; /* Reset default browser styles */
             -webkit-appearance: none;
@@ -216,7 +225,7 @@
 
         textarea::placeholder,
         input[type="date"]::placeholder,
-        input[type="text"]::placeholder { /* Keep for secret code too */
+        input[type="text"]::placeholder {
             font-family: 'Gentium Plus', serif;
             color: rgba(121, 85, 72, 0.6); /* Muted brown placeholder */
         }
@@ -265,12 +274,13 @@
         /* --- Unique Secret Code Input Style (shorter width, distinct from others) --- */
         #secretCodeInput, #retrieveSecretCodeInput {
             border: 2px solid var(--warm-pink);
-            background-color: #fff8f5; /* Lighter, more distinct background */
+            background-color: #fff8f5; /* Lighter, more distinct background (remains light) */
             box-shadow: inset 0 0 5px rgba(244, 172, 183, 0.3); /* Inner glow */
             padding-left: 45px; /* Space for icon */
             position: relative; /* For the pseudo-element icon */
             max-width: 300px; /* Explicitly shorter width for secret code inputs */
             width: calc(100% - 24px); /* Ensure it scales down for small screens */
+            color: var(--dark-brown-text); /* Dark text for input content */
         }
         #secretCodeInput::before, #retrieveSecretCodeInput::before {
             content: '🔑'; /* Key emoji as icon */
@@ -355,7 +365,7 @@
         .toggle-link {
             margin-top: 30px;
             font-size: 0.95em;
-            color: var(--light-brown-text);
+            color: var(--light-text-on-dark); /* NEW: Light text for general toggle link text */
             display: flex; /* Use flex to center button */
             justify-content: center;
             align-items: center;
@@ -365,7 +375,7 @@
 
         #showViewMessage {
             background-color: var(--accent-gold); /* Gold button */
-            color: var(--dark-brown-text);
+            color: var(--dark-brown-text); /* Dark text on gold */
             padding: 12px 25px;
             border-radius: 25px; /* More rounded, pill shape */
             text-decoration: none;
@@ -403,7 +413,7 @@
         }
 
         .toggle-link a:hover {
-            color: var(--dark-brown-text);
+            color: var(--light-text-on-dark); /* NEW: Light text for hover */
             text-decoration: underline;
         }
 
@@ -420,7 +430,7 @@
         }
 
         .note-card {
-            background-color: var(--brown-note); /* Brown page view */
+            background-color: var(--brown-note); /* Brown page view (remains light for contrast) */
             border: 1px solid #dcd3c5; /* Subtle border for the "page" */
             /* Unique, asymmetrical border-radius for notes */
             border-radius: 15px 50px 20px 40px / 40px 20px 50px 15px;
@@ -473,7 +483,7 @@
             font-family: 'Cormorant Garamond', serif; /* Elegant font for message content */
             font-style: italic; /* A gentle touch */
             font-size: 1.25em; /* Clear and readable */
-            color: var(--dark-brown-text);
+            color: var(--dark-brown-text); /* Dark text for content on light note card */
             line-height: 1.8;
             margin-bottom: 15px;
             border-left: 3px solid var(--warm-pink); /* Subtle accent line */
@@ -483,7 +493,7 @@
 
         .note-date-info {
             font-size: 0.85em;
-            color: var(--light-brown-text);
+            color: var(--light-brown-text); /* Lighter brown for date info */
             text-align: right;
             margin-top: 10px;
             font-style: italic;
@@ -497,7 +507,7 @@
             .container {
                 padding: 35px;
                 margin: 15px auto;
-                 border-radius: 25px 50px 35px 60px / 60px 35px 50px 25px; /* Adjust for smaller screens */
+                 border-radius: 20px; /* Consistent radius on smaller screens */
             }
             h1 {
                 font-size: 2.2em;
@@ -544,7 +554,7 @@
             .container {
                 padding: 25px;
                 margin: 10px auto;
-                 border-radius: 20px 40px 30px 50px / 50px 30px 40px 20px; /* Adjust for smallest screens */
+                 border-radius: 15px; /* Consistent radius on smallest screens */
             }
             h1 {
                 font-size: 1.8em;
@@ -600,7 +610,7 @@
         <h2 id="timeGreeting" class="greeting"></h2>
 
         <div id="writeMessageSection">
-            <h1>Craft a Cherished Note</h1>
+            <h1>Craft a Cherished Note 📝</h1>
             <p>Here, you can pen your special messages and secure them with a unique Secret Code. You may also choose a specific date for these memories to be revealed, or access them instantly.</p>
 
             <form id="messageForm">
@@ -612,9 +622,9 @@
 
                 <label for="deliveryDate">Optional Unveiling Date:</label>
                 <input type="date" id="deliveryDate">
-                <p style="font-size: 0.9em; color: var(--light-brown-text); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
+                <p style="font-size: 0.9em; color: var(--light-text-on-dark); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
 
-                <button type="submit">Seal Your Memory in Time</button>
+                <button type="submit">Seal Your Memory in Time ✉️</button>
             </form>
 
             <div id="statusMessage" class="hidden">Your note has been successfully saved!</div>
@@ -626,19 +636,19 @@
         </div>
 
         <div id="viewMessageSection" class="hidden">
-            <h1>Your Past Notes</h1>
+            <h1>Your Past Notes 📜</h1>
             <p>Kindly enter your Secret Code below to unlock and view your collection of treasured memories.</p>
             <form id="retrieveMessageForm">
                 <label for="retrieveSecretCodeInput">Enter Secret Code:</label>
                 <input type="text" id="retrieveSecretCodeInput" placeholder="Your Secret Code" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers. No spaces or special characters.">
-                <button type="submit">Reveal Memories</button>
+                <button type="submit">Reveal Memories ✨</button>
             </form>
 
             <div id="messageDisplayArea">
                 <p id="noMessage" class="hidden">No notes were found for this code, or none are currently ready to be viewed.</p>
                 <div id="notesContainer"></div>
             </div>
-            <p class="toggle-link"><a href="#" id="showWriteMessage">Wish to create another memory?</a></p>
+            <p class="toggle-link"><a href="#" id="showWriteMessage">Wish to create another memory? ✍️</a></p>
         </div>
     </div>
 
@@ -680,7 +690,7 @@
             const notesContainer = document.getElementById('notesContainer'); // Container for multiple notes
             const showWriteMessageLink = document.getElementById('showWriteMessage');
 
-            // --- Time-Based Greeting Function (No "Dearest") ---
+            // --- Time-Based Greeting Function ---
             function setTimeGreeting() {
                 const hour = new Date().getHours();
                 let greeting;
