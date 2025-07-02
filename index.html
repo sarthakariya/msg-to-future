@@ -10,12 +10,12 @@
     <style>
         /* Define a harmonious color palette and shadow effects */
         :root {
-            --soft-pink-bg: #edf2f7; /* NEW: Very light blue-gray for background */
+            --soft-pink-bg: #edf2f7; /* Very light blue-gray for background */
             --warm-pink: #f48fb1; /* A slightly deeper, inviting pink */
             --brown-note: #fdf6e3; /* Creamy, parchment-like background for notes */
             --dark-brown-text: #4e342e; /* Rich, deep brown for primary text (used for elements on light bg) */
             --light-brown-text: #795548; /* Softer brown for secondary text (used for elements on light bg) */
-            --dark-container-bg: #1A202C; /* NEW: Deep, dark blue-gray for the main container */
+            --dark-container-bg: #1A202C; /* Deep, dark blue-gray for the main container */
             --light-text-on-dark: #fefefe; /* Almost white for text on dark backgrounds */
             --accent-gold: #ffd700; /* Subtle gold for special highlights */
             --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
@@ -108,24 +108,24 @@
 
         /* --- Main Container & Overall Layout --- */
         .container {
-            background-color: var(--dark-container-bg); /* Uses new dark blue-gray */
-            background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); /* Retained */
+            background-color: var(--dark-container-bg);
+            background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
             background-size: 100px 100px;
             background-blend-mode: soft-light;
-            padding: 70px 50px; /* NEW: Increased vertical padding */
-            border-radius: 20px; /* Retained */
-            box-shadow: var(--shadow-medium); /* Retained */
+            padding: 70px 50px; /* Increased vertical padding */
+            border-radius: 20px;
+            box-shadow: var(--shadow-medium);
             width: 100%;
             max-width: 750px;
             text-align: center;
             box-sizing: border-box;
             position: relative;
-            z-index: 1; /* Ensures it's above background animations */
+            z-index: 1;
             margin-top: 30px;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2); /* Retained */
-            animation: containerEntry 1s ease-out forwards; /* Retained */
-            color: var(--light-text-on-dark); /* Retained */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: containerEntry 1s ease-out forwards;
+            color: var(--light-text-on-dark);
         }
 
         /* Modified containerEntry for rolling animation */
@@ -145,7 +145,7 @@
         /* --- Typography --- */
         h1 {
             font-family: 'Playfair Display', serif; /* Elegant heading font */
-            color: var(--warm-pink); /* Retained */
+            color: var(--warm-pink);
             margin-bottom: 25px;
             font-size: 2.8em; /* Impactful size */
             font-weight: 700;
@@ -172,17 +172,18 @@
 
         p {
             margin-bottom: 25px;
-            color: var(--light-text-on-dark); /* Retained */
+            color: var(--light-text-on-dark);
             font-size: 1.05em;
             max-width: 650px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.8;
+            text-align: justify; /* Justify paragraph text */
         }
         
         .instruction-text {
             font-weight: 600;
-            color: var(--warm-pink); /* Should still be warm pink */
+            color: var(--warm-pink);
             font-size: 1.1em;
         }
 
@@ -198,7 +199,7 @@
         label {
             text-align: left;
             font-weight: 700;
-            color: var(--light-text-on-dark); /* Retained */
+            color: var(--light-text-on-dark);
             font-size: 1.05em;
             margin-bottom: 5px;
             width: 100%; /* Ensure label takes full width for alignment */
@@ -278,7 +279,7 @@
             box-shadow: inset 0 0 5px rgba(244, 172, 183, 0.3); /* Inner glow */
             padding-left: 45px; /* Space for icon */
             position: relative; /* For the pseudo-element icon */
-            max-width: 300px; /* Explicitly shorter width for secret code inputs */
+            max-width: 450px; /* Set to match date input */
             width: calc(100% - 24px); /* Ensure it scales down for small screens */
             color: var(--dark-brown-text); /* Dark text for input content */
         }
@@ -365,12 +366,13 @@
         .toggle-link {
             margin-top: 30px;
             font-size: 0.95em;
-            color: var(--light-text-on-dark); /* Retained */
+            color: var(--light-text-on-dark);
             display: flex; /* Use flex to center button */
             justify-content: center;
             align-items: center;
             gap: 10px; /* Space between text and button */
             flex-wrap: wrap; /* Allow wrapping on small screens */
+            font-weight: 500; /* Adjusted for better appearance */
         }
 
         #showViewMessage {
@@ -413,7 +415,7 @@
         }
 
         .toggle-link a:hover {
-            color: var(--light-text-on-dark); /* Retained */
+            color: var(--light-text-on-dark);
             text-decoration: underline;
         }
 
@@ -505,7 +507,7 @@
                 padding: 20px;
             }
             .container {
-                padding: 50px 30px; /* NEW: Adjusted padding for medium screens */
+                padding: 50px 30px; /* Adjusted padding for medium screens */
                 margin: 15px auto;
                  border-radius: 20px;
             }
@@ -552,7 +554,7 @@
                 padding: 15px;
             }
             .container {
-                padding: 40px 20px; /* NEW: Adjusted padding for small screens */
+                padding: 40px 20px; /* Adjusted padding for small screens */
                 margin: 10px auto;
                  border-radius: 15px;
             }
