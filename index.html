@@ -3,82 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Time Capsule</title>
+    <title>Your Enchanted Time Capsule</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Pacifico&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet"> <style>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Pacifico&family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@400;700&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Define a beautiful color palette and shadow effects */
         :root {
-            --primary-accent: #ff6b6b; /* Soft Red/Coral */
-            --secondary-accent: #4ecdc4; /* Teal */
-            --dark-text: #2c3e50; /* Dark Blue */
-            --light-text: #7f8c8d; /* Muted Grey */
-            --bg-start: #a1c4fd; /* Light Blue for gradient */
-            --bg-end: #c2e9fb;   /* Lighter Blue for gradient */
+            --primary-pink: #ff6b81; /* Vibrant Pink */
+            --secondary-blue: #6dd5ed; /* Sky Blue */
+            --dark-blue-text: #2c3e50; /* Deep Blue for main text */
+            --light-grey-text: #a0a0a0; /* Softer Grey for secondary text */
+            --bg-gradient-start: #a1c4fd; /* Lighter Blue */
+            --bg-gradient-end: #c2e9fb;   /* Even Lighter Blue */
             --card-bg: #ffffff;
-            --shadow-subtle: 0 5px 15px rgba(0, 0, 0, 0.15);
-            --shadow-elevated: 0 10px 30px rgba(0, 0, 0, 0.25);
+            --shadow-soft: 0 8px 25px rgba(0, 0, 0, 0.18); /* Enhanced soft shadow */
+            --shadow-deep: 0 15px 40px rgba(0, 0, 0, 0.3); /* Deeper shadow for elevation */
             --success-color: #2ecc71;
             --error-color: #e74c3c;
             --pending-color: #f39c12; /* Orange for pending status */
+            --border-radius-large: 25px;
+            --border-radius-medium: 15px;
+            --transition-speed: 0.4s;
         }
 
+        /* --- Global & Background Styles --- */
         body {
             font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Align to top for scrolling */
+            align-items: flex-start; /* Align to top for scrollability */
             min-height: 100vh;
             margin: 0;
-            color: var(--dark-text);
-            line-height: 1.6;
-            padding: 20px;
+            color: var(--dark-blue-text);
+            line-height: 1.7; /* Increased line-height for readability */
+            padding: 30px; /* More overall padding */
             box-sizing: border-box;
             overflow-y: auto; /* Enable scrolling for the body */
             position: relative;
-            animation: backgroundShift 20s ease infinite alternate;
+            animation: backgroundShift 25s ease infinite alternate; /* Slower, more ethereal shift */
         }
 
         @keyframes backgroundShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% { background-size: 100% 100%; background-position: 0% 50%; }
+            50% { background-size: 110% 110%; background-position: 100% 50%; }
+            100% { background-size: 100% 100%; background-position: 0% 50%; }
         }
 
-        /* Particle/Starfield Background */
+        /* Particle/Starfield Background (enhanced) */
         .particle {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.85); /* Slightly brighter */
             border-radius: 50%;
             pointer-events: none;
             opacity: 0;
-            animation: twinkle 3s infinite ease-in-out alternate;
+            animation: twinkle 3s infinite ease-in-out alternate, floatParticle 10s infinite ease-in-out alternate;
             z-index: 1; /* Below content */
+            box-shadow: 0 0 8px rgba(255,255,255,0.7); /* Subtle glow for particles */
         }
 
         @keyframes twinkle {
             0% { transform: scale(0.5); opacity: 0; }
-            50% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1); opacity: 0.85; }
             100% { transform: scale(0.5); opacity: 0; }
         }
 
+        @keyframes floatParticle {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-20px) translateX(10px); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        /* --- Main Container & Overall Layout --- */
         .container {
             background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 25px;
-            box-shadow: var(--shadow-elevated);
+            padding: 50px; /* Generous padding */
+            border-radius: var(--border-radius-large); /* Very rounded */
+            box-shadow: var(--shadow-deep); /* Prominent shadow */
             width: 100%;
-            max-width: 700px;
+            max-width: 750px; /* Wider for more impact */
             text-align: center;
             box-sizing: border-box;
             opacity: 0;
-            transform: translateY(30px) scale(0.95);
-            animation: fadeInScale 1.2s forwards ease-out;
+            transform: translateY(40px) scale(0.92); /* Slightly more pronounced initial state */
+            animation: fadeInScale 1.5s forwards cubic-bezier(0.2, 0.8, 0.2, 1); /* Smoother animation curve */
             position: relative;
             z-index: 10;
-            margin-top: 20px; /* Add some margin from top */
-            margin-bottom: 20px; /* Add some margin from bottom */
-            overflow: hidden; /* Prevent child overflow from messing with container */
+            margin-top: 30px;
+            margin-bottom: 30px;
+            overflow: hidden; /* Contains internal elements */
+            border: 2px solid rgba(255, 107, 129, 0.2); /* Subtle pink border */
         }
 
         @keyframes fadeInScale {
@@ -88,75 +102,94 @@
             }
         }
 
+        /* --- Typography --- */
         h1 {
-            font-family: 'Merriweather', serif;
-            color: var(--dark-text);
-            margin-bottom: 15px;
-            font-size: 2.8em; /* Slightly adjusted for better fit */
+            font-family: 'Playfair Display', serif; /* Elegant heading font */
+            color: var(--dark-blue-text);
+            margin-bottom: 20px;
+            font-size: 3.5em; /* Larger, more impactful */
             font-weight: 700;
-            line-height: 1.2;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            line-height: 1.1;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.15); /* Stronger text shadow */
+            letter-spacing: -1px;
+            animation: headingPulse 4s infinite ease-in-out alternate;
+        }
+
+        @keyframes headingPulse {
+            0% { transform: scale(1); color: var(--dark-blue-text); }
+            50% { transform: scale(1.01); color: rgba(44, 62, 80, 0.9); }
+            100% { transform: scale(1); color: var(--dark-blue-text); }
         }
 
         .greeting {
             font-family: 'Pacifico', cursive;
-            font-size: 2.2em; /* Slightly adjusted */
-            color: var(--primary-accent);
-            margin-bottom: 30px;
+            font-size: 3em; /* Even more prominent */
+            color: var(--primary-pink);
+            margin-bottom: 35px;
             font-weight: normal;
-            text-shadow: 2px 2px 8px rgba(255,107,107,0.4);
-            animation: textGlow 3s infinite alternate ease-in-out;
+            text-shadow: 3px 3px 10px rgba(255,107,129,0.5); /* Enhanced glow */
+            animation: textGlow 3s infinite alternate ease-in-out, subtleWobble 5s infinite ease-in-out;
         }
 
         @keyframes textGlow {
-            0% { text-shadow: 2px 2px 8px rgba(255,107,107,0.4); }
-            100% { text-shadow: 2px 2px 15px rgba(255,107,107,0.8); }
+            0% { text-shadow: 3px 3px 10px rgba(255,107,129,0.5); }
+            100% { text-shadow: 3px 3px 20px rgba(255,107,129,0.9); }
+        }
+        @keyframes subtleWobble {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-0.5deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(0.5deg); }
+            100% { transform: rotate(0deg); }
         }
 
         p {
-            margin-bottom: 20px; /* Reduced margin */
-            color: var(--light-text);
-            font-size: 1em; /* Slightly smaller for conciseness */
-            max-width: 550px;
+            margin-bottom: 25px;
+            color: var(--light-grey-text);
+            font-size: 1.1em;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.8;
         }
         
         .instruction-text {
             font-weight: 600;
-            color: var(--primary-accent);
-            text-shadow: 0 0 5px rgba(255,107,107,0.2);
-            font-size: 1.05em; /* Keep it clear */
+            color: var(--primary-pink);
+            text-shadow: 0 0 7px rgba(255,107,129,0.3);
+            font-size: 1.15em;
         }
 
+        /* --- Form Elements --- */
         form {
             display: flex;
             flex-direction: column;
-            gap: 18px; /* Slightly reduced gap */
-            margin-top: 25px; /* Slightly reduced margin */
+            gap: 25px; /* More space */
+            margin-top: 35px;
         }
 
         label {
             text-align: left;
             font-weight: 700;
-            color: var(--dark-text);
-            font-size: 1.05em; /* Slightly adjusted */
-            margin-bottom: 3px; /* Reduced margin */
+            color: var(--dark-blue-text);
+            font-size: 1.15em;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
         }
 
         textarea,
         input[type="date"],
         input[type="text"] {
-            width: calc(100% - 32px);
-            padding: 14px; /* Slightly smaller padding */
-            border: 2px solid var(--secondary-accent);
-            border-radius: 12px;
-            font-size: 1em; /* Adjusted input font size */
-            font-family: 'Roboto', sans-serif; /* Placeholder font */
-            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            background-color: #f8fcfd; /* Lighter background for inputs */
-            color: var(--dark-text);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            width: calc(100% - 40px); /* Adjusted for padding */
+            padding: 18px; /* Generous padding */
+            border: 3px solid var(--secondary-blue); /* Thicker, sky-blue border */
+            border-radius: var(--border-radius-medium); /* Smooth rounded corners */
+            font-size: 1.1em;
+            font-family: 'Ubuntu', sans-serif; /* Modern, clean font for inputs */
+            transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
+            background-color: #f0f8ff; /* Light, almost white-blue background */
+            color: var(--dark-blue-text);
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.08); /* More defined inner shadow */
             appearance: none;
             -webkit-appearance: none;
         }
@@ -164,29 +197,29 @@
         textarea::placeholder,
         input[type="date"]::placeholder,
         input[type="text"]::placeholder {
-            font-family: 'Roboto', sans-serif; /* Applied Roboto to placeholders */
-            color: #b0c4de; /* Softer placeholder color */
-            opacity: 1; /* Ensures placeholder is visible */
+            font-family: 'Ubuntu', sans-serif; /* Placeholder font */
+            color: #8bbcdc; /* Softer, sky-blue placeholder color */
+            opacity: 0.9; /* Ensures placeholder is visible */
         }
 
         textarea:focus,
         input[type="date"]:focus,
         input[type="text"]:focus {
-            border-color: var(--primary-accent);
-            box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.3); /* Slightly softer glow */
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 6px rgba(255, 107, 129, 0.5); /* Stronger, pink glow on focus */
             background-color: #fff;
             outline: none;
         }
 
         textarea {
             resize: vertical;
-            min-height: 150px; /* Slightly reduced min-height */
+            min-height: 200px; /* Taller textarea */
         }
         
         input[type="date"]::-webkit-calendar-picker-indicator {
             background: transparent;
             bottom: 0;
-            color: transparent;
+            color: var(--dark-blue-text); /* Make icon visible */
             cursor: pointer;
             height: auto;
             left: 0;
@@ -196,39 +229,43 @@
             width: auto;
         }
 
+        /* --- Buttons --- */
         button {
-            background: var(--primary-accent);
+            background: linear-gradient(45deg, var(--primary-pink), #ff9a8d); /* Gradient button */
             color: white;
-            padding: 16px 28px; /* Slightly adjusted padding */
+            padding: 20px 35px; /* Larger padding */
             border: none;
-            border-radius: 15px;
+            border-radius: var(--border-radius-medium); /* Smooth rounded buttons */
             cursor: pointer;
-            font-size: 1.2em; /* Slightly adjusted font size */
+            font-size: 1.4em; /* Larger button text */
             font-weight: bold;
-            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            letter-spacing: 0.5px; /* Slightly reduced letter spacing */
-            box-shadow: var(--shadow-subtle);
+            transition: all var(--transition-speed) ease-in-out; /* Smoother transitions */
+            letter-spacing: 1.5px;
+            box-shadow: var(--shadow-soft);
             position: relative;
-            overflow: hidden;
+            overflow: hidden; /* For ripple effect */
+            text-transform: uppercase; /* Make button text pop */
         }
 
         button:hover {
-            background: var(--dark-text);
-            transform: translateY(-3px) scale(1.02); /* Slightly less dramatic hover */
-            box-shadow: var(--shadow-elevated);
+            background: linear-gradient(45deg, #e05e71, var(--primary-pink)); /* Darker pink on hover */
+            transform: translateY(-7px) scale(1.05); /* More pronounced lift and scale */
+            box-shadow: var(--shadow-deep);
+            letter-spacing: 2px;
         }
 
         button:active {
-            transform: translateY(0) scale(1);
-            box-shadow: var(--shadow-subtle);
-            background: darken(var(--dark-text), 10%);
+            transform: translateY(-2px) scale(0.98);
+            box-shadow: var(--shadow-soft);
+            background: var(--primary-pink);
         }
         
+        /* Ripple effect for buttons */
         .ripple {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.6);
-            animation: ripple-animation 0.6s linear forwards;
+            background: rgba(255, 255, 255, 0.7); /* Brighter ripple */
+            animation: ripple-animation 0.7s linear forwards; /* Slightly longer ripple */
             transform: scale(0);
             pointer-events: none;
         }
@@ -240,89 +277,116 @@
             }
         }
 
+        /* --- Status Messages --- */
         #statusMessage {
-            margin-top: 25px; /* Adjusted margin */
-            padding: 15px; /* Adjusted padding */
-            border-radius: 12px;
+            margin-top: 35px;
+            padding: 20px;
+            border-radius: var(--border-radius-medium);
             font-weight: 600;
-            font-size: 0.95em;
+            font-size: 1.05em;
             text-align: center;
             opacity: 0;
             max-height: 0;
             overflow: hidden;
-            transition: opacity 0.5s ease-out, max-height 0.5s ease-out, padding 0.5s ease-out;
+            transition: opacity 0.6s ease-out, max-height 0.6s ease-out, padding 0.6s ease-out; /* Smoother animation */
+            border: 2px solid; /* Add border for status */
         }
 
         #statusMessage.visible {
             opacity: 1;
-            max-height: 150px;
-            padding: 15px; /* Ensure padding is consistent when visible */
+            max-height: 180px; /* Sufficient height to show content */
+            padding: 20px;
+            animation: slideInFromTop 0.8s ease-out;
+        }
+
+        @keyframes slideInFromTop {
+            0% { transform: translateY(-20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
         #statusMessage.success {
-            background-color: rgba(46, 204, 113, 0.15);
+            background-color: rgba(46, 204, 113, 0.18); /* Richer transparency */
             color: var(--success-color);
-            border: 1px solid var(--success-color);
+            border-color: var(--success-color);
         }
 
         #statusMessage.error {
-            background-color: rgba(231, 76, 60, 0.15);
+            background-color: rgba(231, 76, 60, 0.18);
             color: var(--error-color);
-            border: 1px solid var(--error-color);
+            border-color: var(--error-color);
         }
 
         .hidden {
             display: none;
         }
 
+        /* --- Toggle Links --- */
         .toggle-link {
-            margin-top: 25px; /* Adjusted margin */
-            font-size: 1em; /* Adjusted font size */
-            color: var(--light-text);
+            margin-top: 35px;
+            font-size: 1.1em;
+            color: var(--light-grey-text);
+            animation: fadeIn 1.5s var(--transition-speed) forwards; /* Fade in after form */
         }
 
         .toggle-link a {
-            color: var(--primary-accent);
+            color: var(--secondary-blue); /* Sky blue link */
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+            transition: color var(--transition-speed) ease, text-shadow var(--transition-speed) ease, transform 0.2s ease;
+            text-shadow: 0 0 5px rgba(109, 213, 237, 0.2);
         }
 
         .toggle-link a:hover {
-            color: var(--dark-text);
+            color: var(--primary-pink); /* Pink on hover */
             text-decoration: underline;
-            text-shadow: 0 0 5px rgba(0,0,0,0.1);
+            text-shadow: 0 0 8px rgba(255,107,129,0.4);
+            transform: scale(1.02);
         }
 
+        /* --- Message Display Area --- */
         #messageDisplayArea {
-            min-height: 200px;
+            min-height: 250px; /* Ensure height for content */
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            gap: 18px; /* Slightly reduced gap */
+            gap: 25px; /* More space between notes */
             padding-bottom: 20px; /* Ensure space for scroll */
             overflow-y: auto; /* Enable scrolling if content exceeds height */
-            max-height: 500px; /* Example max height, adjust as needed */
+            max-height: 600px; /* Increased max height for multiple notes */
         }
 
         .note-card {
             background-color: var(--card-bg);
-            border: 1px solid var(--secondary-accent);
-            border-radius: 18px;
-            padding: 25px; /* Slightly reduced padding */
+            border: 2px solid var(--secondary-blue);
+            border-radius: var(--border-radius-medium);
+            padding: 30px;
             text-align: left;
             width: 100%;
             box-sizing: border-box;
-            box-shadow: var(--shadow-subtle);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow-soft);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
             transform-style: preserve-3d;
             perspective: 1000px;
-            max-height: 350px; /* Max height for scrolling individual notes */
+            max-height: 400px; /* Max height for scrolling individual notes */
             overflow-y: auto; /* Enable vertical scrolling for individual notes */
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInLiftCard 0.6s forwards ease-out;
+            transform: translateY(30px);
+            animation: fadeInLiftCard 0.8s forwards cubic-bezier(0.2, 0.8, 0.2, 1); /* Smoother animation */
+            position: relative; /* For the "sealed" graphic */
+            overflow: hidden; /* For graphic */
+        }
+        
+        .note-card::before { /* Decorative seal/stamp */
+            content: '📜'; /* Scroll emoji as a graphic */
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2.5em;
+            opacity: 0.1;
+            z-index: 1;
+            transform: rotate(20deg);
+            pointer-events: none;
         }
 
         @keyframes fadeInLiftCard {
@@ -333,68 +397,73 @@
         }
 
         .note-card:hover {
-            transform: translateY(-3px) scale(1.005); /* Less dramatic hover */
-            box-shadow: var(--shadow-elevated);
+            transform: translateY(-10px) scale(1.02); /* More pronounced hover */
+            box-shadow: var(--shadow-deep);
+            border-color: var(--primary-pink); /* Border changes on hover */
         }
 
         .message-content {
             white-space: pre-wrap;
             font-family: 'Merriweather', serif;
-            font-size: 1.05em; /* Slightly smaller content font */
-            color: var(--dark-text);
-            background-color: rgba(78, 205, 196, 0.1);
-            padding: 18px; /* Slightly reduced padding */
+            font-size: 1.1em;
+            color: var(--dark-blue-text);
+            background-color: rgba(109, 213, 237, 0.15); /* Light sky-blue background */
+            padding: 22px;
             border-radius: 12px;
-            margin-bottom: 20px; /* Adjusted margin */
-            line-height: 1.7;
-            border-left: 6px solid var(--secondary-accent);
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            line-height: 1.8;
+            border-left: 8px solid var(--secondary-blue); /* Thicker accent border */
+            box-shadow: inset 0 3px 10px rgba(0,0,0,0.08); /* Stronger inner shadow */
         }
 
         .note-date-info {
-            font-size: 0.85em; /* Slightly smaller */
-            color: var(--light-text);
+            font-size: 0.95em;
+            color: var(--light-grey-text);
             text-align: right;
-            margin-top: 15px; /* Adjusted margin */
+            margin-top: 20px;
             font-style: italic;
         }
 
         .note-status {
             font-weight: bold;
             text-align: center;
-            padding: 4px 8px; /* Adjusted padding */
-            border-radius: 8px;
-            margin-bottom: 12px; /* Adjusted margin */
-            font-size: 0.8em; /* Slightly smaller status font */
+            padding: 8px 15px; /* More padding */
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+            transition: all var(--transition-speed) ease;
         }
 
         .note-status.unveiled {
-            background-color: rgba(46, 204, 113, 0.1);
+            background-color: rgba(46, 204, 113, 0.15);
             color: var(--success-color);
+            border: 1px solid var(--success-color);
         }
 
         .note-status.pending {
-            background-color: rgba(243, 156, 18, 0.1);
+            background-color: rgba(243, 156, 18, 0.15);
             color: var(--pending-color);
+            border: 1px solid var(--pending-color);
         }
 
-        /* --- Easter Egg: Particle/Sparkle Effect --- */
+        /* --- Easter Egg: Sparkle & Confetti --- */
         .sparkle {
             position: absolute;
-            font-size: 1.2em;
+            font-size: 1.5em; /* Larger sparkles */
             pointer-events: none;
             opacity: 0;
-            animation: sparkle-fade-out 2.5s forwards;
+            animation: sparkle-fade-out 3s forwards ease-out; /* Longer sparkle animation */
             z-index: 5;
-            color: #ffd700;
+            color: #ffd700; /* Gold color for sparkles */
+            text-shadow: 0 0 10px rgba(255,215,0,0.8);
         }
 
         @keyframes sparkle-fade-out {
-            0% { opacity: 0.8; transform: scale(0.5); }
-            100% { opacity: 0; transform: scale(1.8) translateY(-70px) rotate(360deg); }
+            0% { opacity: 0.9; transform: scale(0.8) rotate(0deg); }
+            100% { opacity: 0; transform: scale(2.5) translateY(-100px) rotate(720deg); } /* More dramatic */
         }
 
-        /* --- Confetti/Hearts for Special Dates --- */
         .confetti-container {
             position: fixed;
             top: 0;
@@ -408,131 +477,148 @@
 
         .confetti-item {
             position: absolute;
-            font-size: 1.8em;
-            animation: fall 4s forwards ease-out;
+            font-size: 2em; /* Even larger confetti items */
+            animation: fall 5s forwards ease-out; /* Longer fall */
             opacity: 0;
             transform-origin: center;
         }
 
         @keyframes fall {
             0% {
-                transform: translateY(-50px) rotateZ(0deg);
+                transform: translateY(-80px) rotateZ(0deg);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.8;
+            15% {
+                opacity: 0.9;
             }
             100% {
-                transform: translateY(110vh) rotateZ(1080deg);
+                transform: translateY(120vh) rotateZ(1440deg); /* Even more rotations */
                 opacity: 0;
             }
         }
 
         #easterEggMessage {
-            border-left: 6px solid var(--primary-accent);
-            background-color: rgba(255, 107, 107, 0.1);
-            margin-top: 25px; /* Adjusted margin */
-            padding: 20px; /* Adjusted padding */
-            border-radius: 12px;
-            box-shadow: var(--shadow-subtle);
-            animation: fadeIn 1s ease-out;
+            border-left: 8px solid var(--primary-pink);
+            background-color: rgba(255, 107, 129, 0.15); /* Soft pink background */
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: var(--border-radius-medium);
+            box-shadow: var(--shadow-soft);
+            animation: fadeIn 1.2s ease-out;
+            transform: translateY(20px);
+            animation-fill-mode: forwards;
         }
 
         #easterEggMessage p {
-            color: var(--dark-text);
-            font-family: 'Merriweather', serif;
+            color: var(--dark-blue-text);
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 1.05em; /* Adjusted font size */
+            font-size: 1.2em;
             text-shadow: 0 0 5px rgba(0,0,0,0.05);
         }
 
-        /* Responsive Adjustments (Enhanced for Phone Compatibility) */
+        /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
+            body {
+                padding: 15px; /* Less padding on smaller screens */
+            }
             .container {
-                padding: 20px; /* Reduced padding */
-                margin: 15px; /* Adjusted margin */
-                border-radius: 18px;
+                padding: 30px;
+                margin: 15px auto;
+                border-radius: 20px;
             }
             h1 {
-                font-size: 2.2em; /* Smaller on tablets/phones */
+                font-size: 2.5em;
+                margin-bottom: 15px;
             }
             .greeting {
-                font-size: 1.8em; /* Smaller on tablets/phones */
+                font-size: 2.2em;
+                margin-bottom: 25px;
             }
             p {
-                font-size: 0.95em; /* Slightly smaller body text */
-                margin-bottom: 15px;
+                font-size: 0.95em;
+                margin-bottom: 20px;
             }
             label {
                 font-size: 1em;
             }
-            button {
-                font-size: 1.05em; /* Smaller button text */
-                padding: 14px 22px; /* Smaller button padding */
-            }
             textarea, input[type="date"], input[type="text"] {
-                font-size: 0.95em; /* Smaller input font */
-                padding: 12px;
-            }
-            textarea {
-                min-height: 120px; /* Even smaller textarea */
-            }
-            .message-content {
-                font-size: 0.95em; /* Smaller message content */
+                font-size: 0.95em;
                 padding: 15px;
             }
-            #messageDisplayArea {
-                max-height: 400px; /* Adjust max height for phone view */
+            textarea {
+                min-height: 150px;
+            }
+            button {
+                font-size: 1.15em;
+                padding: 16px 25px;
+            }
+            #statusMessage {
+                padding: 16px;
+                font-size: 0.9em;
             }
             .note-card {
-                padding: 20px; /* Reduced note card padding */
+                padding: 25px;
+            }
+            .message-content {
+                font-size: 1em;
+                padding: 18px;
+            }
+            #messageDisplayArea {
+                max-height: 500px; /* Adjust max height for phone view */
             }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 15px; /* Further reduced padding for very small screens */
-                margin: 10px;
-                border-radius: 12px; /* Slightly less rounded */
-            }
-            h1 {
-                font-size: 1.8em; /* Even smaller heading */
-            }
-            .greeting {
-                font-size: 1.5em; /* Even smaller greeting */
-            }
-            p {
-                font-size: 0.9em; /* Smallest body text */
-                margin-bottom: 10px;
-            }
-            label {
-                font-size: 0.95em;
-            }
-            button {
-                font-size: 0.95em;
-                padding: 12px 18px;
-            }
-            textarea, input[type="date"], input[type="text"] {
-                font-size: 0.9em;
+            body {
                 padding: 10px;
             }
+            .container {
+                padding: 20px;
+                margin: 10px auto;
+                border-radius: 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .greeting {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 0.85em;
+                margin-bottom: 15px;
+            }
+            label {
+                font-size: 0.9em;
+            }
+            textarea, input[type="date"], input[type="text"] {
+                font-size: 0.85em;
+                padding: 12px;
+            }
             textarea {
-                min-height: 100px; /* Smallest textarea */
+                min-height: 120px;
+            }
+            button {
+                font-size: 1em;
+                padding: 14px 20px;
+            }
+            #statusMessage {
+                padding: 14px;
+                font-size: 0.85em;
+            }
+            .note-card {
+                padding: 20px;
             }
             .message-content {
                 font-size: 0.9em;
-                padding: 12px;
-            }
-            #statusMessage {
-                padding: 12px;
-                font-size: 0.9em;
+                padding: 15px;
             }
             .note-status {
-                font-size: 0.75em;
-                padding: 3px 6px;
-            }
-            .note-date-info {
                 font-size: 0.8em;
+                padding: 6px 12px;
+            }
+            .toggle-link {
+                font-size: 0.9em;
             }
         }
     </style>
@@ -545,23 +631,24 @@
 
         <div id="writeMessageSection">
             <h1>New Note</h1>
-            <p>Write a thought or message. Link it to your Secret Code. Set an optional date for it to appear!</p>
+            <p>Write a special message. Connect it to your Secret Code. Choose a date for it to appear or access it instantly!</p>
 
             <form id="messageForm">
                 <label for="secretCodeInput">Your Secret Code:</label>
                 <input type="text" id="secretCodeInput" placeholder="Ex: MySecretBox (letters/numbers only)" required pattern="[a-zA-Z0-9]+" title="Only letters and numbers allowed. No spaces or special characters.">
 
                 <label for="messageContent">Your Note:</label>
-                <textarea id="messageContent" rows="10" placeholder="Type your message here..."></textarea>
+                <textarea id="messageContent" rows="10" placeholder="Type your beautiful words here..."></textarea>
 
-                <label for="deliveryDate">Unveil Date (Optional):</label>
-                <input type="date" id="deliveryDate"> <p style="font-size: 0.9em; color: var(--light-text); margin-top: -10px; margin-bottom: 15px;">Leave blank for instant access.</p>
+                <label for="deliveryDate">Optional Unveiling Date:</label>
+                <input type="date" id="deliveryDate">
+                <p style="font-size: 0.9em; color: var(--light-grey-text); margin-top: -15px; margin-bottom: 20px;">Leave empty for immediate access.</p>
 
-                <button type="submit">Save Your Note</button>
+                <button type="submit">Seal Your Note in Time</button>
             </form>
 
             <div id="statusMessage" class="hidden"></div>
-            <p class="toggle-link">Ready to read your notes? <a href="#" id="showViewMessage">Open Time Capsule!</a></p>
+            <p class="toggle-link">Want to read your past notes? <a href="#" id="showViewMessage">Open Time Capsule!</a></p>
         </div>
 
         <div id="viewMessageSection" class="hidden">
@@ -831,122 +918,3 @@
 
                         notes.forEach(note => {
                             const deliveryDate = note.deliveryDate ? new Date(note.deliveryDate + 'T00:00:00') : null;
-                            const createdAtDate = new Date(note.createdAt).toLocaleDateString();
-
-                            const noteCard = document.createElement('div');
-                            noteCard.classList.add('note-card');
-
-                            let noteStatusText = '';
-                            let noteStatusClass = '';
-
-                            if (!deliveryDate || now >= deliveryDate) {
-                                hasVisibleNotes = true;
-                                noteStatusText = 'Status: Unveiled!';
-                                noteStatusClass = 'unveiled';
-                            } else {
-                                noteStatusText = `Status: Pending - Reveals on ${new Date(note.deliveryDate).toLocaleDateString()}`;
-                                noteStatusClass = 'pending';
-                            }
-
-                            const statusDiv = document.createElement('div');
-                            statusDiv.classList.add('note-status', noteStatusClass);
-                            statusDiv.textContent = noteStatusText;
-                            noteCard.appendChild(statusDiv);
-
-                            const messageP = document.createElement('p');
-                            messageP.innerHTML = '<strong>Your Note:</strong>';
-                            noteCard.appendChild(messageP);
-
-                            const contentDiv = document.createElement('div');
-                            contentDiv.classList.add('message-content');
-                            contentDiv.innerHTML = note.messageContent.replace(/\n/g, '<br>');
-                            noteCard.appendChild(contentDiv);
-
-                            const dateInfoP = document.createElement('p');
-                            dateInfoP.classList.add('note-date-info');
-                            dateInfoP.textContent = `Created: ${createdAtDate}`;
-                            noteCard.appendChild(dateInfoP);
-
-                            notesContainer.appendChild(noteCard);
-                        });
-
-                        // Easter Egg for specific dates, applied once for the collection
-                        let isEasterEggDay = false;
-                        const nowForEasterEgg = new Date();
-                        // Mammam's birthday
-                        if (nowForEasterEgg.getMonth() === 9 && nowForEasterEgg.getDate() === 26) { 
-                            isEasterEggDay = true;
-                        }
-                        // Valentine's Day
-                        if (nowForEasterEgg.getMonth() === 1 && nowForEasterEgg.getDate() === 14) { 
-                            isEasterEggDay = true;
-                        }
-
-                        if (isEasterEggDay) {
-                            triggerEasterEgg("You are an absolutely wonderful person, radiating kindness and light. May your journey be filled with joy, discovery, and every happiness you deserve!");
-                        }
-
-                        if (!hasVisibleNotes && notes.length > 0) { 
-                             noMessageDiv.textContent = "All your notes are waiting for their reveal dates. Nothing ready yet!";
-                             noMessageDiv.classList.remove('hidden');
-                        } else if (notes.length === 0) { 
-                            noMessageDiv.textContent = "No notes found for this code. Create one!";
-                            noMessageDiv.classList.remove('hidden');
-                        }
-
-                    } else {
-                        noMessageDiv.textContent = "No notes found for this code. Create one!";
-                        noMessageDiv.classList.remove('hidden');
-                    }
-                } catch (error) {
-                    console.error('Error retrieving notes:', error);
-                    noMessageDiv.textContent = "Error retrieving notes. Check connection or try later.";
-                    noMessageDiv.classList.remove('hidden');
-                }
-            });
-
-            // --- Easter Egg Function ---
-            function triggerEasterEgg(message) {
-                easterEggContent.textContent = message;
-                easterEggMessageDiv.classList.remove('hidden');
-                burstConfetti(40, ['💖', '✨', '🌟', '😊', '💕']);
-            }
-
-            // --- Animation: Confetti Burst ---
-            function burstConfetti(count, emojis) {
-                for (let i = 0; i < count; i++) {
-                    const confetti = document.createElement('div');
-                    confetti.classList.add('confetti-item');
-                    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                    confetti.style.left = `${Math.random() * 100}vw`;
-                    confetti.style.top = `${Math.random() * 50 - 50}px`;
-                    confetti.style.animationDelay = `${Math.random() * 1.5}s`;
-                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-                    confettiContainer.appendChild(confetti);
-
-                    confetti.addEventListener('animationend', () => {
-                        confetti.remove();
-                    });
-                }
-            }
-
-            // --- Secret Console Message Easter Egg ---
-            console.log("%c🌟 Hey there, curious soul! 🌟", "font-size: 1.5em; font-weight: bold; color: #ff6b6b; font-family: 'Pacifico', cursive;");
-            console.log("%cThis digital time capsule is holding special secrets, just for you, accessible with your unique code from anywhere. Pretty magical, isn't it?", "font-size: 1.1em; color: #2c3e50;");
-            console.log("%cKeep an eye on the calendar... some days hold an extra sprinkle of enchantment! ✨", "font-size: 1.1em; color: #4ecdc4; font-weight: bold; font-style: italic;");
-            console.log("%cAnd remember, you're truly wonderful! 😊", "font-size: 1.2em; color: #ff69b4; font-weight: bold;");
-            
-            // Console log with Mammam's birthday, updated for current date
-            const todayDate = new Date();
-            const year = todayDate.getFullYear();
-            const month = todayDate.getMonth() + 1; // Months are 0-indexed
-            const day = todayDate.getDate();
-            console.log(`%cToday is July 2, 2025. Mammam's birthday (October 26th) is a special day! 🎉`, "font-size: 1em; color: #6a0dad;"); // This date needs to be dynamically updated based on the current date, but for now it's hardcoded based on the prompt's context date.
-
-
-            // --- Initial Load Logic ---
-            showSection('write'); // Start on the "write" message section by default
-        });
-    </script>
-</body>
-</html>
