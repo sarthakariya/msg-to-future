@@ -285,6 +285,28 @@
             background-color: #d1427c;
         }
 
+        /* Secondary button style for navigation */
+        .secondary-button {
+            background-color: #a76a8d; /* A more muted pink/purple */
+            border: 1px solid #c998b4;
+            color: #fff;
+            padding: 12px 25px; /* Slightly smaller padding */
+            margin-top: 30px; /* Space it out */
+        }
+
+        .secondary-button:hover {
+            background-color: #8c5a75;
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-2px);
+        }
+
+        .secondary-button:active {
+            background-color: #7a4f65;
+            transform: translateY(0);
+            box-shadow: var(--shadow-light);
+        }
+
+
         /* --- Status Messages --- */
         #statusMessage {
             margin-top: 30px;
@@ -320,11 +342,11 @@
             display: none;
         }
 
-        /* --- Toggle Links --- */
+        /* --- Toggle Links (Only the "create another memory" will use this now) --- */
         .toggle-link {
             margin-top: 30px;
             font-size: 0.95em;
-            color: var(--dark-brown-text); /* Adjusted for light background */
+            color: var(--light-text-on-dark); /* Adjusted for dark container */
         }
 
         .toggle-link a {
@@ -520,10 +542,16 @@
         <div class="heart" style="left:12%; top:55%; animation-delay: 20s; font-size: 2em;">💖</div>
         <div class="heart" style="left:22%; top:48%; animation-delay: 21s;">💖</div>
         <div class="heart" style="left:32%; top:52%; animation-delay: 22s; font-size: 1.6em;">💖</div>
+        <div class="heart" style="left:42%; top:60%; animation-delay: 23s;">💖</div>
+        <div class="heart" style="left:52%; top:53%; animation-delay: 24s; font-size: 1.2em;">💖</div>
+        <div class="heart" style="left:62%; top:65%; animation-delay: 25s;">💖</div>
+        <div class="heart" style="left:72%; top:58%; animation-delay: 26s; font-size: 1.7em;">💖</div>
+        <div class="heart" style="left:82%; top:70%; animation-delay: 27s;">💖</div>
+        <div class="heart" style="left:92%; top:63%; animation-delay: 28s; font-size: 1.5em;">💖</div>
     </div>
 
     <div class="container">
-        <h2 id="timeGreeting" class="greeting"></h2>
+        <h2 id="timeGreeting" class="greeting">Welcome!</h2>
 
         <div id="writeMessageSection">
             <h1>✍️ Craft a Cherished Note</h1>
@@ -547,8 +575,7 @@ style="font-size: 0.9em; color: var(--light-text-on-dark); margin-top: -15px; ma
 
             <div id="statusMessage" class="hidden">Your note has been successfully saved!</div>
 
-            <p class="toggle-link">Ready to reflect on your saved
-memories? <a href="#" id="showViewMessage">Open Your Memory Box</a></p>
+            <button type="button" class="secondary-button" id="showViewMessage">Open Your Memory Box 🔮</button>
         </div>
 
         <div id="viewMessageSection" class="hidden">
