@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Treasured Time Capsule</title>
+    <title>Your Treasured Time Capsule 💖</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;700&family=Gentium+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     
     <style>
         /* Define a harmonious color palette and shadow effects */
         :root {
-            --soft-bg: #e0e0e0; /* Very light, soft grey for background */
-            --accent-grey: #a0a0a0; /* A slightly deeper, inviting grey */
+            --soft-bg: #87CEEB; /* Sky blue for background */
+            --accent-blue: #1E90FF; /* Dodger blue for accents */
             --light-note: #f5f5f5; /* Creamy, parchment-like background for notes */
-            --dark-text: #333333; /* Rich, deep charcoal for primary text */
-            --light-text: #666666; /* Softer grey for secondary text */
+            --dark-text: #2F4F4F; /* Dark slate grey for primary text */
+            --light-text: #5F9EA0; /* Cadet blue for secondary text */
             --dark-container-bg: #2C2C2C; /* Deep, dark grey for the main container */
             --light-text-on-dark: #fefefe; /* Almost white for text on dark backgrounds */
-            --accent-gold: #ffd700; /* Subtle gold for special highlights */
+            --accent-gold: #FFD700; /* Subtle gold for special highlights */
             --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
             --transition-duration: 0.3s;
@@ -27,7 +27,7 @@
         /* --- Global & Background Styles --- */
         body {
             font-family: 'Gentium Plus', serif; /* Elegant, classic serif font */
-            background-color: var(--soft-bg);
+            background-color: var(--soft-bg); /* Sky blue background */
             display: flex;
             justify-content: center;
             align-items: flex-start; /* Align to top for proper scrolling */
@@ -58,12 +58,12 @@
         }
 
         .heart {
-            color: rgba(160, 160, 160, 0.5); /* Muted, transparent heart color (changed from pink) */
+            color: rgba(30, 144, 255, 0.5); /* Muted, transparent blue heart color */
             font-size: 1.5em; /* Larger hearts */
             position: absolute;
             animation: floatAndTwinkle 8s infinite ease-in-out;
             opacity: 0; /* Start hidden */
-            text-shadow: 0 0 8px rgba(160, 160, 160, 0.8); /* Subtle glow (changed from pink) */
+            text-shadow: 0 0 8px rgba(30, 144, 255, 0.8); /* Subtle glow */
         }
 
         @keyframes floatAndTwinkle {
@@ -79,7 +79,7 @@
             bottom: 0px; /* Aligned to bottom of viewport */
             left: 5%; /* From the left edge */
             font-size: 3em; /* Larger coffee cup */
-            color: rgba(90, 90, 90, 0.6); /* Semi-transparent coffee color (changed from brown) */
+            color: rgba(90, 90, 90, 0.6); /* Semi-transparent coffee color */
             opacity: 0.7;
             pointer-events: none;
             z-index: 0;
@@ -108,12 +108,12 @@
 
         /* --- Main Container & Overall Layout --- */
         .container {
-            background-color: var(--dark-container-bg); /* NEW: Dark background */
-            background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); /* NEW: Subtle dark texture */
+            background-color: var(--dark-container-bg); /* Dark background */
+            background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); /* Subtle dark texture */
             background-size: 100px 100px;
-            background-blend-mode: soft-light; /* NEW: Blend mode for the texture */
+            background-blend-mode: soft-light; /* Blend mode for the texture */
             padding: 50px; /* More padding for a grander feel */
-            border-radius: 20px; /* NEW: Consistent and simpler border-radius */
+            border-radius: 20px; /* Consistent and simpler border-radius */
             box-shadow: var(--shadow-medium); /* Prominent shadow for depth */
             width: 100%;
             max-width: 750px; /* Wider container for spaciousness */
@@ -123,9 +123,9 @@
             z-index: 1; /* Ensures it's above background animations */
             margin-top: 30px;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2); /* NEW: Lighter border for dark background */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Lighter border for dark background */
             animation: containerEntry 1s ease-out forwards; /* Changed animation */
-            color: var(--light-text-on-dark); /* NEW: Default text color inside container */
+            color: var(--light-text-on-dark); /* Default text color inside container */
         }
 
         /* Modified containerEntry for rolling animation */
@@ -145,7 +145,7 @@
         /* --- Typography --- */
         h1 {
             font-family: 'Playfair Display', serif; /* Elegant heading font */
-            color: var(--accent-grey); /* NEW: Warm pink for headings on dark bg */
+            color: var(--accent-blue); /* Dodger blue for headings on dark bg */
             margin-bottom: 25px;
             font-size: 2.8em; /* Impactful size */
             font-weight: 700;
@@ -158,9 +158,9 @@
             font-style: italic;
             font-weight: 700;
             font-size: 2.4em; /* Prominent greeting */
-            color: var(--accent-grey);
+            color: #FF69B4; /* Hot pink for greeting */
             margin-bottom: 35px;
-            text-shadow: 1px 1px 5px rgba(160, 160, 160, 0.7); /* Soft glow for greeting (changed from pink) */
+            text-shadow: 1px 1px 5px rgba(255, 105, 180, 0.7); /* Soft glow for greeting */
             animation: greetingPulse 3s infinite ease-in-out alternate;
         }
 
@@ -172,7 +172,7 @@
 
         p {
             margin-bottom: 25px;
-            color: var(--light-text-on-dark); /* NEW: Light text for paragraphs on dark bg */
+            color: var(--light-text-on-dark); /* Light text for paragraphs on dark bg */
             font-size: 1.05em;
             max-width: 650px;
             margin-left: auto;
@@ -182,7 +182,7 @@
         
         .instruction-text {
             font-weight: 600;
-            color: var(--accent-grey); /* Should still be warm pink */
+            color: #FFFFF0; /* Ivory for instruction text */
             font-size: 1.1em;
         }
 
@@ -198,7 +198,7 @@
         label {
             text-align: left;
             font-weight: 700;
-            color: var(--light-text-on-dark); /* NEW: Light text for labels on dark bg */
+            color: #7FFFD4; /* Aquamarine for labels on dark bg */
             font-size: 1.05em;
             margin-bottom: 5px;
             width: 100%; /* Ensure label takes full width for alignment */
@@ -210,7 +210,7 @@
         input[type="date"] {
             width: calc(100% - 24px); /* Account for padding */
             padding: 12px;
-            border: 1px solid var(--accent-grey); /* Pink border */
+            border: 1px solid var(--accent-blue); /* Blue border */
             border-radius: var(--border-radius-input); /* Softly rounded input fields */
             font-size: 1em;
             font-family: 'Gentium Plus', serif; /* Consistent elegant font */
@@ -227,14 +227,14 @@
         input[type="date"]::placeholder,
         input[type="text"]::placeholder {
             font-family: 'Gentium Plus', serif;
-            color: rgba(100, 100, 100, 0.6); /* Muted grey placeholder (changed from brown) */
+            color: rgba(100, 100, 100, 0.6); /* Muted grey placeholder */
         }
 
         textarea:focus,
         input[type="date"]:focus,
         input[type="text"]:focus {
             border-color: var(--dark-text);
-            box-shadow: 0 0 0 3px rgba(160, 160, 160, 0.5); /* Pink glow on focus (changed from pink) */
+            box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.5); /* Blue glow on focus */
             background-color: white;
             outline: none;
         }
@@ -273,9 +273,9 @@
 
         /* --- Unique Secret Code Input Style (shorter width, distinct from others) --- */
         #secretCodeInput, #retrieveSecretCodeInput {
-            border: 2px solid var(--accent-grey);
-            background-color: #f8f8f8; /* Lighter, more distinct background (remains light) */
-            box-shadow: inset 0 0 5px rgba(160, 160, 160, 0.3); /* Inner glow (changed from pink) */
+            border: 2px solid var(--accent-blue);
+            background-color: #f8f8f8; /* Lighter, more distinct background */
+            box-shadow: inset 0 0 5px rgba(30, 144, 255, 0.3); /* Inner glow */
             padding-left: 45px; /* Space for icon */
             position: relative; /* For the pseudo-element icon */
             max-width: 300px; /* Explicitly shorter width for secret code inputs */
@@ -293,13 +293,13 @@
         }
         #secretCodeInput:focus, #retrieveSecretCodeInput:focus {
             border-color: var(--dark-text);
-            box-shadow: 0 0 0 4px rgba(160, 160, 160, 0.7), inset 0 0 5px rgba(160, 160, 160, 0.5); /* Stronger glow (changed from pink) */
+            box-shadow: 0 0 0 4px rgba(30, 144, 255, 0.7), inset 0 0 5px rgba(30, 144, 255, 0.5); /* Stronger glow */
         }
 
 
         /* --- Buttons --- */
         button {
-            background-color: var(--accent-grey);
+            background-color: var(--accent-blue);
             color: white;
             padding: 15px 30px;
             border: none;
@@ -315,7 +315,7 @@
         }
 
         button:hover {
-            background-color: #8a8a8a; /* Slightly darker grey on hover */
+            background-color: #0080FF; /* Slightly darker blue on hover */
             transform: translateY(-2px); /* Subtle lift */
             box-shadow: var(--shadow-medium);
         }
@@ -323,7 +323,7 @@
         button:active {
             transform: translateY(0);
             box-shadow: var(--shadow-light);
-            background-color: #757575;
+            background-color: #0066CC;
         }
 
         /* --- Status Messages --- */
@@ -365,7 +365,7 @@
         .toggle-link {
             margin-top: 30px;
             font-size: 0.95em;
-            color: var(--light-text-on-dark); /* NEW: Light text for general toggle link text */
+            color: var(--light-text-on-dark); /* Light text for general toggle link text */
             display: flex; /* Use flex to center button */
             justify-content: center;
             align-items: center;
@@ -406,14 +406,14 @@
         }
 
         .toggle-link a { /* Existing style for the "create another memory" link */
-            color: var(--accent-grey); /* Changed from warm-pink */
+            color: #FFD700; /* Gold for toggle link */
             text-decoration: none;
             font-weight: bold;
             transition: color var(--transition-duration) ease;
         }
 
         .toggle-link a:hover {
-            color: var(--light-text-on-dark); /* NEW: Light text for hover */
+            color: var(--light-text-on-dark); /* Light text for hover */
             text-decoration: underline;
         }
 
@@ -486,14 +486,14 @@
             color: var(--dark-text); /* Dark text for content on light note card */
             line-height: 1.8;
             margin-bottom: 15px;
-            border-left: 3px solid var(--accent-grey); /* Subtle accent line (changed from warm-pink) */
+            border-left: 3px solid var(--accent-blue); /* Blue accent line */
             padding-left: 15px;
             margin-left: -15px; /* Adjust for padding */
         }
 
         .note-date-info {
             font-size: 0.85em;
-            color: var(--light-text); /* Lighter brown for date info (changed to light-text) */
+            color: var(--light-text); /* Lighter blue for date info */
             text-align: right;
             margin-top: 10px;
             font-style: italic;
@@ -591,14 +591,14 @@
 </head>
 <body>
     <div class="heart-animation-bg">
-        <div class="heart" style="left:10%; top:15%; animation-delay: 0s;">💖</div>
-        <div class="heart" style="left:30%; top:40%; animation-delay: 1.5s; font-size: 1.7em;">💖</div>
-        <div class="heart" style="left:50%; top:25%; animation-delay: 3s;">💖</div>
-        <div class="heart" style="left:70%; top:60%; animation-delay: 4.5s; font-size: 1.2em;">💖</div>
-        <div class="heart" style="left:90%; top:10%; animation-delay: 6s;">💖</div>
+        <div class="heart" style="left:10%; top:15%; animation-delay: 0s;">💙</div>
+        <div class="heart" style="left:30%; top:40%; animation-delay: 1.5s; font-size: 1.7em;">💙</div>
+        <div class="heart" style="left:50%; top:25%; animation-delay: 3s;">💙</div>
+        <div class="heart" style="left:70%; top:60%; animation-delay: 4.5s; font-size: 1.2em;">💙</div>
+        <div class="heart" style="left:90%; top:10%; animation-delay: 6s;">💙</div>
         <div class="heart" style="left:5%; 
-top:70%; animation-delay: 2.5s; font-size: 1.3em;">💖</div>
-        <div class="heart" style="left:65%; top:5%; animation-delay: 5s; font-size: 1.8em;">💖</div>
+top:70%; animation-delay: 2.5s; font-size: 1.3em;">💙</div>
+        <div class="heart" style="left:65%; top:5%; animation-delay: 5s; font-size: 1.8em;">💙</div>
     </div>
     <div class="coffee-animation-bg">
         ☕
@@ -613,52 +613,52 @@ width: 18px; height: 18px;"></div>
         <h2 id="timeGreeting" class="greeting"></h2>
 
         <div id="writeMessageSection">
-            <h1>Craft a Cherished Note 📝</h1>
-            <p>Here, you can pen your special messages and secure them with a unique Secret Code. You may also choose a specific date for these memories to be revealed, or access them instantly.</p>
+            <h1>Craft a Cherished Note 📝✨</h1>
+            <p>Here, you can pen your special messages and secure them with a unique Secret Code. You may also choose a specific date for these memories to be revealed, or access them instantly. 🔑🗓️</p>
 
           
             <form id="messageForm">
-                <label for="secretCodeInput">Your Secret Code:</label>
+                <label for="secretCodeInput">Your Secret Code: 🤫</label>
                 <input type="text" id="secretCodeInput" placeholder="e.g., MyPreciousMemory (letters & numbers only)" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers.
 No spaces or special characters.">
 
-                <label for="messageContent">Your Treasured Note:</label>
+                <label for="messageContent">Your Treasured Note: 💌</label>
                 <textarea id="messageContent" rows="10" placeholder="Type your beautiful words here..."></textarea>
 
-                <label for="deliveryDate">Optional Unveiling Date:</label>
+                <label for="deliveryDate">Optional Unveiling Date: 📅</label>
                 <input type="date" id="deliveryDate">
                 <p 
-style="font-size: 0.9em; color: var(--light-text-on-dark); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
+style="font-size: 0.9em; color: var(--light-text-on-dark); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving. 🚀</p>
 
-                <button type="submit">Seal Your Memory in Time ✉️</button>
+                <button type="submit">Seal Your Memory in Time 🔒✉️</button>
             </form>
 
             <div id="statusMessage" class="hidden"></div>
             
             <p class="toggle-link">
      
-                Ready to reflect on your saved memories? 
-                <a href="#" id="showViewMessage">Open Your Memory Box</a>
+                Ready to reflect on your saved memories? 🤔 
+                <a href="#" id="showViewMessage">Open Your Memory Box 🎁</a>
             </p>
         </div>
 
         <div id="viewMessageSection" class="hidden">
-            <h1>Your Past Notes 📜</h1>
+            <h1>Your Past Notes 📜🕰️</h1>
             <p>Kindly enter your Secret 
-Code below to unlock and view your collection of treasured memories.</p>
+Code below to unlock and view your collection of treasured memories. 🔓💖</p>
             <form id="retrieveMessageForm">
-                <label for="retrieveSecretCodeInput">Enter Secret Code:</label>
+                <label for="retrieveSecretCodeInput">Enter Secret Code: 🔐</label>
                 <input type="text" id="retrieveSecretCodeInput" placeholder="Your Secret Code" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers.
 No spaces or special characters.">
-                <button type="submit">Reveal Memories ✨</button>
+                <button type="submit">Reveal Memories ✨🎉</button>
             </form>
 
             <div id="messageDisplayArea">
-                <p id="noMessage" class="hidden">No notes were found for this code, or none are currently ready to be viewed.</p>
+                <p id="noMessage" class="hidden">No notes were found for this code, or none are currently ready to be viewed. 😟</p>
                 <div id="notesContainer"></div>
    
             </div>
-            <p class="toggle-link"><a href="#" id="showWriteMessage">Wish to create another memory? ✍️</a></p>
+            <p class="toggle-link"><a href="#" id="showWriteMessage">Wish to create another memory? ✍️🌟</a></p>
         </div>
     </div>
 
@@ -708,11 +708,11 @@ No spaces or special characters.">
                 const hour = new Date().getHours();
                 let greeting;
                 if (hour >= 5 && hour < 12) {
-                    greeting = "Good Morning, My Friend!";
+                    greeting = "Good Morning, My Friend! ☀️";
                 } else if (hour >= 12 && hour < 18) {
-                    greeting = "Good Afternoon, My Friend!";
+                    greeting = "Good Afternoon, My Friend! 🌻";
                 } else {
-                    greeting = "Good Evening, My Friend!";
+                    greeting = "Good Evening, My Friend! 🌙";
                 }
                 timeGreeting.textContent = greeting;
             }
@@ -785,17 +785,17 @@ No spaces or special characters.">
                 // Input validation
                 if (!secretCode || !messageContent) {
              
-                    showSaveStatus('Please ensure both the Secret Code and Your Note fields are filled.', false);
+                    showSaveStatus('Please ensure both the Secret Code and Your Note fields are filled. 😕', false);
                     return;
                 }
                 if (!/^[a-zA-Z0-9]+$/.test(secretCode)) {
-                    showSaveStatus('Your Secret Code should only contain letters and numbers.', false);
+                    showSaveStatus('Your Secret Code should only contain letters and numbers. 🚫', false);
                     return;
                 }
                 if (deliveryDate) { 
                     const chosenDate = new Date(deliveryDate + 'T00:00:00'); // Ensure date comparison is consistent
                     if (chosenDate < new Date(now.getFullYear(), now.getMonth(), now.getDate())) { 
-                        showSaveStatus('The Unveiling Date cannot be in the past.', false);
+                        showSaveStatus('The Unveiling Date cannot be in the past. ⏳', false);
                         return;
                     }
                 }
@@ -818,7 +818,7 @@ No spaces or special characters.">
                     await addDoc(notesCollectionRef, noteData);
 
                     // Display success message and clear form
-                    showSaveStatus('Your note has been successfully saved and sealed! ✉️');
+                    showSaveStatus('Your note has been successfully saved and sealed! 🎉✉️');
                     messageForm.reset();
                     // Reset min date after successful submission
                     const today = new Date();
@@ -827,7 +827,7 @@ No spaces or special characters.">
 
                 } catch (error) {
                     console.error('Error saving note:', error);
-                    showSaveStatus('An unexpected error occurred while saving your note. Please try again later.', false);
+                    showSaveStatus('An unexpected error occurred while saving your note. Please try again later. 🚧', false);
                 }
             });
             // --- Logic for Retrieving and Displaying Multiple Notes from Firebase (with Easter Egg) ---
@@ -845,13 +845,13 @@ No spaces or special characters.">
                 // Input validation for retrieval
                 if (!retrieveCode) {
                 
-                    noMessageDiv.textContent = "Please enter your Secret Code to retrieve notes.";
+                    noMessageDiv.textContent = "Please enter your Secret Code to retrieve notes. 🧐";
                     noMessageDiv.classList.remove('hidden');
                     return;
                 }
                 if (!/^[a-zA-Z0-9]+$/.test(retrieveCode)) {
              
-                    noMessageDiv.textContent = 'The Secret Code should only contain letters and numbers.';
+                    noMessageDiv.textContent = 'The Secret Code should only contain letters and numbers. 🙅‍♀️';
                     noMessageDiv.classList.remove('hidden');
                     return;
                 }
@@ -871,7 +871,7 @@ No spaces or special characters.">
 
                     const dateInfoP = document.createElement('p');
                     dateInfoP.classList.add('note-date-info');
-                    dateInfoP.textContent = "A special message from Sarthak!";
+                    dateInfoP.textContent = "A special message from Sarthak! 💖";
                     dateInfoP.style.color = '#666666';
 
                     specialNoteCard.appendChild(messageP);
@@ -888,7 +888,7 @@ No spaces or special characters.">
                     const secretCodeDocSnap = await getDoc(secretCodeDocRef);
 
                     if (!secretCodeDocSnap.exists()) {
-                        noMessageDiv.textContent = "No notes are associated with this Secret Code. Perhaps you'd like to create one?";
+                        noMessageDiv.textContent = "No notes are associated with this Secret Code. Perhaps you'd like to create one? 🤔✍️";
                         noMessageDiv.classList.remove('hidden');
                         return;
                     }
@@ -928,7 +928,7 @@ No spaces or special characters.">
                                 
                                 const dateInfoP = document.createElement('p');
                                 dateInfoP.classList.add('note-date-info');
-                                dateInfoP.textContent = `Created on: ${createdAtDate}`;
+                                dateInfoP.textContent = `Created on: ${createdAtDate} 🗓️`;
                                 
                                 noteCard.appendChild(messageP);
                                 noteCard.appendChild(dateInfoP);
@@ -937,22 +937,22 @@ No spaces or special characters.">
                         });
                         // If notes were found but none are yet ready for viewing
                         if (!hasVisibleNotes && notes.length > 0) { 
-                             noMessageDiv.textContent = "All your notes are patiently awaiting their scheduled unveiling dates. None are ready for viewing just yet!";
+                             noMessageDiv.textContent = "All your notes are patiently awaiting their scheduled unveiling dates. None are ready for viewing just yet! 🕰️";
                              noMessageDiv.classList.remove('hidden');
                         } else if (notes.length === 0) { 
                             // This case should ideally be caught by secretCodeDocSnap.exists(), but as a fallback
-                            noMessageDiv.textContent = "No notes were found for this Secret Code. Perhaps you'd like to create one?";
+                            noMessageDiv.textContent = "No notes were found for this Secret Code. Perhaps you'd like to create one? 📝";
                             noMessageDiv.classList.remove('hidden');
                         }
 
                     } else {
                         // If the secret code exists, but no notes are under it
-                        noMessageDiv.textContent = "No notes were found for this Secret Code. Perhaps you'd like to create one?";
+                        noMessageDiv.textContent = "No notes were found for this Secret Code. Perhaps you'd like to create one? 🌟";
                         noMessageDiv.classList.remove('hidden');
                     }
                 } catch (error) {
                     console.error('Error retrieving notes:', error);
-                    noMessageDiv.textContent = "An unexpected error occurred while retrieving your notes. Please check your connection or try again later.";
+                    noMessageDiv.textContent = "An unexpected error occurred while retrieving your notes. Please check your connection or try again later. 🔌";
                     noMessageDiv.classList.remove('hidden');
                 }
             });
