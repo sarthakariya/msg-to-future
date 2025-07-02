@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Treasured Time Capsule</title>
+    <title>✨ Your Treasured Time Capsule ✨</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;700&family=Gentium+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <style>
         /* Define a harmonious color palette and shadow effects */
         :root {
-            --soft-pink-bg: #fce4ec; /* Very light, soft pink for background */
-            --warm-pink: #ffb6c1; /* Lighter, inviting pink (adjusted) */
+            --soft-pink-bg: #ffe0f0; /* Very light pink for background (new) */
+            --warm-pink: #ffb6c1; /* Lighter, inviting pink */
             --brown-note: #fdf6e3; /* Creamy, parchment-like background for notes */
             --dark-brown-text: #4e342e; /* Rich, deep brown for primary text */
             --light-brown-text: #795548; /* Softer brown for secondary text */
@@ -19,27 +19,25 @@
             --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
             --transition-duration: 0.3s;
-            --border-radius-card: 12px;
-            --border-radius-input: 8px;
+            --border-radius-card: 20px; /* More rounded corners (adjusted) */
+            --border-radius-input: 10px; /* More rounded input corners (adjusted) */
 
-            /* New Bluish-Black Colors (adjusted for more visible gradient) */
-            --bluish-black: #1a202c; /* Deep bluish-black for container */
-            --dark-blue-gradient-start: #0a111f; /* Darker blue for gradient start */
-            --dark-blue-gradient-end: #2a3b50; /* Lighter blue for gradient end */
+            /* New Lightened Black Color */
+            --light-blackish: #2a2f3b; /* Lighter shade of black/dark grey (adjusted) */
         }
 
         /* --- Global & Background Styles --- */
         body {
             font-family: 'Gentium Plus', serif; /* Elegant, classic serif font */
-            background: linear-gradient(135deg, var(--dark-blue-gradient-start) 0%, var(--dark-blue-gradient-end) 100%); /* Bluish-black gradient */
-            background-size: 300% 300%; /* Larger background for more visible rolling effect (adjusted) */
-            animation: rollingBackground 25s linear infinite; /* Rolling animation (adjusted speed) */
+            background: linear-gradient(135deg, var(--soft-pink-bg) 0%, #fff0f5 100%); /* Light pink gradient (adjusted) */
+            background-size: 300% 300%; /* Larger background for more visible rolling effect */
+            animation: rollingBackground 25s linear infinite; /* Rolling animation */
             display: flex;
             justify-content: center;
             align-items: flex-start; /* Align to top for proper scrolling */
             min-height: 100vh;
             margin: 0;
-            color: var(--brown-note); /* Adjust text color for dark background */
+            color: var(--dark-brown-text); /* Adjust text color for light background (adjusted) */
             line-height: 1.7; /* Enhanced line height for readability */
             padding: 30px; /* Generous overall padding */
             box-sizing: border-box;
@@ -65,7 +63,7 @@
         }
 
         .heart {
-            color: rgba(255, 182, 193, 0.8); /* More opaque, visible hearts (adjusted to new pink) */
+            color: rgba(255, 182, 193, 0.8); /* Visible hearts */
             font-size: 2.2em; /* Larger hearts */
             position: absolute;
             animation: floatAndTwinkle 10s infinite ease-in-out; /* Adjusted speed */
@@ -80,53 +78,14 @@
             100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
         }
 
-
-        /* Coffee Steam Animation */
-        .coffee-animation-bg {
-            position: absolute;
-            bottom: 0px; /* Aligned to bottom of viewport */
-            left: 5%; /* From the left edge */
-            font-size: 3em; /* Larger coffee cup */
-            color: rgba(160, 82, 45, 0.6); /* Semi-transparent coffee color */
-            opacity: 0.7;
-            pointer-events: none;
-            z-index: 0;
-            animation: coffeeFadeIn 2s ease-out forwards; /* Fade in with the page */
-        }
-
-        .steam-puff {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            animation: steamPuff 3s infinite ease-out;
-            opacity: 0;
-            box-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
-
-        @keyframes coffeeFadeIn {
-            0% { opacity: 0;
-            transform: translateY(50px); }
-            100% { opacity: 0.7; transform: translateY(0);
-            }
-        }
-
-        @keyframes steamPuff {
-            0% { transform: scale(0.2) translateY(0);
-            opacity: 0; }
-            20% { opacity: 0.8;
-            }
-            100% { transform: scale(1.5) translateY(-80px); opacity: 0;
-            }
-        }
-
         /* --- Main Container & Overall Layout --- */
         .container {
-            background-color: var(--bluish-black); /* Changed to bluish-black */
+            background-color: var(--light-blackish); /* Changed to lighter black */
             padding: 50px; /* More padding for a grander feel */
-            border-radius: var(--border-radius-card); /* Softly rounded corners */
+            border-radius: var(--border-radius-card); /* Softly rounded corners (adjusted) */
             box-shadow: var(--shadow-medium); /* Prominent shadow for depth */
             width: 100%;
-            max-width: 750px; /* Reverted to previous width */
+            max-width: 750px;
             text-align: center;
             box-sizing: border-box;
             position: relative;
@@ -177,7 +136,7 @@
 
         p {
             margin-bottom: 25px;
-            color: var(--brown-note); /* Adjusted for dark background */
+            color: var(--brown-note); /* Adjusted for dark container background */
             font-size: 1.05em;
             max-width: 650px;
             margin-left: auto;
@@ -202,7 +161,7 @@
         label {
             text-align: left;
             font-weight: 700;
-            color: var(--warm-pink); /* Adjusted for dark background */
+            color: var(--warm-pink); /* Adjusted for dark container background */
             font-size: 1.05em;
             margin-bottom: 5px;
         }
@@ -212,7 +171,7 @@
             width: calc(100% - 24px); /* Account for padding */
             padding: 12px;
             border: 1px solid var(--warm-pink); /* Pink border */
-            border-radius: var(--border-radius-input); /* Softly rounded input fields */
+            border-radius: var(--border-radius-input); /* Softly rounded input fields (adjusted) */
             font-size: 1em;
             font-family: 'Gentium Plus', serif; /* Consistent elegant font */
             transition: border-color var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
@@ -264,12 +223,13 @@
             border: 2px solid var(--warm-pink);
             background-color: #fff8f5; /* Lighter, more distinct background */
             box-shadow: inset 0 0 5px rgba(244, 172, 183, 0.3); /* Inner glow */
-            padding: 18px 12px 18px 45px; /* Increased vertical padding (adjusted) */
+            padding: 18px 12px 18px 45px; /* Increased vertical padding */
             position: relative; /* For the pseudo-element icon */
             width: calc(100% - 24px); /* Account for padding */
             color: var(--dark-brown-text);
             max-width: 600px; /* Increased width for secret code inputs only */
             line-height: normal; /* Ensure text is vertically centered */
+            border-radius: var(--border-radius-input); /* Apply adjusted border-radius */
         }
         #secretCodeInput::before, #retrieveSecretCodeInput::before {
             content: '🔑'; /* Key emoji as icon */
@@ -291,13 +251,19 @@
             color: white;
             padding: 15px 30px;
             border: none;
-            border-radius: var(--border-radius-input);
+            border-radius: var(--border-radius-input); /* Adjusted */
             cursor: pointer;
             font-size: 1.2em;
             font-weight: bold;
             transition: background-color var(--transition-duration) ease, transform 0.15s ease, box-shadow var(--transition-duration) ease;
             letter-spacing: 0.5px;
             box-shadow: var(--shadow-light);
+            display: flex; /* Allow content and emoji to align */
+            align-items: center;
+            justify-content: center;
+            gap: 8px; /* Space between text and emoji */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         button:hover {
@@ -316,7 +282,7 @@
         #statusMessage {
             margin-top: 30px;
             padding: 18px;
-            border-radius: var(--border-radius-input);
+            border-radius: var(--border-radius-input); /* Adjusted */
             font-weight: 600;
             font-size: 1em;
             text-align: center;
@@ -351,7 +317,7 @@
         .toggle-link {
             margin-top: 30px;
             font-size: 0.95em;
-            color: var(--brown-note); /* Adjusted for dark background */
+            color: var(--dark-brown-text); /* Adjusted for light background */
         }
 
         .toggle-link a {
@@ -362,7 +328,7 @@
         }
 
         .toggle-link a:hover {
-            color: var(--brown-note); /* Adjusted for dark background */
+            color: var(--dark-brown-text); /* Adjusted for light background */
             text-decoration: underline;
         }
 
@@ -379,9 +345,9 @@
         }
 
         .note-card {
-            background-color: var(--brown-note); /* Brown page view */
+            background-color: var(--brown-note); /* Creamy page view */
             border: 1px solid #dcd3c5; /* Subtle border for the "page" */
-            border-radius: var(--border-radius-input); /* Soft corners */
+            border-radius: var(--border-radius-input); /* Soft corners (adjusted) */
             padding: 25px; /* Ample padding */
             text-align: left;
             width: 100%;
@@ -539,20 +505,12 @@
         <div class="heart" style="left:75%; top:33%; animation-delay: 15s; font-size: 1.9em;">💖</div>
         <div class="heart" style="left:85%; top:45%; animation-delay: 16s;">💖</div>
     </div>
-    <div class="coffee-animation-bg">
-        ☕
-        <div class="steam-puff" style="left: 20%; top: -30%; animation-delay: 0s; width: 15px; height: 15px;"></div>
-        <div class="steam-puff" style="left: 60%; top: -45%; animation-delay: 0.5s;
-width: 20px; height: 20px;"></div>
-        <div class="steam-puff" style="left: 40%; top: -60%; animation-delay: 1s;
-width: 18px; height: 18px;"></div>
-    </div>
 
     <div class="container">
         <h2 id="timeGreeting" class="greeting"></h2>
 
         <div id="writeMessageSection">
-            <h1>Craft a Cherished Note</h1>
+            <h1>✍️ Craft a Cherished Note</h1>
             <p>Here, you can pen your special messages and secure them with a unique Secret Code. You may also choose a specific date for these memories to be revealed, or access them instantly.</p>
 
             <form id="messageForm">
@@ -568,7 +526,7 @@ No spaces or special characters.">
                 <p
 style="font-size: 0.9em; color: var(--brown-note); margin-top: -15px; margin-bottom: 20px;">Leave this field blank to access your note immediately upon saving.</p>
 
-                <button type="submit">Seal Your Memory in Time</button>
+                <button type="submit">Seal Your Memory in Time ✉️</button>
             </form>
 
             <div id="statusMessage" class="hidden">Your note has been successfully saved!</div>
@@ -578,14 +536,14 @@ memories? <a href="#" id="showViewMessage">Open Your Memory Box</a></p>
         </div>
 
         <div id="viewMessageSection" class="hidden">
-            <h1>Your Past Notes</h1>
+            <h1>📦 Your Past Notes</h1>
             <p>Kindly enter your Secret Code below to unlock and view your collection of treasured memories.</p>
             <form id="retrieveMessageForm">
                 <label for="retrieveSecretCodeInput">Enter Secret Code:</label>
 
                  <input type="text" id="retrieveSecretCodeInput" placeholder="Your Secret Code" required pattern="^[a-zA-Z0-9]+$" title="Please use only letters and numbers.
 No spaces or special characters.">
-                <button type="submit">Reveal Memories</button>
+                <button type="submit">Reveal Memories 📖</button>
             </form>
 
             <div id="messageDisplayArea">
